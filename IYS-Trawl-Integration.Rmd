@@ -1,0 +1,26 @@
+---
+title: "IYS-Trawl-Integration"
+author: "Tim van der Stap"
+date: '2022-06-21'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(lubridate)
+library(readxl)
+library(here)
+library(lubridate)
+library(obistools)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r download}
+download.file("https://github.com/international-year-of-the-salmon/2022-NW-Data-Template/blob/main/IYS2022_NW_Data.xlsx?raw=true", here::here("IYS2022_NW_Data.xlsx"), quiet = TRUE, mode = "wb")
+
+download.file("https://github.com/international-year-of-the-salmon/2022-TINRO-Data-Template/blob/main/IYS2022_TINRO.xlsx?raw=true", here::here("IYS2022_TINRO_Data.xlsx"), quiet = TRUE, mode = "wb")
+
+NW_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Sampling_Event_Info")
+TINRO_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "4. SAMPLING EVENT INFO")
+
+```
