@@ -12,6 +12,8 @@ library(readxl)
 library(here)
 library(lubridate)
 library(obistools)
+library(chron)
+library(janitor)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -22,5 +24,54 @@ download.file("https://github.com/international-year-of-the-salmon/2022-TINRO-Da
 
 NW_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Sampling_Event_Info")
 TINRO_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "4. SAMPLING EVENT INFO")
+```
 
+Join the event tables from the various vessel sampling events:
+
+```{r bridgelog, eval = FALSE}
+# Check for differences in column header names between those two data frames:
+janitor::compare_df_cols(NW_event, TINRO_event)
+```
+
+Looks like we have to do a little bit of cleaning before we join the data frames!
+
+```{r NW cleaning, eval = FALSE}
+# There are some discrepancies in column names and class, which need to be resolved prior to joining:
+NW_event <- NW_event %>%
+  dplyr::rename(Maximum_Sampling_Depth_Meters = Maximum_Sampling_Depth,
+                Minimum_Sampling_Depth_Meters = Minimum_Sampling_Depth,
+                Cruise_name = Cruise_Name) # remember: rename(new = old)
+
+# Change class where needed:
+NW_event$Month <- as.numeric(NW_event$Month)
+NW_event$Day <- as.numeric(NW_event$Day)
+NW_event$Time_End <- as.POSIXct(NW_event$Time_End, format = "%H:%M:%S")
+NW_event$Time_Start <- as.POSIXct(NW_event$Time_Start, format = "%H:%M:%S")
+
+# NW Cruise_name and Station Event ID have to be slightly altered:
+NW_event$Cruise_name <- str_replace(NW_event$Cruise_name, "NW2201", "IYS2022")
+NW_event$Station_Event_ID <- str_replace(NW_event$Station_Event_ID, "NW2201", "IYS2022")
+```
+
+And for TINRO data:
+
+```{r TINRO cleaning, eval = FALSE}
+# Sampling duration minutes has to be reformatted.
+TINRO_event$Sampling_Duration_Minutes <- format(TINRO_event$Sampling_Duration_Minutes, format = "%H:%M:%S") 
+TINRO_event$Sampling_Duration_Minutes <- 60 * 24 * as.numeric(chron::times(TINRO_event$Sampling_Duration_Minutes)) 
+TINRO_event$Sampling_Duration_Minutes <- round(TINRO_event$Sampling_Duration_Minutes, digits = 2)
+```
+
+Finally, join the data frames: 
+
+```{r IYS2022 sampling event, eval = FALSE}
+# Join the individual event data frames:
+bridgelog_trawl_all <- bind_rows(TINRO_event, NW_event)
+
+# Extract the times from Time_Start and Time_End:
+bridgelog_trawl_all$Time_Start <- format(bridgelog_trawl_all$Time_Start, format = "%H:%M:%S")
+bridgelog_trawl_all$Time_End <- format(bridgelog_trawl_all$Time_End, format = "%H:%M:%S")
+
+# Save event data:
+write_csv(bridgelog_trawl_all, "overall_bridgelog.csv")
 ```
