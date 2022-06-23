@@ -13,6 +13,7 @@ library(here)
 library(lubridate)
 library(obistools)
 library(chron)
+library(xlsx)
 library(janitor)
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -74,4 +75,75 @@ bridgelog_trawl_all$Time_End <- format(bridgelog_trawl_all$Time_End, format = "%
 
 # Save event data:
 write_csv(bridgelog_trawl_all, "overall_bridgelog.csv")
+```
+
+Now let's join the overall catch data from these vessels into a specific data frame as well. 
+
+```{r overall catch, eval = FALSE}
+NW_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Catch_Info")
+TINRO_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "5. CATCH_FINAL INFO")
+```
+
+Cleaning NW catch column names:
+
+```{r NW catch clean, eval = FALSE}
+NW_catch <- NW_catch %>%
+  dplyr::rename(Station_Event_ID = `Station Event ID`,
+                Catch_ID = `Catch ID`,
+                Species_recorded = Species_Recorded,
+                Catch_weight = Catch_Weight,
+                Catch_count = Catch_Count)
+
+# Change NW2201 in Station Event ID and Catch ID:
+NW_catch$Station_Event_ID <- str_replace(NW_catch$Station_Event_ID, "NW2201", "IYS2022")
+NW_catch$Catch_ID <- str_replace(NW_catch$Catch_ID, "NW2201", "IYS2022")
+```
+
+Compare column names between catch data frames: 
+
+```{r bridgelog, eval = FALSE}
+# Check for differences in column header names between those two data frames:
+janitor::compare_df_cols(NW_catch, TINRO_catch)
+
+# Bind rows and save: 
+catch <- bind_rows(TINRO_catch, NW_catch)
+
+# Save event data:
+write_csv(catch, "overall_catch.csv")
+```
+
+Now let's join the overall specimen data from these vessels into a specific data frame as well. 
+
+```{r overall catch, eval = FALSE}
+NW_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Specimen_Info")
+TINRO_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "6. SPECIMEN INFO")
+```
+
+Cleaning NW specimeh column names:
+
+```{r NW catch clean, eval = FALSE}
+NW_specimen<- NW_specimen %>%
+  dplyr::rename(Station_Event_ID = `Station Event ID`,
+                Catch_ID = `Catch ID`,
+                Specimen_ID = `Specimen ID`,
+                Specimen_Length = Length,
+                Specimen_Weight = Weight)
+
+# Change NW2201 in Station Event ID and Catch ID:
+NW_specimen$Station_Event_ID <- str_replace(NW_specimen$Station_Event_ID, "NW2201", "IYS2022")
+NW_specimen$Catch_ID <- str_replace(NW_specimen$Catch_ID, "NW2201", "IYS2022")
+NW_specimen$Specimen_ID <- str_replace(NW_specimen$Specimen_ID, "NW2201", "IYS2022")
+```
+
+Join the specimen data rows. 
+
+```{r specimen, eval = FALSE}
+# Check for differences in column header names between those two data frames:
+janitor::compare_df_cols(NW_specimen, TINRO_specimen)
+
+# Bind rows and save: 
+specimen <- bind_rows(TINRO_specimen, NW_specimen)
+
+# Save event data:
+write_csv(specimen, "overall_specimen.csv")
 ```
