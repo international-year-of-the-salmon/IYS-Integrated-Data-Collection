@@ -13,20 +13,58 @@ library(here)
 library(lubridate)
 library(obistools)
 library(chron)
-library(xlsx)
 library(janitor)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-For date integration, first download the processed data. For the 2022 data, this will be included in the IYS-data-template.  
+For date integration, first download the processed data. For the 2022 data, this will be included in the IYS-data-template. From public repositories, we can download straight from the repository:  
 
 ```{r download}
 download.file("https://github.com/international-year-of-the-salmon/2022-NW-Data-Template/blob/main/IYS2022_NW_Data.xlsx?raw=true", here::here("IYS2022_NW_Data.xlsx"), quiet = TRUE, mode = "wb")
 
 download.file("https://github.com/international-year-of-the-salmon/2022-TINRO-Data-Template/blob/main/IYS2022_TINRO.xlsx?raw=true", here::here("IYS2022_TINRO_Data.xlsx"), quiet = TRUE, mode = "wb")
+```
 
+From private repositories, use the following chunk of code, making sure to change the github_link to point to the correct private repository.
+
+```{r private repo download, eval = FALSE}
+# To download the GoA2019 Trawl data from the private repository, use the following steps:
+# 1. Generate PAT token, making sure you get 'repo' access. 
+# 2. Copy to URL to the raw file in GitHub. 
+# 3. Add your PAT in the url, so that url reads "https://<PAT>@<url>"
+# 4. In the terminal, download the file from the repository using: curl -s -O <url>
+
+github_link <- "https://github.com/international-year-of-the-salmon/2019-FishTrawl/blob/master/original_data/JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY%20(2).xlsx"
+library(httr)
+temp_file <- tempfile(fileext = ".xlsx")
+req <- GET(github_link, 
+           # authenticate using GITHUB_PAT
+           authenticate(Sys.getenv("GITHUB_PAT"), ""),
+           # write result to disk
+           write_disk(path = temp_file))
+tab <- readxl::read_excel(temp_file)
+tab
+
+github_link <- "https://github.com/CerebralMastication/Presentations/raw/master/test.xlsx"
+library(httr)
+temp_file <- tempfile(fileext = ".xlsx")
+req <- GET(github_link, 
+          # authenticate using GITHUB_PAT
+           authenticate(Sys.getenv("GITHUB_PAT"), ""),
+          # write result to disk
+           write_disk(path = temp_file))
+tab2 <- openxlsx::loadWorkbook(temp_file)
+tab <- readxl::read_excel(temp_file)
+tab
+```
+
+Now that we have the latest versions of the trawl data downloaded, we can read them in:
+
+```{r event data, eval = FALSE}
 NW_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Sampling_Event_Info")
 TINRO_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "4. SAMPLING EVENT INFO")
+GoA2019_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx", 
+                            sheet = "BRIDGE_LOG_FINAL")
 ```
 
 Compare event tables from the various vessel sampling events:
@@ -59,7 +97,6 @@ And for TINRO data:
 
 ```{r TINRO cleaning, eval = FALSE}
 # Sampling duration minutes has to be reformatted.
-TINRO_event$Sampling_Duration_Minutes <- format(TINRO_event$Sampling_Duration_Minutes, format = "%H:%M:%S") 
 TINRO_event$Sampling_Duration_Minutes <- 60 * 24 * as.numeric(chron::times(TINRO_event$Sampling_Duration_Minutes)) 
 TINRO_event$Sampling_Duration_Minutes <- round(TINRO_event$Sampling_Duration_Minutes, digits = 2)
 
@@ -67,11 +104,64 @@ TINRO_event$Time_End <- format(TINRO_event$Time_End, format = "%H:%M:%S")
 TINRO_event$Time_Start <- format(TINRO_event$Time_Start, format = "%H:%M:%S")
 ```
 
+Clean up the GoA2019 Trawl event data:
+
+```{r GOA2019, eval = FALSE}
+GoA2019_event$END_DEPLOYMENT_TIME <- substr(as.POSIXct(sprintf("%04.0f", GoA2019_event$END_DEPLOYMENT_TIME), format = "%H%M"), 12, 16) 
+GoA2019_event$BEGIN_RETRIEVAL_TIME <- substr(as.POSIXct(sprintf("%04.0f", GoA2019_event$BEGIN_RETRIEVAL_TIME), format = "%H%M"), 12, 16)
+
+GoA2019_event <- GoA2019_event %>%
+  mutate(Cruise_name = "IYS2022",
+         Vessel_Name_Abbr = "Professor Kaganovskiy",
+         Zone = " ",
+         Time_Zone_Code = "GMT+12",
+         Minimum_Sampling_Depth_Meters = 0) %>%
+  dplyr::rename(Station = TOW_NUMBER,
+                Event_Type = EVENT_TYPE,
+                Time_Start = END_DEPLOYMENT_TIME,
+                Time_End = BEGIN_RETRIEVAL_TIME,
+                Sampling_Duration_Minutes = TOW_DURATION,
+                Day_Night = `Day /Night`,
+                Maximum_Sampling_Depth_Meters = MOUTH_OPENING_HEIGHT,
+                Latitude_Start_DecDeg = START_LATITUDE_DD,
+                Longitude_Start_DecDeg = longitude,
+                Latitude_End_DecDeg = END_LATITUDE_DD,
+                Longitude_End_DecDeg = END_LONGITUDE_DD,
+                Bottom_Depth_Meters = BOTTOM_DEPTH_START_METERS,
+                Tow_distance_nautical_miles = DISTANCE_TRAVELLED,
+                Tow_speed_kilometers_per_hour = SPEED,
+                Wind_Direction_Degrees = WIND_DIRECTION,
+                Wind_Speed_kilometers_per_hour = WIND_SPEED,
+                Weather_description = WEATHER_COMMENTS, 
+                Comments = `COMMENTS TRANSLATED TO ENGLISH`)
+
+GoA2019_event$Year <- as.numeric(format(as.Date(GoA2019_event$EVENT_DATE), "%Y"))
+GoA2019_event$Month <- as.numeric(format(as.Date(GoA2019_event$EVENT_DATE), "%m"))
+GoA2019_event$Day <- as.numeric(format(as.Date(GoA2019_event$EVENT_DATE), "%d"))
+
+# Change some classes:
+GoA2019_event$Zone <- as.numeric(GoA2019_event$Zone)
+GoA2019_event$Wind_Direction_Degrees <- as.numeric(GoA2019_event$Wind_Direction_Degrees)
+GoA2019_event$Wind_Speed_kilometers_per_hour <- as.numeric(GoA2019_event$Wind_Speed_kilometers_per_hour)
+
+GoA2019_event <- GoA2019_event %>%
+  mutate(Sampling_Duration_Minutes = Sampling_Duration_Minutes * 60,
+         Station_EventID = paste(Cruise_name, Vessel_Name_Abbr, Station, Event_Type, sep = "-"),
+         Longitude_End_DecDeg = Longitude_End_DecDeg * -1) %>%
+  select(Cruise_name, Vessel_Name_Abbr, Zone, Station, Event_Type, Year, Month, Day, Time_Start, Time_End, Sampling_Duration_Minutes, Day_Night,
+         Time_Zone_Code, Minimum_Sampling_Depth_Meters, Maximum_Sampling_Depth_Meters, Tow_speed_kilometers_per_hour, Latitude_Start_DecDeg, 
+         Longitude_Start_DecDeg, Latitude_End_DecDeg, Longitude_End_DecDeg, Bottom_Depth_Meters, Tow_distance_nautical_miles,
+         Wind_Direction_Degrees, Wind_Speed_kilometers_per_hour, Comments)
+```
+
 Finally, join the data frames into a single sampling event data table: 
 
 ```{r IYS2022 sampling event, eval = FALSE}
+# Check for differences in column header names and class between those two data frames:
+janitor::compare_df_cols(NW_event, TINRO_event, GoA2019_event)
+
 # Join the individual event data frames:
-bridgelog_trawl_all <- bind_rows(TINRO_event, NW_event)
+bridgelog_trawl_all <- bind_rows(TINRO_event, NW_event, GoA2019_event)
 
 # Save event data:
 write_csv(bridgelog_trawl_all, "overall_bridgelog.csv")
