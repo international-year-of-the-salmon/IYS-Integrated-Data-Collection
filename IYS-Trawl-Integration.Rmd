@@ -172,6 +172,8 @@ Now let's join the overall catch data from these vessels into a specific data fr
 ```{r overall catch, eval = FALSE}
 NW_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Catch_Info")
 TINRO_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "5. CATCH_FINAL INFO")
+GoA2019_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx",
+                            sheet = "CATCH_FINAL")
 ```
 
 Cleaning NW catch column names:
@@ -189,14 +191,39 @@ NW_catch$Station_Event_ID <- str_replace(NW_catch$Station_Event_ID, "NW2201", "I
 NW_catch$Catch_ID <- str_replace(NW_catch$Catch_ID, "NW2201", "IYS2022")
 ```
 
+Cleaning GoA2019 catch column names:
+
+```{r GOA2019 catch clean, eval = FALSE}
+GoA2019_catch <- GoA2019_catch %>%
+  mutate(cruise_name = "IYS2022",
+         Vessel_Name_Abbr = "Professor Kaganovskiy",
+         Zone = " ",
+         Event_Type = "Trawl") %>%
+  dplyr::rename(Station = `TOW_NUMBER (number)`,
+                common_name = `common name`,
+                Catch_weight = `Mass_codend (no expansion)`,
+                Catch_count = `CATCH_COUNT (pieces)(**includes Russian expansion for some species)`,
+                Lifestage = `age group ( for salmon 5= juv, 4 immature, 3 mature, 0 unknown)`,
+                Comments = COMMENTS) %>%
+  mutate(Station_Event_ID = paste(cruise_name, Vessel_Name_Abbr, Station, Event_Type, sep = "-"),
+         Catch_ID = paste(Station_Event_ID, row_number(), sep = "-"),
+         Species_recorded = NA,
+         Scientific_Name = paste(genus, species, sep = " "),
+         Taxonomic_rank = ifelse(grepl("sp.", GoA2019_catch$species), "genus", "species"),
+         Catch_weight_units = "kilograms") %>%
+  select(Station_Event_ID, Catch_ID, Species_recorded, Scientific_Name, Taxonomic_rank, Lifestage, common_name, Catch_weight, Catch_weight_units,
+         Catch_count, Comments)
+
+```
+
 Compare column names between catch data frames: 
 
 ```{r bridgelog, eval = FALSE}
 # Check for differences in column header names between those two data frames:
-janitor::compare_df_cols(NW_catch, TINRO_catch)
+janitor::compare_df_cols(NW_catch, TINRO_catch, GoA2019_catch)
 
 # Bind rows and save: 
-catch <- bind_rows(TINRO_catch, NW_catch)
+catch <- bind_rows(TINRO_catch, NW_catch, GoA2019_catch)
 
 # Save catch data:
 write_csv(catch, "overall_catch.csv")
