@@ -234,12 +234,14 @@ Now let's join the overall specimen data from these vessels into a specific data
 ```{r overall catch, eval = FALSE}
 NW_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Specimen_Info")
 TINRO_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "6. SPECIMEN INFO")
+GoA2019_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY (2).xlsx",
+                            sheet = "SPECIMEN_FINAL")
 ```
 
-Cleaning NW specimeh column names:
+Cleaning NW specimen column names:
 
-```{r NW catch clean, eval = FALSE}
-NW_specimen<- NW_specimen %>%
+```{r NW specimen clean, eval = FALSE}
+NW_specimen <- NW_specimen %>%
   dplyr::rename(Station_Event_ID = `Station Event ID`,
                 Catch_ID = `Catch ID`,
                 Specimen_ID = `Specimen ID`,
@@ -250,6 +252,36 @@ NW_specimen<- NW_specimen %>%
 NW_specimen$Station_Event_ID <- str_replace(NW_specimen$Station_Event_ID, "NW2201", "IYS2022")
 NW_specimen$Catch_ID <- str_replace(NW_specimen$Catch_ID, "NW2201", "IYS2022")
 NW_specimen$Specimen_ID <- str_replace(NW_specimen$Specimen_ID, "NW2201", "IYS2022")
+```
+
+Clean the GOA2019 Trawl specimen data to integrate with 2022 data:
+
+```{r GOA2019 specimen clean, eval = FALSE}
+GoA2019_specimen <- GoA2019_specimen %>%
+  mutate(cruise_name = "IYS2022",
+         Vessel_name_abbr = "Professor Kaganovskiy", 
+         Zone = " ",
+         Event_Type = "Trawl",
+         data_type = "specimen",
+         Scientific_Name = paste(genus, species, sep = " ")) %>%
+  dplyr::rename(Station = TOW_NUMBER,
+                common_name = `common name`) %>%
+  select(Station, common_name, LENGTH, SEX_CODE, `WEIGHT - TOTAL`, cruise_name, Vessel_name_abbr, Zone, Scientific_Name, Event_Type,
+         data_type)
+
+GoA2019_specimen <- GoA2019_specimen %>%
+  mutate(Station_Event_ID = paste(cruise_name, Vessel_name_abbr, Station, Event_Type, sep = "-"))
+
+# We want to compare the catch and the specimen data tables by joining them by Station_Event_ID and Scientific_Name. Therefore, we have to ensure that the spelling of Scientific_Names at least matches between these data frames (regardless of whether it is accuratedly represented in WORMS)
+specimen_unique <- unique(GoA2019_specimen$Scientific_Name)
+catch_unique <- unique(GoA2019_catch$Scientific_Name)
+
+setdiff(specimen_unique, catch_unique)
+
+# Left join to the GoA2019_catch data table so that we can create the specimen_IDs
+merge <- left_join(GoA2019_specimen, GoA2019_catch, by = c("Station_Event_ID", "Scientific_Name"))
+merge2 <- left_join(GoA2019_catch, GoA2019_specimen, by = c("Station_Event_ID", "Scientific_Name"))
+
 ```
 
 Join the specimen data rows. 
