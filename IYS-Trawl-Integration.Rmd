@@ -278,9 +278,31 @@ catch_unique <- unique(GoA2019_catch$Scientific_Name)
 
 setdiff(specimen_unique, catch_unique)
 
+# You can notice that in the specimen data, species names' are often followed by Russian (e.g. полов.). We need to remove these as otherwise we can't properly connect the catch to the specimen data. 
+GoA2019_specimen$Scientific_Name <- gsub("[()]", "", GoA2019_specimen$Scientific_Name)
+GoA2019_specimen$Scientific_Name <- gsub(" неполов.", "", GoA2019_specimen$Scientific_Name)
+GoA2019_specimen$Scientific_Name <- gsub(" сегол.", "", GoA2019_specimen$Scientific_Name)
+GoA2019_specimen$Scientific_Name <- gsub(" полов.", "", GoA2019_specimen$Scientific_Name)
+GoA2019_specimen$Scientific_Name <- gsub(" мол.", "", GoA2019_specimen$Scientific_Name)
+
+# Make sure to remove the  мол. from the catch data as well. 
+GoA2019_catch$Scientific_Name <- gsub("[()]", "", GoA2019_catch$Scientific_Name)
+GoA2019_catch$Scientific_Name <- gsub(" мол.", "", GoA2019_catch$Scientific_Name)
+GoA2019_catch$Scientific_Name <- gsub("Phacellophora camtshchatica", "Phacellophora camtschatica", GoA2019_catch$Scientific_Name)
+
 # Left join to the GoA2019_catch data table so that we can create the specimen_IDs
-merge <- left_join(GoA2019_specimen, GoA2019_catch, by = c("Station_Event_ID", "Scientific_Name"))
-merge2 <- left_join(GoA2019_catch, GoA2019_specimen, by = c("Station_Event_ID", "Scientific_Name"))
+merge <- left_join(GoA2019_catch, GoA2019_specimen, by = c("Station_Event_ID", "Scientific_Name"))
+merge <- merge %>% group_by(Catch_ID) %>% 
+  mutate(Specimen_ID = paste(Catch_ID, row_number(), sep = "-")) %>%
+  ungroup()
+
+GOA2019_specimen_tab <- merge %>% filter(data_type == "specimen") %>%
+  dplyr::rename(Species_Recorded = Species_recorded,
+                Specimen_Length = LENGTH,
+                Specimen_Weight = `WEIGHT - TOTAL`,
+                Sex = SEX_CODE) %>%
+  select(Station_Event_ID, Catch_ID, Specimen_ID, Species_Recorded, Scientific_Name, Lifestage, Specimen_Length,
+         Specimen_Weight, Sex)
 
 ```
 
@@ -288,10 +310,10 @@ Join the specimen data rows.
 
 ```{r specimen, eval = FALSE}
 # Check for differences in column header names between those two data frames:
-janitor::compare_df_cols(NW_specimen, TINRO_specimen)
+janitor::compare_df_cols(NW_specimen, TINRO_specimen, GOA2019_specimen_tab)
 
 # Bind rows and save: 
-specimen <- bind_rows(TINRO_specimen, NW_specimen)
+specimen <- bind_rows(TINRO_specimen, NW_specimen, GOA2019_specimen_tab)
 
 # Save event data:
 write_csv(specimen, "overall_specimen.csv")
