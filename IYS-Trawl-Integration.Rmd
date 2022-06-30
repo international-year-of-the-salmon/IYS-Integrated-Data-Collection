@@ -135,26 +135,6 @@ TINRO_event$Time_End <- as.POSIXct(TINRO_event$Time_End, format = "%H:%M:%S") %>
 TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S")
 TINRO_event$Time_Start <- TINRO_event$Time_Start - hrs
 TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S")# Change class and time to UTC for integration
-```
-
-Try adding date and time:
-
-```{r date, eval = FALSE}
-TINRO_event$date <- as.Date(paste(TINRO_event$Year, TINRO_event$Month, TINRO_event$Day, sep = "-"))
-
-
-TINRO_event <- TINRO_event %>% 
-  mutate(eventDate = paste(date, Time_Start)) %>%
-  mutate(my.lt = as.POSIXlt(TINRO_event$eventDate))
-TINRO_event$my.lt$hour = TINRO_event$my.lt$hour-12
-
-TINRO_event <- TINRO_event %>%
-  mutate(fixed_date = eventDate - hrs)
-```
-
-TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S")
-TINRO_event$Time_Start <- TINRO_event$Time_Start - hrs
-TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S")
 
 # Sampling duration minutes has to be reformatted.
 TINRO_event$Sampling_Duration_Minutes <- 60 * 24 * as.numeric(chron::times(TINRO_event$Sampling_Duration_Minutes)) 
@@ -162,6 +142,9 @@ TINRO_event$Sampling_Duration_Minutes <- round(TINRO_event$Sampling_Duration_Min
 
 # Change Time_Zone_Code to state that the Time_Start and Time_End now reflects UTC:
 TINRO_event$Time_Zone_Code <- "GMT"
+
+# Remove temporary columns:
+TINRO_event <- TINRO_event %>% select(-c(date, eventDate_start))
 ```
 
 Clean up the GoA2019 Trawl event data:
