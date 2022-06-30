@@ -111,13 +111,46 @@ NW_event$Station_Event_ID <- str_replace(NW_event$Station_Event_ID, "NW2201", "I
 And for TINRO data:
 
 ```{r TINRO cleaning, eval = FALSE}
-# Trawl data is collected in GMT+12:00. So we have to subtract 12 hours from the Time_Start and Time_End to get to UTC:
+# Trawl data is collected in GMT+12:00. So we have to subtract 12 hours from the Time_Start and Time_End to get to UTC. Additionally, we have to make sure this is then accurately reflected in the sampling **day** as well!
 hrs <- 12 * 60 * 60
+
+TINRO_event$date <- as.Date(paste(TINRO_event$Year, TINRO_event$Month, TINRO_event$Day, sep = "-"))
+TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S")
+TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S")
+
+TINRO_event <- TINRO_event %>%
+  mutate(eventDate_start = paste(date, Time_Start)) %>%
+  mutate(eventDate_start = as.POSIXlt(TINRO_event$eventDate_start))
+TINRO_event$eventDate_start$hour = TINRO_event$eventDate_start$hour-12
+
+TINRO_event$Year <- as.numeric(format(as.Date(TINRO_event$eventDate_start), "%Y"))
+TINRO_event$Month <- as.numeric(format(as.Date(TINRO_event$eventDate_start), "%m"))
+TINRO_event$Day <- as.numeric(format(as.Date(TINRO_event$eventDate_start), "%d"))
 
 # Reformat time, and transform to UTC:
 TINRO_event$Time_End <- as.POSIXct(TINRO_event$Time_End, format = "%H:%M:%S")
 TINRO_event$Time_End <- TINRO_event$Time_End - hrs
-TINRO_event$Time_End <- as.POSIXct(TINRO_event$Time_End, format = "%H:%M:%S") %>% format("%H:%M:%S") # Change class and time to UTC for integration
+TINRO_event$Time_End <- as.POSIXct(TINRO_event$Time_End, format = "%H:%M:%S") %>% format("%H:%M:%S") 
+
+TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S")
+TINRO_event$Time_Start <- TINRO_event$Time_Start - hrs
+TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S")# Change class and time to UTC for integration
+```
+
+Try adding date and time:
+
+```{r date, eval = FALSE}
+TINRO_event$date <- as.Date(paste(TINRO_event$Year, TINRO_event$Month, TINRO_event$Day, sep = "-"))
+
+
+TINRO_event <- TINRO_event %>% 
+  mutate(eventDate = paste(date, Time_Start)) %>%
+  mutate(my.lt = as.POSIXlt(TINRO_event$eventDate))
+TINRO_event$my.lt$hour = TINRO_event$my.lt$hour-12
+
+TINRO_event <- TINRO_event %>%
+  mutate(fixed_date = eventDate - hrs)
+```
 
 TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S")
 TINRO_event$Time_Start <- TINRO_event$Time_Start - hrs
