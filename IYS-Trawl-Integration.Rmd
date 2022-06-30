@@ -259,6 +259,7 @@ janitor::compare_df_cols(NW_catch, TINRO_catch, Shimada_catch)
 
 # Bind rows and save: 
 IYS2022_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch)
+IYS2022_trawl_catch$dateIdentified <- as.character(IYS2022_trawl_catch$dateIdentified)
 
 # Save catch data:
 write_csv(IYS2022_trawl_catch, "IYS2022_trawl_catch.csv")
