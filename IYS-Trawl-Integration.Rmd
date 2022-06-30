@@ -23,6 +23,8 @@ For date integration, first download the processed data. For the 2022 data, this
 download.file("https://github.com/international-year-of-the-salmon/2022-NW-Data-Template/blob/main/IYS2022_NW_Data.xlsx?raw=true", here::here("IYS2022_NW_Data.xlsx"), quiet = TRUE, mode = "wb")
 
 download.file("https://github.com/international-year-of-the-salmon/2022-TINRO-Data-Template/blob/main/IYS2022_TINRO.xlsx?raw=true", here::here("IYS2022_TINRO_Data.xlsx"), quiet = TRUE, mode = "wb")
+
+download.file("https://github.com/international-year-of-the-salmon/2022-shimada-data-template/blob/main/IYS2022_Shimada_Data_template.xlsx?raw=true", here::here("IYS2022_Shimada_Data.xlsx"), quiet = TRUE, mode = "wb")
 ```
 
 From private repositories, use the following chunk of code, making sure to change the github_link to point to the correct private repository.
@@ -61,8 +63,12 @@ tab
 Now that we have the latest versions of the trawl data downloaded, we can read them in:
 
 ```{r event data, eval = FALSE}
-NW_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Sampling_Event_Info")
-TINRO_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "4. SAMPLING EVENT INFO")
+NW_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Sampling_Event_Info") %>%
+  filter(Event_Type == "CanTrawl")
+TINRO_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "4. SAMPLING EVENT INFO") %>%
+  filter(Event_Type == "Trawl")
+Shimada_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_Shimada_Data.xlsx", sheet = "4. SAMPLING EVENT INFO") %>%
+  filter(Event_Type %in% c("Trawl", "CTD"))
 GoA2019_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx", 
                             sheet = "BRIDGE_LOG_FINAL")
 ```
@@ -71,10 +77,19 @@ Compare event tables from the various vessel sampling events:
 
 ```{r event comparison, eval = FALSE}
 # Check for differences in column header names and class between those two data frames:
-janitor::compare_df_cols(NW_event, TINRO_event)
+janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event)
 ```
 
 Looks like we have to do a little bit of cleaning before we join the data frames!
+
+```{r Shimada cleaning, eval = FALSE}
+Shimada_event <- Shimada_event %>%
+  mutate(Time_Start = as.POSIXct(Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S"),
+         Time_End = as.POSIXct(Time_End, format = "%H:%M:%S") %>% format("%H:%M:%S")) %>%
+  dplyr::rename(Bottom_Depth_Meters = `Bottom_Depth*_Meters`)
+```
+
+For NW data:
 
 ```{r NW cleaning, eval = FALSE}
 NW_event <- NW_event %>%
@@ -96,12 +111,24 @@ NW_event$Station_Event_ID <- str_replace(NW_event$Station_Event_ID, "NW2201", "I
 And for TINRO data:
 
 ```{r TINRO cleaning, eval = FALSE}
+# Trawl data is collected in GMT+12:00. So we have to subtract 12 hours from the Time_Start and Time_End to get to UTC:
+hrs <- 12 * 60 * 60
+
+# Reformat time, and transform to UTC:
+TINRO_event$Time_End <- as.POSIXct(TINRO_event$Time_End, format = "%H:%M:%S")
+TINRO_event$Time_End <- TINRO_event$Time_End - hrs
+TINRO_event$Time_End <- as.POSIXct(TINRO_event$Time_End, format = "%H:%M:%S") %>% format("%H:%M:%S") # Change class and time to UTC for integration
+
+TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S")
+TINRO_event$Time_Start <- TINRO_event$Time_Start - hrs
+TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S")
+
 # Sampling duration minutes has to be reformatted.
 TINRO_event$Sampling_Duration_Minutes <- 60 * 24 * as.numeric(chron::times(TINRO_event$Sampling_Duration_Minutes)) 
 TINRO_event$Sampling_Duration_Minutes <- round(TINRO_event$Sampling_Duration_Minutes, digits = 2)
 
-TINRO_event$Time_End <- format(TINRO_event$Time_End, format = "%H:%M:%S")
-TINRO_event$Time_Start <- format(TINRO_event$Time_Start, format = "%H:%M:%S")
+# Change Time_Zone_Code to state that the Time_Start and Time_End now reflects UTC:
+TINRO_event$Time_Zone_Code <- "GMT"
 ```
 
 Clean up the GoA2019 Trawl event data:
@@ -158,13 +185,13 @@ Finally, join the data frames into a single sampling event data table:
 
 ```{r IYS2022 sampling event, eval = FALSE}
 # Check for differences in column header names and class between those two data frames:
-janitor::compare_df_cols(NW_event, TINRO_event, GoA2019_event)
+janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event)
 
 # Join the individual event data frames:
-bridgelog_trawl_all <- bind_rows(TINRO_event, NW_event, GoA2019_event)
+IYS2022_trawl_event <- bind_rows(TINRO_event, NW_event, Shimada_event)
 
 # Save event data:
-write_csv(bridgelog_trawl_all, "overall_bridgelog.csv")
+write_csv(IYS2022_trawl_event, "IYS2022_trawl_event.csv")
 ```
 
 Now let's join the overall catch data from these vessels into a specific data frame as well. 
@@ -172,6 +199,7 @@ Now let's join the overall catch data from these vessels into a specific data fr
 ```{r overall catch, eval = FALSE}
 NW_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Catch_Info")
 TINRO_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "5. CATCH_FINAL INFO")
+Shimada_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_Shimada_Data.xlsx", sheet = "5. CATCH_FINAL INFO")
 GoA2019_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx",
                             sheet = "CATCH_FINAL")
 ```
@@ -189,6 +217,13 @@ NW_catch <- NW_catch %>%
 # Change NW2201 in Station Event ID and Catch ID:
 NW_catch$Station_Event_ID <- str_replace(NW_catch$Station_Event_ID, "NW2201", "IYS2022")
 NW_catch$Catch_ID <- str_replace(NW_catch$Catch_ID, "NW2201", "IYS2022")
+```
+
+Cleaning Shimada catch column names to ensure integration:
+
+```{r Shimada catch clean, eval = FALSE}
+Shimada_catch <- Shimada_catch %>%
+  dplyr::rename(dateIdentified = `dateIdentified (UTC)`)
 ```
 
 Cleaning GoA2019 catch column names:
@@ -220,13 +255,13 @@ Compare column names between catch data frames:
 
 ```{r bridgelog, eval = FALSE}
 # Check for differences in column header names between those two data frames:
-janitor::compare_df_cols(NW_catch, TINRO_catch, GoA2019_catch)
+janitor::compare_df_cols(NW_catch, TINRO_catch, Shimada_catch)
 
 # Bind rows and save: 
-catch <- bind_rows(TINRO_catch, NW_catch, GoA2019_catch)
+IYS2022_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch)
 
 # Save catch data:
-write_csv(catch, "overall_catch.csv")
+write_csv(IYS2022_trawl_catch, "IYS2022_trawl_catch.csv")
 ```
 
 Now let's join the overall specimen data from these vessels into a specific data frame as well. 
@@ -234,8 +269,24 @@ Now let's join the overall specimen data from these vessels into a specific data
 ```{r overall catch, eval = FALSE}
 NW_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Specimen_Info")
 TINRO_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "6. SPECIMEN INFO")
+Shimada_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_Shimada_Data.xlsx", sheet = "6. SPECIMEN INFO")
 GoA2019_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY (2).xlsx",
                             sheet = "SPECIMEN_FINAL")
+```
+
+Cleaning Shimada specimen column names, only remove Barcode column:
+
+```{r Shimada specimen clean, eval = FALSE}
+Shimada_specimen <- Shimada_specimen %>%
+  select(-`Barcode number`)
+```
+
+Selecting TINRO specimen column names for integration:
+
+```{r TINRO specimen clean, eval = FALSE}
+TINRO_specimen <- TINRO_specimen %>%
+  select(Station_Event_ID, Catch_ID, Specimen_ID, Alternative_ID, Species_Recorded, Scientific_Name, Taxonomic_rank, common_name, Sex,
+         Lifestage, Specimen_Length, Length_Units, Length_Type, Specimen_Weight, Weight_Units, Weight_Type, Comments)
 ```
 
 Cleaning NW specimen column names:
@@ -310,18 +361,25 @@ Join the specimen data rows.
 
 ```{r specimen, eval = FALSE}
 # Check for differences in column header names between those two data frames:
-janitor::compare_df_cols(NW_specimen, TINRO_specimen, GOA2019_specimen_tab)
+janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen)
 
 # Bind rows and save: 
-specimen <- bind_rows(TINRO_specimen, NW_specimen, GOA2019_specimen_tab)
+IYS2022_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen)
 
 # Save event data:
-write_csv(specimen, "overall_specimen.csv")
+write_csv(IYS2022_trawl_specimen, "IYS2022_trawl_specimen.csv")
+```
+
+Next, integrate the CTD data (please note, we do not have CTD/Rosette data from the NW Explorer):
+
+```{overall CTD, eval = FALSE}
+TINRO_CTD <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "7. CTD INFO")
+Shimada_CTD <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_Shimada_Data.xlsx", sheet = "7. CTD INFO")
 ```
 
 Combine all data frames into a single .xlsx workbook:
 
 ```{r final_join, eval = FALSE}
-out <- list("Sampling Info" = bridgelog_trawl_all, "Overall_Catch_Data" = catch, "Overall_Specimen_Data" = specimen)
+out <- list("Sampling Info" = IYS2022_trawl_event, "Overall_Catch_Data" = IYS2022_trawl_catch, "Overall_Specimen_Data" = IYS2022_trawl_specimen)
 writexl::write_xlsx(out, "master.xlsx")
 ```
