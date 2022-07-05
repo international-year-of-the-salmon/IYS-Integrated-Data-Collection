@@ -1,231 +1,231 @@
 Station_Event_ID,Catch_ID,Species_recorded,Scientific_Name,Taxonomic_rank,Lifestage,common_name,identifiedBy,dateIdentified,Catch_weight,Catch_weight_units,Weight_method,Catch_count,Count_method,Catch_volume,Catch_volume_units,Comments
-IYS2022-TINRO-3-1-Trawl,IYS2022-TINRO-3-1-Trawl-1,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/2/2022,0.643,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-1-Trawl,IYS2022-TINRO-3-1-Trawl-2,NA,Oncorhynchus tschawytscha,species,immature,Chinook Salmon,Aleksey Somov,3/2/2022,1.313,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-1-Trawl,IYS2022-TINRO-3-1-Trawl-3,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/2/2022,1.431,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-4,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/3/2022,0.495,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-5,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/3/2022,0.336,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-6,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,3/3/2022,1.373,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-7,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,3/3/2022,0.158,Kilograms,Total,12,Total,NA,NA,NA
-IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-8,NA,Boreoteuthis borealis,species,Juvenile,NA,Aleksey Somov,3/3/2022,0.003,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-9,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/3/2022,0.013,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-10,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,3/3/2022,0.129,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-11,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/3/2022,2.158,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-12,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/3/2022,4.947,Kilograms,Total,9,Total,NA,NA,NA
-IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-13,NA,Gonatidae sp.,family,Juvenile,NA,Aleksey Somov,3/3/2022,0.007,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-14,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/3/2022,0.43,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-15,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,3/3/2022,0.122,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-16,NA,Oncorhynchus keta,species,Juvenile,Chum Salmon,Aleksey Somov,3/3/2022,0.098,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-17,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/3/2022,0.323,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-18,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/3/2022,1.53,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-19,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/3/2022,0.365,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-20,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/4/2022,0.037,Kilograms,Total,19,Total,NA,NA,NA
-IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-21,NA,Diaphus theta,species,adult,NA,Aleksey Somov,3/4/2022,0.009,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-22,NA,Boreoteuthis borealis,species,Juvenile,NA,Aleksey Somov,3/4/2022,0.002,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-23,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,3/4/2022,0.225,Kilograms,Total,15,Total,NA,NA,NA
-IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-24,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,3/4/2022,0.397,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-25,NA,Chiroteuthis calyx,species,adult,NA,Aleksey Somov,3/4/2022,0.065,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-26,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/4/2022,3.186,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-27,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/4/2022,2.416,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-28,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/4/2022,1.933,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-29,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/4/2022,1.895,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-30,NA,Salpa aspera,species,adult,NA,Aleksey Somov,3/4/2022,60,Kilograms,Total,9982,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-5-Trawl,IYS2022-TINRO-3-5-Trawl-31,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/5/2022,0.18,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-5-Trawl,IYS2022-TINRO-3-5-Trawl-32,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/5/2022,6.14,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-TINRO-3-5-Trawl,IYS2022-TINRO-3-5-Trawl-33,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/5/2022,0.002,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-5-Trawl,IYS2022-TINRO-3-5-Trawl-34,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/5/2022,1.427,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-5-Trawl,IYS2022-TINRO-3-5-Trawl-35,NA,Salpa maxima,species,adult,NA,Aleksey Somov,3/5/2022,4.14,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-36,NA,Salpa aspera,species,adult,NA,Aleksey Somov,3/5/2022,28,Kilograms,Total,2692,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-37,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/5/2022,6.02,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-38,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,3/5/2022,0.454,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-39,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/5/2022,0.004,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-40,NA,Stenobrachius leucopsarus,species,adult,NA,Aleksey Somov,3/5/2022,0.017,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-41,NA,Diaphus theta,species,adult,NA,Aleksey Somov,3/5/2022,0.005,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-42,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,3/5/2022,0.097,Kilograms,Total,9,Total,NA,NA,NA
-IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-43,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/5/2022,0.779,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-8-Trawl,IYS2022-TINRO-3-8-Trawl-44,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/6/2022,0.903,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-8-Trawl,IYS2022-TINRO-3-8-Trawl-45,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,3/6/2022,0.03,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-8-Trawl,IYS2022-TINRO-3-8-Trawl-46,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/6/2022,0.308,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-8-Trawl,IYS2022-TINRO-3-8-Trawl-47,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/6/2022,0.411,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-48,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/6/2022,0.349,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-49,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,3/6/2022,0.272,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-50,NA,Oncorhynchus tschawytscha,species,immature,Chinook Salmon,Aleksey Somov,3/6/2022,2.275,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-51,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/6/2022,1.508,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-52,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/6/2022,4.14,Kilograms,Total,14,Total,NA,NA,NA
-IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-53,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/6/2022,0.002,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-54,NA,Gonatus kamtschaticus,species,adult,NA,Aleksey Somov,3/6/2022,0.076,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-55,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,3/6/2022,0.158,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-56,NA,Okutania anonycha,species,adult,NA,Aleksey Somov,3/6/2022,4.244,Kilograms,Total,997,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-57,NA,Salpa aspera,species,adult,NA,Aleksey Somov,3/6/2022,7.795,Kilograms,Total,1772,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-58,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/7/2022,21.636,Kilograms,Total,40,Total,NA,NA,NA
-IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-59,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/7/2022,1.257,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-60,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,3/7/2022,0.245,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-61,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/7/2022,0.844,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-62,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/7/2022,5.243,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-63,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/7/2022,5.85,Kilograms,Total,23,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-64,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/7/2022,0.973,Kilograms,Total,7,Total,NA,NA,NA
-IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-65,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,3/7/2022,0.177,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-66,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,3/7/2022,0.177,Kilograms,Total,9,Total,NA,NA,NA
-IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-67,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/7/2022,0.226,Kilograms,Total,108,Total,NA,NA,NA
-IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-68,NA,Stenobrachius leucopsarus,species,adult,NA,Aleksey Somov,3/7/2022,0.011,Kilograms,Total,7,Total,NA,NA,NA
-IYS2022-TINRO-3-11-Trawl,IYS2022-TINRO-3-11-Trawl-69,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/7/2022,0.209,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-11-Trawl,IYS2022-TINRO-3-11-Trawl-70,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/7/2022,0.457,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-71,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/8/2022,0.194,Kilograms,Total,128,Total,NA,NA,NA
-IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-72,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/8/2022,6.22,Kilograms,Total,36,Total,NA,NA,NA
-IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-73,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/8/2022,12.98,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-74,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,3/8/2022,1.545,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-75,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,3/8/2022,0.196,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-76,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,3/8/2022,0.481,Kilograms,Total,13,Total,NA,NA,NA
-IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-77,NA,Gonatidae sp.,family,Juvenile,NA,Aleksey Somov,3/8/2022,0.017,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-78,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/8/2022,5.844,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-79,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/8/2022,0.816,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-80,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/8/2022,11.211,Kilograms,Total,10,Total,NA,NA,NA
-IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-81,NA,Aurelia aurita,species,adult,NA,Aleksey Somov,3/8/2022,0.58,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-82,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,3/8/2022,1.3,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-83,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/8/2022,8.69,Kilograms,Total,25,Total,NA,NA,NA
-IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-84,NA,Gasterosteus aculeatus,species,adult,NA,Aleksey Somov,3/8/2022,1.37,Kilograms,Total,280,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-85,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/8/2022,12.842,Kilograms,Total,16,Total,NA,NA,NA
-IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-86,NA,Oncorhynchus keta,species,Juvenile,Chum Salmon,Aleksey Somov,3/8/2022,0.534,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-87,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/8/2022,103.999,Kilograms,Weight estimate,581,Total,NA,NA,NA
-IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-88,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/8/2022,36.569,Kilograms,Total,68,Total,NA,NA,NA
-IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-89,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,3/8/2022,1.64,Kilograms,Total,9,Total,NA,NA,NA
-IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-90,NA,Oncorhynchus gorbuscha,species,adult,Pink Salmon,Aleksey Somov,3/8/2022,0.795,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-91,NA,Okutania anonycha,species,adult,NA,Aleksey Somov,3/9/2022,1.691,Kilograms,Total,297,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-92,NA,Zaprora silenus,species,adult,NA,Aleksey Somov,3/9/2022,0.092,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-93,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/9/2022,15.41,Kilograms,Total,78,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-94,NA,Gonatus kamtschaticus,species,adult,NA,Aleksey Somov,3/9/2022,0.068,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-95,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/9/2022,1.049,Kilograms,Total,53,Total,NA,NA,NA
-IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-96,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,3/9/2022,31.92,Kilograms,Total,48,Total,NA,NA,NA
-IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-97,NA,Aurelia aurita,species,adult,NA,Aleksey Somov,3/9/2022,0.136,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-98,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/9/2022,0.936,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-99,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/9/2022,0.892,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-100,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/9/2022,2.442,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-101,NA,Aurelia aurita,species,adult,NA,Aleksey Somov,3/9/2022,0.632,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-102,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/9/2022,2.744,Kilograms,Total,7,Total,NA,NA,NA
-IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-103,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,3/9/2022,38.5,Kilograms,Total,131,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-104,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/9/2022,5.62,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-105,NA,Okutania anonycha,species,adult,NA,Aleksey Somov,3/9/2022,0.626,Kilograms,Total,89,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-106,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/9/2022,22.402,Kilograms,Total,21,Total,NA,NA,NA
-IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-107,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/9/2022,0.313,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-108,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/9/2022,18.474,Kilograms,Total,11,Total,NA,NA,NA
-IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-109,NA,Oncorhynchus tschawytscha,species,immature,Chinook Salmon,Aleksey Somov,3/9/2022,1.494,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-110,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,3/10/2022,0.885,Kilograms,Total,21,Total,NA,NA,NA
-IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-111,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/10/2022,2.462,Kilograms,Total,20,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-112,NA,Gasterosteus aculeatus,species,adult,NA,Aleksey Somov,3/10/2022,0.009,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-113,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/10/2022,0.04,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-114,NA,Aurelia aurita,species,adult,NA,Aleksey Somov,3/10/2022,0.075,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-115,NA,Oncorhynchus gorbuscha,species,adult,Pink Salmon,Aleksey Somov,3/10/2022,0.22,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-116,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,3/10/2022,41.5,Kilograms,Total,216,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-117,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/10/2022,17.2,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-118,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/10/2022,2.36,Kilograms,Total,15,Total,NA,NA,NA
-IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-119,NA,Aurelia limbata,species,adult,NA,Aleksey Somov,3/10/2022,0.278,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-120,NA,Boreoteuthis borealis,species,Juvenile,NA,Aleksey Somov,3/10/2022,0.005,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-121,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,3/10/2022,0.683,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-122,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/10/2022,3.475,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-123,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/10/2022,10.274,Kilograms,Total,9,Total,NA,NA,NA
-IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-124,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/10/2022,0.172,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-125,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,3/11/2022,4.81,Kilograms,Total,69,Total,NA,NA,NA
-IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-126,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/11/2022,0.695,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-127,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/11/2022,1.07,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-128,NA,Aurelia limbata,species,adult,NA,Aleksey Somov,3/11/2022,0.11,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-129,NA,Gonatus madokai,species,adult,NA,Aleksey Somov,3/11/2022,0.12,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-130,NA,Gasterosteus aculeatus,species,adult,NA,Aleksey Somov,3/11/2022,0.29,Kilograms,Total,54,Total,NA,NA,NA
-IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-131,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/11/2022,2.915,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-132,NA,Oncorhynchus tschawytscha,species,immature,Chinook Salmon,Aleksey Somov,3/11/2022,1.153,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-19-Trawl,IYS2022-TINRO-3-19-Trawl-133,NA,Gasterosteus aculeatus,species,adult,NA,Aleksey Somov,3/12/2022,0.046,Kilograms,Total,10,Total,NA,NA,NA
-IYS2022-TINRO-3-19-Trawl,IYS2022-TINRO-3-19-Trawl-134,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,3/12/2022,0.232,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-TINRO-3-19-Trawl,IYS2022-TINRO-3-19-Trawl-135,NA,Aurelia labiata,species,adult,NA,Aleksey Somov,3/12/2022,0.268,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-19-Trawl,IYS2022-TINRO-3-19-Trawl-136,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/12/2022,2.474,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-19-Trawl,IYS2022-TINRO-3-19-Trawl-137,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/12/2022,0.342,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-138,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/12/2022,4.27,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-139,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/12/2022,72.3,Kilograms,Total,23,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-140,NA,Salpa aspera,species,adult,NA,Aleksey Somov,3/12/2022,0.218,Kilograms,Total,22,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-141,NA,Gonatus kamtschaticus,species,adult,NA,Aleksey Somov,3/12/2022,0.004,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-142,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,3/12/2022,0.55,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-143,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/12/2022,0.052,Kilograms,Total,29,Total,NA,NA,NA
-IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-144,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/12/2022,0.514,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-145,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/12/2022,1.751,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-146,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/12/2022,3.601,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-21-Trawl,IYS2022-TINRO-3-21-Trawl-147,NA,Aurelia limbata,species,adult,NA,Aleksey Somov,3/13/2022,0.057,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-21-Trawl,IYS2022-TINRO-3-21-Trawl-148,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,3/13/2022,0.245,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-TINRO-3-21-Trawl,IYS2022-TINRO-3-21-Trawl-149,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/13/2022,1.07,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-21-Trawl,IYS2022-TINRO-3-21-Trawl-150,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/13/2022,0.159,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-22-Trawl,IYS2022-TINRO-3-22-Trawl-151,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/14/2022,0.585,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-22-Trawl,IYS2022-TINRO-3-22-Trawl-152,NA,Oncorhynchus keta,species,Juvenile,Chum Salmon,Aleksey Somov,3/14/2022,0.175,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-22-Trawl,IYS2022-TINRO-3-22-Trawl-153,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/14/2022,5.431,Kilograms,Total,12,Total,NA,NA,NA
-IYS2022-TINRO-3-22-Trawl,IYS2022-TINRO-3-22-Trawl-154,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/14/2022,2.685,Kilograms,Total,12,Total,NA,NA,NA
-IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-155,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/15/2022,85.16,Kilograms,Total,177,Total,NA,NA,NA
-IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-156,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,3/15/2022,0.099,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-157,NA,Aurelia labiata,species,adult,NA,Aleksey Somov,3/15/2022,0.28,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-158,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/15/2022,0.004,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-159,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/15/2022,8.479,Kilograms,Total,18,Total,NA,NA,NA
-IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-160,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/15/2022,0.229,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-161,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,3/15/2022,0.199,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-162,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/15/2022,0.714,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-163,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/15/2022,1.079,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-164,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/15/2022,3.135,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-165,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/15/2022,0.257,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-166,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/15/2022,0.467,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-167,NA,Oncorhynchus keta,species,Juvenile,Chum Salmon,Aleksey Somov,3/15/2022,0.407,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-168,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/8/2022,0.781,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-169,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/16/2022,1.75,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-170,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/16/2022,10.48,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-171,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/16/2022,0.027,Kilograms,Total,10,Total,NA,NA,NA
-IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-172,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,3/16/2022,0.031,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-173,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,3/16/2022,0.344,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-174,NA,Okutania anonycha,species,adult,NA,Aleksey Somov,3/16/2022,0.017,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-175,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/16/2022,3.545,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-176,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/16/2022,1.572,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-177,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/16/2022,5.954,Kilograms,Total,10,Total,NA,NA,NA
-IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-178,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/17/2022,1.96,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-179,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,3/17/2022,0.125,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-180,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/17/2022,24.911,Kilograms,Total,30,Total,NA,NA,NA
-IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-181,NA,Oncorhynchus keta,species,Juvenile,Chum Salmon,Aleksey Somov,3/17/2022,4.486,Kilograms,Total,27,Total,NA,NA,NA
-IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-182,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/17/2022,0.829,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-183,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/17/2022,36.164,Kilograms,Total,62,Total,NA,NA,NA
-IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-184,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/17/2022,0.355,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-185,NA,Oncorhynchus gorbuscha,species,adult,Pink Salmon,Aleksey Somov,3/17/2022,1.61,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-186,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,3/17/2022,0.932,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-187,NA,Oncorhynchus kisutch,species,Juvenile,Coho Salmon,Aleksey Somov,3/17/2022,0.167,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-188,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/17/2022,0.452,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-189,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/17/2022,2.7,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-190,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/17/2022,5.65,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-191,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/17/2022,0.391,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-192,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/17/2022,0.826,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-193,NA,Oncorhynchus kisutch,species,Juvenile,Coho Salmon,Aleksey Somov,3/17/2022,0.212,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-194,NA,Oncorhynchus gorbuscha,species,adult,Pink Salmon,Aleksey Somov,3/17/2022,0.486,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-195,NA,Gonatus kamtschaticus,species,adult,NA,Aleksey Somov,3/18/2022,0.144,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-196,NA,Gasterosteus aculeatus,species,adult,NA,Aleksey Somov,3/18/2022,0.023,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-197,NA,Okutania anonycha,species,adult,NA,Aleksey Somov,3/18/2022,3.104,Kilograms,Total,647,Weight estimate,NA,NA,NA
-IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-198,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/18/2022,3.93,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-199,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/18/2022,4.69,Kilograms,Total,14,Total,NA,NA,NA
-IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-200,NA,Aurelia labiata,species,adult,NA,Aleksey Somov,3/18/2022,0.525,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-201,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/18/2022,0.924,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-202,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/18/2022,0.872,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-203,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/18/2022,0.351,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-204,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,3/19/2022,0.682,Kilograms,Total,7,Total,NA,NA,NA
-IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-205,NA,Aurelia labiata,species,adult,NA,Aleksey Somov,3/19/2022,0.809,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-206,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/19/2022,0.002,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-207,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/19/2022,4.242,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-208,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/19/2022,21.66,Kilograms,Total,43,Total,NA,NA,NA
-IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-209,NA,Oncorhynchus gorbuscha,species,adult,Pink Salmon,Aleksey Somov,3/19/2022,0.269,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-210,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/19/2022,1.684,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-211,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/19/2022,2.797,Kilograms,Total,15,Total,NA,NA,NA
-IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-212,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/19/2022,10.684,Kilograms,Total,17,Total,NA,NA,NA
-IYS2022-TINRO-3-1-Trawl,IYS2022-TINRO-3-1-Trawl-213,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/2/2022,0.318,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-30-Trawl,IYS2022-TINRO-3-30-Trawl-214,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/19/2022,3.65,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-30-Trawl,IYS2022-TINRO-3-30-Trawl-215,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/19/2022,0.396,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-30-Trawl,IYS2022-TINRO-3-30-Trawl-216,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/19/2022,1.734,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-30-Trawl,IYS2022-TINRO-3-30-Trawl-217,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,3/19/2022,0.581,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-31-Trawl,IYS2022-TINRO-3-31-Trawl-218,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/20/2022,30,Kilograms,Total,10,Total,NA,NA,NA
-IYS2022-TINRO-3-31-Trawl,IYS2022-TINRO-3-31-Trawl-219,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,3/20/2022,0.009,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-TINRO-3-31-Trawl,IYS2022-TINRO-3-31-Trawl-220,NA,Lamna ditropis,species,adult,NA,Aleksey Somov,3/20/2022,65,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-31-Trawl,IYS2022-TINRO-3-31-Trawl-221,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/20/2022,2.228,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-TINRO-3-31-Trawl,IYS2022-TINRO-3-31-Trawl-222,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,3/20/2022,2.025,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-TINRO-3-32-Trawl,IYS2022-TINRO-3-32-Trawl-223,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,3/20/2022,1.625,Kilograms,Total,NA,NA,NA,NA,NA
-IYS2022-TINRO-3-32-Trawl,IYS2022-TINRO-3-32-Trawl-224,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,3/20/2022,0.045,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-TINRO-3-32-Trawl,IYS2022-TINRO-3-32-Trawl-225,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,3/20/2022,0.45,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-32-Trawl,IYS2022-TINRO-3-32-Trawl-226,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,3/20/2022,0.827,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-TINRO-3-32-Trawl,IYS2022-TINRO-3-32-Trawl-227,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,3/20/2022,1.175,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-1-Trawl,IYS2022-TINRO-3-1-Trawl-1,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-02,0.643,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-1-Trawl,IYS2022-TINRO-3-1-Trawl-2,NA,Oncorhynchus tschawytscha,species,immature,Chinook Salmon,Aleksey Somov,2022-03-02,1.313,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-1-Trawl,IYS2022-TINRO-3-1-Trawl-3,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-02,1.431,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-4,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-03,0.495,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-5,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-03,0.336,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-6,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,2022-03-03,1.373,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-7,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,2022-03-03,0.158,Kilograms,Total,12,Total,NA,NA,NA
+IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-8,NA,Boreoteuthis borealis,species,Juvenile,NA,Aleksey Somov,2022-03-03,0.003,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-9,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-03,0.013,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-10,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,2022-03-03,0.129,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-11,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-03,2.158,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-12,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-03,4.947,Kilograms,Total,9,Total,NA,NA,NA
+IYS2022-TINRO-3-2-Trawl,IYS2022-TINRO-3-2-Trawl-13,NA,Gonatidae sp.,family,Juvenile,NA,Aleksey Somov,2022-03-03,0.007,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-14,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-03,0.43,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-15,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,2022-03-03,0.122,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-16,NA,Oncorhynchus keta,species,Juvenile,Chum Salmon,Aleksey Somov,2022-03-03,0.098,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-17,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-03,0.323,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-18,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-03,1.53,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-3-Trawl,IYS2022-TINRO-3-3-Trawl-19,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-03,0.365,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-20,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-04,0.037,Kilograms,Total,19,Total,NA,NA,NA
+IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-21,NA,Diaphus theta,species,adult,NA,Aleksey Somov,2022-03-04,0.009,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-22,NA,Boreoteuthis borealis,species,Juvenile,NA,Aleksey Somov,2022-03-04,0.002,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-23,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,2022-03-04,0.225,Kilograms,Total,15,Total,NA,NA,NA
+IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-24,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,2022-03-04,0.397,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-25,NA,Chiroteuthis calyx,species,adult,NA,Aleksey Somov,2022-03-04,0.065,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-26,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-04,3.186,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-27,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-04,2.416,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-28,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-04,1.933,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-29,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-04,1.895,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-TINRO-3-4-Trawl,IYS2022-TINRO-3-4-Trawl-30,NA,Salpa aspera,species,adult,NA,Aleksey Somov,2022-03-04,60,Kilograms,Total,9982,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-5-Trawl,IYS2022-TINRO-3-5-Trawl-31,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-05,0.18,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-5-Trawl,IYS2022-TINRO-3-5-Trawl-32,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-05,6.14,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-TINRO-3-5-Trawl,IYS2022-TINRO-3-5-Trawl-33,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-05,0.002,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-5-Trawl,IYS2022-TINRO-3-5-Trawl-34,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-05,1.427,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-5-Trawl,IYS2022-TINRO-3-5-Trawl-35,NA,Salpa maxima,species,adult,NA,Aleksey Somov,2022-03-05,4.14,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-36,NA,Salpa aspera,species,adult,NA,Aleksey Somov,2022-03-05,28,Kilograms,Total,2692,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-37,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-05,6.02,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-38,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,2022-03-05,0.454,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-39,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-05,0.004,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-40,NA,Stenobrachius leucopsarus,species,adult,NA,Aleksey Somov,2022-03-05,0.017,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-41,NA,Diaphus theta,species,adult,NA,Aleksey Somov,2022-03-05,0.005,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-42,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,2022-03-05,0.097,Kilograms,Total,9,Total,NA,NA,NA
+IYS2022-TINRO-3-7-Trawl,IYS2022-TINRO-3-7-Trawl-43,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-05,0.779,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-8-Trawl,IYS2022-TINRO-3-8-Trawl-44,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-06,0.903,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-8-Trawl,IYS2022-TINRO-3-8-Trawl-45,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,2022-03-06,0.03,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-8-Trawl,IYS2022-TINRO-3-8-Trawl-46,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-06,0.308,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-8-Trawl,IYS2022-TINRO-3-8-Trawl-47,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-06,0.411,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-48,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-06,0.349,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-49,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,2022-03-06,0.272,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-50,NA,Oncorhynchus tschawytscha,species,immature,Chinook Salmon,Aleksey Somov,2022-03-06,2.275,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-51,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-06,1.508,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-52,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-06,4.14,Kilograms,Total,14,Total,NA,NA,NA
+IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-53,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-06,0.002,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-54,NA,Gonatus kamtschaticus,species,adult,NA,Aleksey Somov,2022-03-06,0.076,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-55,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,2022-03-06,0.158,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-56,NA,Okutania anonycha,species,adult,NA,Aleksey Somov,2022-03-06,4.244,Kilograms,Total,997,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-9-Trawl,IYS2022-TINRO-3-9-Trawl-57,NA,Salpa aspera,species,adult,NA,Aleksey Somov,2022-03-06,7.795,Kilograms,Total,1772,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-58,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-07,21.636,Kilograms,Total,40,Total,NA,NA,NA
+IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-59,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-07,1.2570000000000001,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-60,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,2022-03-07,0.245,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-61,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-07,0.844,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-62,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-07,5.243,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-63,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-07,5.85,Kilograms,Total,23,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-64,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-07,0.973,Kilograms,Total,7,Total,NA,NA,NA
+IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-65,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,2022-03-07,0.177,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-66,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,2022-03-07,0.177,Kilograms,Total,9,Total,NA,NA,NA
+IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-67,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-07,0.226,Kilograms,Total,108,Total,NA,NA,NA
+IYS2022-TINRO-3-10-Trawl,IYS2022-TINRO-3-10-Trawl-68,NA,Stenobrachius leucopsarus,species,adult,NA,Aleksey Somov,2022-03-07,0.011,Kilograms,Total,7,Total,NA,NA,NA
+IYS2022-TINRO-3-11-Trawl,IYS2022-TINRO-3-11-Trawl-69,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-07,0.209,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-11-Trawl,IYS2022-TINRO-3-11-Trawl-70,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-07,0.457,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-71,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-08,0.194,Kilograms,Total,128,Total,NA,NA,NA
+IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-72,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-08,6.22,Kilograms,Total,36,Total,NA,NA,NA
+IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-73,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-08,12.98,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-74,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,2022-03-08,1.545,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-75,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,2022-03-08,0.196,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-76,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,2022-03-08,0.481,Kilograms,Total,13,Total,NA,NA,NA
+IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-77,NA,Gonatidae sp.,family,Juvenile,NA,Aleksey Somov,2022-03-08,0.017,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-78,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-08,5.844,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-79,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-08,0.816,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-TINRO-3-12-Trawl,IYS2022-TINRO-3-12-Trawl-80,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-08,11.211,Kilograms,Total,10,Total,NA,NA,NA
+IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-81,NA,Aurelia aurita,species,adult,NA,Aleksey Somov,2022-03-08,0.58,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-82,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,2022-03-08,1.3,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-83,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-08,8.69,Kilograms,Total,25,Total,NA,NA,NA
+IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-84,NA,Gasterosteus aculeatus,species,adult,NA,Aleksey Somov,2022-03-08,1.37,Kilograms,Total,280,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-85,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-08,12.842,Kilograms,Total,16,Total,NA,NA,NA
+IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-86,NA,Oncorhynchus keta,species,Juvenile,Chum Salmon,Aleksey Somov,2022-03-08,0.534,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-87,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-08,103.999,Kilograms,Weight estimate,581,Total,NA,NA,NA
+IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-88,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-08,36.569,Kilograms,Total,68,Total,NA,NA,NA
+IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-89,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,2022-03-08,1.64,Kilograms,Total,9,Total,NA,NA,NA
+IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-90,NA,Oncorhynchus gorbuscha,species,adult,Pink Salmon,Aleksey Somov,2022-03-08,0.795,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-91,NA,Okutania anonycha,species,adult,NA,Aleksey Somov,2022-03-09,1.691,Kilograms,Total,297,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-92,NA,Zaprora silenus,species,adult,NA,Aleksey Somov,2022-03-09,0.092,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-93,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-09,15.41,Kilograms,Total,78,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-94,NA,Gonatus kamtschaticus,species,adult,NA,Aleksey Somov,2022-03-09,0.068,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-95,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-09,1.049,Kilograms,Total,53,Total,NA,NA,NA
+IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-96,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,2022-03-09,31.92,Kilograms,Total,48,Total,NA,NA,NA
+IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-97,NA,Aurelia aurita,species,adult,NA,Aleksey Somov,2022-03-09,0.136,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-98,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-09,0.9359999999999999,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-99,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-09,0.892,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-14-Trawl,IYS2022-TINRO-3-14-Trawl-100,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-09,2.442,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-101,NA,Aurelia aurita,species,adult,NA,Aleksey Somov,2022-03-09,0.632,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-102,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-09,2.744,Kilograms,Total,7,Total,NA,NA,NA
+IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-103,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,2022-03-09,38.5,Kilograms,Total,131,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-104,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-09,5.62,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-105,NA,Okutania anonycha,species,adult,NA,Aleksey Somov,2022-03-09,0.626,Kilograms,Total,89,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-106,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-09,22.402,Kilograms,Total,21,Total,NA,NA,NA
+IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-107,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-09,0.313,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-108,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-09,18.474,Kilograms,Total,11,Total,NA,NA,NA
+IYS2022-TINRO-3-15-Trawl,IYS2022-TINRO-3-15-Trawl-109,NA,Oncorhynchus tschawytscha,species,immature,Chinook Salmon,Aleksey Somov,2022-03-09,1.494,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-110,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,2022-03-10,0.885,Kilograms,Total,21,Total,NA,NA,NA
+IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-111,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-10,2.462,Kilograms,Total,20,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-112,NA,Gasterosteus aculeatus,species,adult,NA,Aleksey Somov,2022-03-10,0.009,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-113,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-10,0.04,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-114,NA,Aurelia aurita,species,adult,NA,Aleksey Somov,2022-03-10,0.075,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-16-Trawl,IYS2022-TINRO-3-16-Trawl-115,NA,Oncorhynchus gorbuscha,species,adult,Pink Salmon,Aleksey Somov,2022-03-10,0.22,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-116,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,2022-03-10,41.5,Kilograms,Total,216,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-117,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-10,17.2,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-118,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-10,2.36,Kilograms,Total,15,Total,NA,NA,NA
+IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-119,NA,Aurelia limbata,species,adult,NA,Aleksey Somov,2022-03-10,0.278,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-120,NA,Boreoteuthis borealis,species,Juvenile,NA,Aleksey Somov,2022-03-10,0.005,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-121,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,2022-03-10,0.683,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-122,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-10,3.475,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-123,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-10,10.274,Kilograms,Total,9,Total,NA,NA,NA
+IYS2022-TINRO-3-17-Trawl,IYS2022-TINRO-3-17-Trawl-124,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-10,0.172,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-125,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,2022-03-11,4.81,Kilograms,Total,69,Total,NA,NA,NA
+IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-126,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-11,0.695,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-127,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-11,1.07,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-128,NA,Aurelia limbata,species,adult,NA,Aleksey Somov,2022-03-11,0.11,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-129,NA,Gonatus madokai,species,adult,NA,Aleksey Somov,2022-03-11,0.12,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-130,NA,Gasterosteus aculeatus,species,adult,NA,Aleksey Somov,2022-03-11,0.29,Kilograms,Total,54,Total,NA,NA,NA
+IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-131,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-11,2.915,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-TINRO-3-18-Trawl,IYS2022-TINRO-3-18-Trawl-132,NA,Oncorhynchus tschawytscha,species,immature,Chinook Salmon,Aleksey Somov,2022-03-11,1.153,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-19-Trawl,IYS2022-TINRO-3-19-Trawl-133,NA,Gasterosteus aculeatus,species,adult,NA,Aleksey Somov,2022-03-12,0.046,Kilograms,Total,10,Total,NA,NA,NA
+IYS2022-TINRO-3-19-Trawl,IYS2022-TINRO-3-19-Trawl-134,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,2022-03-12,0.232,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-TINRO-3-19-Trawl,IYS2022-TINRO-3-19-Trawl-135,NA,Aurelia labiata,species,adult,NA,Aleksey Somov,2022-03-12,0.268,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-19-Trawl,IYS2022-TINRO-3-19-Trawl-136,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-12,2.474,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-19-Trawl,IYS2022-TINRO-3-19-Trawl-137,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-12,0.342,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-138,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-12,4.27,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-139,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-12,72.3,Kilograms,Total,23,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-140,NA,Salpa aspera,species,adult,NA,Aleksey Somov,2022-03-12,0.218,Kilograms,Total,22,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-141,NA,Gonatus kamtschaticus,species,adult,NA,Aleksey Somov,2022-03-12,0.004,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-142,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,2022-03-12,0.55,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-143,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-12,0.052,Kilograms,Total,29,Total,NA,NA,NA
+IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-144,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-12,0.514,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-145,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-12,1.751,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-20-Trawl,IYS2022-TINRO-3-20-Trawl-146,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-12,3.601,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-21-Trawl,IYS2022-TINRO-3-21-Trawl-147,NA,Aurelia limbata,species,adult,NA,Aleksey Somov,2022-03-13,0.057,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-21-Trawl,IYS2022-TINRO-3-21-Trawl-148,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,2022-03-13,0.245,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-TINRO-3-21-Trawl,IYS2022-TINRO-3-21-Trawl-149,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-13,1.07,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-21-Trawl,IYS2022-TINRO-3-21-Trawl-150,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-13,0.159,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-22-Trawl,IYS2022-TINRO-3-22-Trawl-151,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-14,0.585,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-22-Trawl,IYS2022-TINRO-3-22-Trawl-152,NA,Oncorhynchus keta,species,Juvenile,Chum Salmon,Aleksey Somov,2022-03-14,0.175,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-22-Trawl,IYS2022-TINRO-3-22-Trawl-153,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-14,5.431,Kilograms,Total,12,Total,NA,NA,NA
+IYS2022-TINRO-3-22-Trawl,IYS2022-TINRO-3-22-Trawl-154,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-14,2.685,Kilograms,Total,12,Total,NA,NA,NA
+IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-155,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-15,85.16,Kilograms,Total,177,Total,NA,NA,NA
+IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-156,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,2022-03-15,0.099,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-157,NA,Aurelia labiata,species,adult,NA,Aleksey Somov,2022-03-15,0.28,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-158,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-15,0.004,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-159,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-15,8.479,Kilograms,Total,18,Total,NA,NA,NA
+IYS2022-TINRO-3-23-Trawl,IYS2022-TINRO-3-23-Trawl-160,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-15,0.229,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-161,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,2022-03-15,0.199,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-162,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-15,0.714,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-163,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-15,1.079,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-164,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-15,3.135,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-165,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-15,0.257,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-166,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-15,0.467,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-24-Trawl,IYS2022-TINRO-3-24-Trawl-167,NA,Oncorhynchus keta,species,Juvenile,Chum Salmon,Aleksey Somov,2022-03-15,0.407,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-13-Trawl,IYS2022-TINRO-3-13-Trawl-168,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-08,0.781,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-169,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-16,1.75,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-170,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-16,10.48,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-171,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-16,0.027,Kilograms,Total,10,Total,NA,NA,NA
+IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-172,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,2022-03-16,0.031,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-173,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,2022-03-16,0.344,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-174,NA,Okutania anonycha,species,adult,NA,Aleksey Somov,2022-03-16,0.017,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-175,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-16,3.545,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-176,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-16,1.572,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-25-Trawl,IYS2022-TINRO-3-25-Trawl-177,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-16,5.954,Kilograms,Total,10,Total,NA,NA,NA
+IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-178,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-17,1.96,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-179,NA,Onychoteuthis borealijaponica,species,adult,NA,Aleksey Somov,2022-03-17,0.125,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-180,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-17,24.910999999999998,Kilograms,Total,30,Total,NA,NA,NA
+IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-181,NA,Oncorhynchus keta,species,Juvenile,Chum Salmon,Aleksey Somov,2022-03-17,4.486,Kilograms,Total,27,Total,NA,NA,NA
+IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-182,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-17,0.829,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-183,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-17,36.164,Kilograms,Total,62,Total,NA,NA,NA
+IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-184,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-17,0.355,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-185,NA,Oncorhynchus gorbuscha,species,adult,Pink Salmon,Aleksey Somov,2022-03-17,1.61,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-186,NA,Oncorhynchus gorbuscha,species,Juvenile,Pink Salmon,Aleksey Somov,2022-03-17,0.9319999999999999,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-187,NA,Oncorhynchus kisutch,species,Juvenile,Coho Salmon,Aleksey Somov,2022-03-17,0.167,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-26-Trawl,IYS2022-TINRO-3-26-Trawl-188,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-17,0.452,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-189,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-17,2.7,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-190,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-17,5.65,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-191,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-17,0.391,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-192,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-17,0.826,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-193,NA,Oncorhynchus kisutch,species,Juvenile,Coho Salmon,Aleksey Somov,2022-03-17,0.212,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-27-Trawl,IYS2022-TINRO-3-27-Trawl-194,NA,Oncorhynchus gorbuscha,species,adult,Pink Salmon,Aleksey Somov,2022-03-17,0.486,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-195,NA,Gonatus kamtschaticus,species,adult,NA,Aleksey Somov,2022-03-18,0.144,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-196,NA,Gasterosteus aculeatus,species,adult,NA,Aleksey Somov,2022-03-18,0.023,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-197,NA,Okutania anonycha,species,adult,NA,Aleksey Somov,2022-03-18,3.104,Kilograms,Total,647,Weight estimate,NA,NA,NA
+IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-198,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-18,3.93,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-199,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-18,4.69,Kilograms,Total,14,Total,NA,NA,NA
+IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-200,NA,Aurelia labiata,species,adult,NA,Aleksey Somov,2022-03-18,0.525,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-201,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-18,0.924,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-202,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-18,0.872,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-TINRO-3-28-Trawl,IYS2022-TINRO-3-28-Trawl-203,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-18,0.351,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-204,NA,Boreoteuthis borealis,species,adult,NA,Aleksey Somov,2022-03-19,0.682,Kilograms,Total,7,Total,NA,NA,NA
+IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-205,NA,Aurelia labiata,species,adult,NA,Aleksey Somov,2022-03-19,0.809,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-206,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-19,0.002,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-207,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-19,4.242,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-208,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-19,21.66,Kilograms,Total,43,Total,NA,NA,NA
+IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-209,NA,Oncorhynchus gorbuscha,species,adult,Pink Salmon,Aleksey Somov,2022-03-19,0.269,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-210,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-19,1.684,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-211,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-19,2.7969999999999997,Kilograms,Total,15,Total,NA,NA,NA
+IYS2022-TINRO-3-29-Trawl,IYS2022-TINRO-3-29-Trawl-212,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-19,10.684,Kilograms,Total,17,Total,NA,NA,NA
+IYS2022-TINRO-3-1-Trawl,IYS2022-TINRO-3-1-Trawl-213,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-02,0.318,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-30-Trawl,IYS2022-TINRO-3-30-Trawl-214,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-19,3.65,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-30-Trawl,IYS2022-TINRO-3-30-Trawl-215,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-19,0.396,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-30-Trawl,IYS2022-TINRO-3-30-Trawl-216,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-19,1.734,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-30-Trawl,IYS2022-TINRO-3-30-Trawl-217,NA,Oncorhynchus nerka,species,Juvenile,Sockeye Salmon,Aleksey Somov,2022-03-19,0.581,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-31-Trawl,IYS2022-TINRO-3-31-Trawl-218,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-20,30,Kilograms,Total,10,Total,NA,NA,NA
+IYS2022-TINRO-3-31-Trawl,IYS2022-TINRO-3-31-Trawl-219,NA,Tarletonbeania crenularis,species,adult,NA,Aleksey Somov,2022-03-20,0.009,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-TINRO-3-31-Trawl,IYS2022-TINRO-3-31-Trawl-220,NA,Lamna ditropis,species,adult,NA,Aleksey Somov,2022-03-20,65,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-31-Trawl,IYS2022-TINRO-3-31-Trawl-221,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-20,2.228,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-TINRO-3-31-Trawl,IYS2022-TINRO-3-31-Trawl-222,NA,Oncorhynchus kisutch,species,immature,Coho Salmon,Aleksey Somov,2022-03-20,2.025,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-TINRO-3-32-Trawl,IYS2022-TINRO-3-32-Trawl-223,NA,Aequorea sp.,genus,adult,NA,Aleksey Somov,2022-03-20,1.625,Kilograms,Total,NA,NA,NA,NA,NA
+IYS2022-TINRO-3-32-Trawl,IYS2022-TINRO-3-32-Trawl-224,NA,Chrysaora melanaster,species,adult,NA,Aleksey Somov,2022-03-20,0.045,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-TINRO-3-32-Trawl,IYS2022-TINRO-3-32-Trawl-225,NA,Phacellophora camtshchatica,species,adult,NA,Aleksey Somov,2022-03-20,0.45,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-32-Trawl,IYS2022-TINRO-3-32-Trawl-226,NA,Oncorhynchus nerka,species,immature,Sockeye Salmon,Aleksey Somov,2022-03-20,0.827,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-TINRO-3-32-Trawl,IYS2022-TINRO-3-32-Trawl-227,NA,Oncorhynchus keta,species,immature,Chum Salmon,Aleksey Somov,2022-03-20,1.175,Kilograms,Total,2,Total,NA,NA,NA
 IYS2022-NW-2-1-CanTrawl,IYS2022-NW-2-1-CanTrawl-1,Threespine stickleback,Gasterosteus aculeatus,NA,None,NA,NA,NA,0.05,Kilograms,Total,9,Total,NA,NA,NA
 IYS2022-NW-2-1-CanTrawl,IYS2022-NW-2-1-CanTrawl-2,Capelin,Mallotus villosus,NA,None,NA,NA,NA,0.116,Kilograms,Total,9,Total,NA,NA,NA
 IYS2022-NW-2-1-CanTrawl,IYS2022-NW-2-1-CanTrawl-3,Aurelia sp.,Aurelia sp.,NA,None,NA,NA,NA,0.326,Kilograms,Total,2,Total,NA,NA,NA
@@ -234,7 +234,7 @@ IYS2022-NW-2-2-CanTrawl,IYS2022-NW-2-2-CanTrawl-2,Chum salmon,Oncorhynchus keta,
 IYS2022-NW-2-2-CanTrawl,IYS2022-NW-2-2-CanTrawl-3,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,25.84,Kilograms,Total,17,Total,NA,NA,NA
 IYS2022-NW-2-2-CanTrawl,IYS2022-NW-2-2-CanTrawl-4,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.9,Kilograms,Total,2,Total,NA,NA,NA
 IYS2022-NW-2-2-CanTrawl,IYS2022-NW-2-2-CanTrawl-5,Aurelia sp.,Aurelia sp.,NA,None,NA,NA,NA,0.21,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-2-CanTrawl,IYS2022-NW-2-2-CanTrawl-6,Gonatus kamtschaticus,Gonatus kamtschaticus,NA,None,NA,NA,NA,0.145,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-2-CanTrawl,IYS2022-NW-2-2-CanTrawl-6,Gonatus kamtschaticus,Gonatus kamtschaticus,NA,None,NA,NA,NA,0.14500000000000002,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-3-CanTrawl,IYS2022-NW-2-3-CanTrawl-1,Threespine stickleback,Gasterosteus aculeatus,NA,None,NA,NA,NA,4.71,Kilograms,Total,923.8846,Total,NA,NA,NA
 IYS2022-NW-2-3-CanTrawl,IYS2022-NW-2-3-CanTrawl-2,Chum salmon,Oncorhynchus keta,NA,Immature,NA,NA,NA,5.81,Kilograms,Total,3,Total,NA,NA,NA
 IYS2022-NW-2-3-CanTrawl,IYS2022-NW-2-3-CanTrawl-3,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,11.21,Kilograms,Total,8,Total,NA,NA,NA
@@ -259,26 +259,26 @@ IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-4,Chrysaora melanaster,Chrysaora
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-5,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.127,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-6,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,4.459,Kilograms,Total,28.044,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-7,Rex sole,Glyptocephalus zachiris,NA,Larval,NA,NA,NA,0.002,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-8,White barracudina,Arctozenus risso,NA,None,NA,NA,NA,0.027,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-8,White barracudina,Arctozenus risso,NA,None,NA,NA,NA,0.027000000000000003,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-9,Pacific viperfish,Chauliodus macouni,NA,None,NA,NA,NA,0.078,Kilograms,Total,16,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-10,Northern lampfish,Stenobrachius leucopsarus,NA,None,NA,NA,NA,1.6785,Kilograms,Total,422.8172,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-11,California headlightfish,Diaphus theta,NA,None,NA,NA,NA,0.8969,Kilograms,Total,96.0948,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-12,Northern flashlightfish,Protomyctophum thompsoni,NA,None,NA,NA,NA,0.1153,Kilograms,Total,96.0948,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-13,Blue lanternfish,Tarletonbeania crenularis,NA,None,NA,NA,NA,0.147,Kilograms,Total,59.4255,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-13,Blue lanternfish,Tarletonbeania crenularis,NA,None,NA,NA,NA,0.14700000000000002,Kilograms,Total,59.4255,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-14,Slender barracudina,Lestidiops ringens,NA,None,NA,NA,NA,0.015,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-15,Periphylla sp.,Periphylla sp.,NA,None,NA,NA,NA,0.167,Kilograms,Total,36.3043,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-16,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.464,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-17,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.581,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-18,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,0.742,Kilograms,Total,5.1528,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-17,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.5810000000000001,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-18,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,0.7420000000000001,Kilograms,Total,5.1528,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-19,Sergestid shrimp,Sergestes similis,NA,None,NA,NA,NA,0.05,Kilograms,Total,100,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-20,Fiery armhook squid,Gonatus pyros,NA,None,NA,NA,NA,0.027,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-20,Fiery armhook squid,Gonatus pyros,NA,None,NA,NA,NA,0.027000000000000003,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-7-CanTrawl,IYS2022-NW-2-7-CanTrawl-1,Chum salmon,Oncorhynchus keta,NA,Immature,NA,NA,NA,1.35,Kilograms,Total,3,Total,NA,NA,NA
 IYS2022-NW-2-7-CanTrawl,IYS2022-NW-2-7-CanTrawl-2,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,7.8,Kilograms,Total,10,Total,NA,NA,NA
 IYS2022-NW-2-7-CanTrawl,IYS2022-NW-2-7-CanTrawl-3,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.043,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-7-CanTrawl,IYS2022-NW-2-7-CanTrawl-4,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,4.462,Kilograms,Total,20.081,Total,NA,NA,NA
 IYS2022-NW-2-7-CanTrawl,IYS2022-NW-2-7-CanTrawl-5,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,8.024,Kilograms,Total,56.6067,Total,NA,NA,NA
 IYS2022-NW-2-7-CanTrawl,IYS2022-NW-2-7-CanTrawl-6,Aurelia sp.,Aurelia sp.,NA,None,NA,NA,NA,0.122,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-8-CanTrawl,IYS2022-NW-2-8-CanTrawl-1,Threespine stickleback,Gasterosteus aculeatus,NA,None,NA,NA,NA,0.282,Kilograms,Total,54.2308,Total,NA,NA,NA
+IYS2022-NW-2-8-CanTrawl,IYS2022-NW-2-8-CanTrawl-1,Threespine stickleback,Gasterosteus aculeatus,NA,None,NA,NA,NA,0.28200000000000003,Kilograms,Total,54.2308,Total,NA,NA,NA
 IYS2022-NW-2-8-CanTrawl,IYS2022-NW-2-8-CanTrawl-2,North Pacific Daggertooth,Anotopterus nikparini,NA,None,NA,NA,NA,0.038,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-8-CanTrawl,IYS2022-NW-2-8-CanTrawl-3,Chum salmon,Oncorhynchus keta,NA,Immature,NA,NA,NA,4.74,Kilograms,Total,3,Total,NA,NA,NA
 IYS2022-NW-2-8-CanTrawl,IYS2022-NW-2-8-CanTrawl-4,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,14.04,Kilograms,Total,8,Total,NA,NA,NA
@@ -293,7 +293,7 @@ IYS2022-NW-2-9-CanTrawl,IYS2022-NW-2-9-CanTrawl-3,Aequorea sp.,Aequorea sp.,NA,N
 IYS2022-NW-2-9-CanTrawl,IYS2022-NW-2-9-CanTrawl-4,Aurelia sp.,Aurelia sp.,NA,None,NA,NA,NA,0.74,Kilograms,Total,4,Total,NA,NA,NA
 IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-1,Hormiphora sp.,Hormiphora sp.,NA,None,NA,NA,NA,0.01,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-2,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,1.799,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-3,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.062,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-3,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.062000000000000006,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-4,North Pacific Daggertooth,Anotopterus nikparini,NA,None,NA,NA,NA,0.115,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-5,Threespine stickleback,Gasterosteus aculeatus,NA,None,NA,NA,NA,0.004,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-6,Walleye pollock,Gadus chalcogrammus,NA,Age 1+,NA,NA,NA,6.4,Kilograms,Total,6,Total,NA,NA,NA
@@ -329,13 +329,13 @@ IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-7,Phacellophora camtchatica,Ph
 IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-8,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,3.898,Kilograms,Total,25.2298,Total,NA,NA,NA
 IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-9,Gonatus kamtschaticus,Gonatus kamtschaticus,NA,None,NA,NA,NA,0.043,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-10,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,0.27,Kilograms,Total,2.4771,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-11,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.472,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-11,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.47200000000000003,Kilograms,Total,3,Total,NA,NA,NA
 IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-12,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,1.302,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-13,Jellyfish unident.,Scyphozoa (class),NA,None,NA,NA,NA,0.089,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-14,California headlightfish,Diaphus theta,NA,None,NA,NA,NA,0.5025,Kilograms,Total,79.945,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-13,Jellyfish unident.,Scyphozoa (class),NA,None,NA,NA,NA,0.08900000000000001,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-14,California headlightfish,Diaphus theta,NA,None,NA,NA,NA,0.5025000000000001,Kilograms,Total,79.945,Total,NA,NA,NA
 IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-15,Northern flashlightfish,Protomyctophum thompsoni,NA,None,NA,NA,NA,0.1028,Kilograms,Total,85.6554,Total,NA,NA,NA
 IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-16,Pacific viperfish,Chauliodus macouni,NA,None,NA,NA,NA,0.004,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-17,Northern lampfish,Stenobrachius leucopsarus,NA,None,NA,NA,NA,1.8673,Kilograms,Total,531.0634,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-17,Northern lampfish,Stenobrachius leucopsarus,NA,None,NA,NA,NA,1.8673000000000002,Kilograms,Total,531.0634,Total,NA,NA,NA
 IYS2022-NW-2-14-CanTrawl,IYS2022-NW-2-14-CanTrawl-1,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,1.444,Kilograms,Total,9.3766,Total,NA,NA,NA
 IYS2022-NW-2-14-CanTrawl,IYS2022-NW-2-14-CanTrawl-2,Chum salmon,Oncorhynchus keta,NA,Immature,NA,NA,NA,6.12,Kilograms,Total,8,Total,NA,NA,NA
 IYS2022-NW-2-14-CanTrawl,IYS2022-NW-2-14-CanTrawl-3,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,13.1,Kilograms,Total,28,Total,NA,NA,1 WASHDOWN ADDED TO COUNT NOT IN SPECIMEN NOSAMPLES TAKEN
@@ -356,8 +356,8 @@ IYS2022-NW-2-17-CanTrawl,IYS2022-NW-2-17-CanTrawl-1,Chum salmon,Oncorhynchus ket
 IYS2022-NW-2-17-CanTrawl,IYS2022-NW-2-17-CanTrawl-2,Pink salmon,Oncorhynchus gorbuscha,NA,Immature,NA,NA,NA,0.74,Kilograms,Total,2,Total,NA,NA,NA
 IYS2022-NW-2-17-CanTrawl,IYS2022-NW-2-17-CanTrawl-3,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,16.65,Kilograms,Total,25,Total,NA,NA,NA
 IYS2022-NW-2-17-CanTrawl,IYS2022-NW-2-17-CanTrawl-4,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.153,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-NW-2-17-CanTrawl,IYS2022-NW-2-17-CanTrawl-5,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.848,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-NW-2-17-CanTrawl,IYS2022-NW-2-17-CanTrawl-6,Aurelia sp.,Aurelia sp.,NA,None,NA,NA,NA,0.056,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-17-CanTrawl,IYS2022-NW-2-17-CanTrawl-5,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.8480000000000001,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-NW-2-17-CanTrawl,IYS2022-NW-2-17-CanTrawl-6,Aurelia sp.,Aurelia sp.,NA,None,NA,NA,NA,0.055999999999999994,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-18-CanTrawl,IYS2022-NW-2-18-CanTrawl-1,Chum salmon,Oncorhynchus keta,NA,Immature,NA,NA,NA,59.98,Kilograms,Total,79,Total,NA,NA,2 WASHDOWN NO SAMPLES TAKEN
 IYS2022-NW-2-18-CanTrawl,IYS2022-NW-2-18-CanTrawl-2,Pink salmon,Oncorhynchus gorbuscha,NA,Immature,NA,NA,NA,4.3,Kilograms,Total,8,Total,NA,NA,NA
 IYS2022-NW-2-18-CanTrawl,IYS2022-NW-2-18-CanTrawl-3,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,7.58,Kilograms,Total,9,Total,NA,NA,NA
@@ -366,7 +366,7 @@ IYS2022-NW-2-19-CanTrawl,IYS2022-NW-2-19-CanTrawl-2,Coho salmon,Oncorhynchus kis
 IYS2022-NW-2-19-CanTrawl,IYS2022-NW-2-19-CanTrawl-3,Pink salmon,Oncorhynchus gorbuscha,NA,Immature,NA,NA,NA,0.5,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-19-CanTrawl,IYS2022-NW-2-19-CanTrawl-4,Chum salmon,Oncorhynchus keta,NA,Immature,NA,NA,NA,7.73,Kilograms,Total,5,Total,NA,NA,NA
 IYS2022-NW-2-19-CanTrawl,IYS2022-NW-2-19-CanTrawl-5,Aurelia sp.,Aurelia sp.,NA,None,NA,NA,NA,0.16,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-NW-2-19-CanTrawl,IYS2022-NW-2-19-CanTrawl-6,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.206,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-19-CanTrawl,IYS2022-NW-2-19-CanTrawl-6,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.20600000000000002,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-19-CanTrawl,IYS2022-NW-2-19-CanTrawl-7,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,1.486,Kilograms,Total,2,Total,NA,NA,NA
 IYS2022-NW-2-19-CanTrawl,IYS2022-NW-2-19-CanTrawl-8,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,5.922,Kilograms,Total,66.7895,Total,NA,NA,NA
 IYS2022-NW-2-19-CanTrawl,IYS2022-NW-2-19-CanTrawl-9,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,1.72,Kilograms,Total,5,Total,NA,NA,NA
@@ -381,168 +381,168 @@ IYS2022-NW-2-21-CanTrawl,IYS2022-NW-2-21-CanTrawl-1,Sockeye salmon,Oncorhynchus 
 IYS2022-NW-2-21-CanTrawl,IYS2022-NW-2-21-CanTrawl-2,Chum salmon,Oncorhynchus keta,NA,Immature,NA,NA,NA,3.51,Kilograms,Total,2,Total,NA,NA,NA
 IYS2022-NW-2-21-CanTrawl,IYS2022-NW-2-21-CanTrawl-3,Brokenline lampfish,Lampanyctus jordani,NA,None,NA,NA,NA,0.024,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-21-CanTrawl,IYS2022-NW-2-21-CanTrawl-4,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.171,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-NW-2-21-CanTrawl,IYS2022-NW-2-21-CanTrawl-5,Minimal armhook squid,Berryteuthis anonychus,NA,None,NA,NA,NA,0.093,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-NW-2-21-CanTrawl,IYS2022-NW-2-21-CanTrawl-5,Minimal armhook squid,Berryteuthis anonychus,NA,None,NA,NA,NA,0.09300000000000001,Kilograms,Total,8,Total,NA,NA,NA
 IYS2022-NW-2-21-CanTrawl,IYS2022-NW-2-21-CanTrawl-6,Gonatus kamtschaticus,Gonatus kamtschaticus,NA,None,NA,NA,NA,0.252,Kilograms,Total,2,Total,NA,NA,NA
 IYS2022-NW-2-21-CanTrawl,IYS2022-NW-2-21-CanTrawl-7,Hormiphora sp.,Hormiphora sp.,NA,None,NA,NA,NA,0.018,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-21-CanTrawl,IYS2022-NW-2-21-CanTrawl-8,Aurelia sp.,Aurelia sp.,NA,None,NA,NA,NA,0.087,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-22-CanTrawl,IYS2022-NW-2-22-CanTrawl-1,Threespine stickleback,Gasterosteus aculeatus,NA,None,NA,NA,NA,0.004,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-22-CanTrawl,IYS2022-NW-2-22-CanTrawl-2,Gonatus kamtschaticus,Gonatus kamtschaticus,NA,None,NA,NA,NA,0.148,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-NW-2-22-CanTrawl,IYS2022-NW-2-22-CanTrawl-2,Gonatus kamtschaticus,Gonatus kamtschaticus,NA,None,NA,NA,NA,0.14800000000000002,Kilograms,Total,2,Total,NA,NA,NA
 IYS2022-NW-2-22-CanTrawl,IYS2022-NW-2-22-CanTrawl-3,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,4.85,Kilograms,Total,2,Total,NA,NA,NA
 IYS2022-NW-2-22-CanTrawl,IYS2022-NW-2-22-CanTrawl-4,Chum salmon,Oncorhynchus keta,NA,Immature,NA,NA,NA,95.59,Kilograms,Total,48,Total,NA,NA,NA
 IYS2022-NW-2-22-CanTrawl,IYS2022-NW-2-22-CanTrawl-5,North Pacific Daggertooth,Anotopterus nikparini,NA,None,NA,NA,NA,0.535,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-22-CanTrawl,IYS2022-NW-2-22-CanTrawl-6,Minimal armhook squid,Berryteuthis anonychus,NA,None,NA,NA,NA,67.409,Kilograms,Total,3441.3003,Total,NA,NA,NA
 IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-18,Salps unident.,Salpidae,NA,None,NA,NA,NA,0.438,Kilograms,Total,44,Total,NA,NA,NA
-IYS2022-Shimada-4-10-Trawl,IYS2022-Shimada-4-10-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/15/2022,0.13,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/21/2022,1.211,Kilograms,Total,15,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/22/2022,0.06,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/22/2022,0.29,Kilograms,Total,13,Subsampled,NA,NA,INCOMPLETE
-IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/23/2022,2.475,Kilograms,Total,28,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/23/2022,2.2,Kilograms,Total,22,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/24/2022,11.405,Kilograms,Total,165,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/25/2022,16.571,Kilograms,Total,176,Subsampled,NA,NA,INCOMPLETE
-IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/26/2022,40.31,Kilograms,Total,209,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-1-Trawl,IYS2022-Shimada-4-1-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Jim Murphy,2/5/2022,1.45,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/26/2022,4.8,Kilograms,Total,0,Total,NA,NA,ALL INCOMPLETE
-IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/27/2022,0,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/27/2022,1.841,Kilograms,Total,5,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2/28/2022,13.243,Kilograms,Total,117,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,3/1/2022,0.216,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,3/1/2022,0,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,3/2/2022,0.326,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-3-Trawl,IYS2022-Shimada-4-3-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Jim Murphy,2/10/2022,12.26,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-2,Amphipod unident.,Amphipod,order,NA,amphipod,Alicia Billings,2/26/2022,0.001,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2/21/2022,0.085,Kilograms,Total,1,Total,NA,NA,INCOMPLETE
-IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2/22/2022,0.13,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2/23/2022,2.378,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2/23/2022,0.117,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2/24/2022,0,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2/25/2022,0.057,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-3,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2/26/2022,0.929,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-Shimada-4-1-Trawl,IYS2022-Shimada-4-1-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Jim Murphy,2/5/2022,3.3,Kilograms,Total,7,Total,NA,NA,NA
-IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2/26/2022,0.066,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2/27/2022,0,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2/27/2022,0.216,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2/28/2022,10.664,Kilograms,Total,49,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,3/1/2022,1.25,Kilograms,Total,10,Total,NA,NA,NA
-IYS2022-Shimada-4-3-Trawl,IYS2022-Shimada-4-3-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Jim Murphy,2/10/2022,1.22,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-3,Beroe sp.,Beroe,genus,NA,cigar comb jelly,Alicia Billings,2/22/2022,0.06,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-3,Beroe sp.,Beroe,genus,NA,cigar comb jelly,Alicia Billings,2/23/2022,0.056,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-2,Beroe sp.,Beroe,genus,NA,cigar comb jelly,Alicia Billings,3/2/2022,0.1,Kilograms,Total,12,Total,NA,NA,NA
-IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-1,Beroe sp.,Beroe,genus,NA,cigar comb jelly,Alicia Billings,3/4/2022,0.125,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-4,Berry armhook squid,Gonatus berryi,species,NA,Berry armhook squid,Alicia Billings,2/23/2022,0.004,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-3,Berry armhook squid,Gonatus berryi,species,NA,Berry armhook squid,Alicia Billings,2/25/2022,0.139,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-3,Berry armhook squid,Gonatus berryi,species,NA,Berry armhook squid,Alicia Billings,3/1/2022,0,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-2,Berry armhook squid,Gonatus berryi,species,NA,Berry armhook squid,Alicia Billings,3/1/2022,0,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-3,Berry armhook squid,Gonatus berryi,species,NA,Berry armhook squid,Alicia Billings,3/2/2022,2.0284,Kilograms,Total,277,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-4,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,2/25/2022,0.002,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-4,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,2/26/2022,0.005,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-3,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,2/27/2022,0.822,Kilograms,Total,357,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-4,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,3/1/2022,0.294,Kilograms,Total,109,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-4,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,3/2/2022,0.536,Kilograms,Total,185,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-2,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,3/4/2022,0.814,Kilograms,Total,238,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-5,Boreal clubhook squid,Onychoteuthis borealijaponica,species,NA,Boreal clubhook squid,Alicia Billings,3/1/2022,0.201,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-3,Boreal clubhook squid,Onychoteuthis borealijaponica,species,NA,Boreal clubhook squid,Alicia Billings,3/1/2022,0.141,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-5,Boreal clubhook squid,Onychoteuthis borealijaponica,species,NA,Boreal clubhook squid,Alicia Billings,3/2/2022,0.839,Kilograms,Total,10,Total,NA,NA,NA
-IYS2022-Shimada-4-28-Trawl,IYS2022-Shimada-4-28-Trawl-1,Boreal clubhook squid,Onychoteuthis borealijaponica,species,NA,Boreal clubhook squid,Alicia Billings,3/4/2022,0.066,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-1,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,2/16/2022,0.09,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-2,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,2/22/2022,0.313,Kilograms,Total,105,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-5,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,2/23/2022,0.149,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-4,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,2/27/2022,0.222,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-6,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,3/2/2022,0.777,Kilograms,Total,16,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-3,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,3/4/2022,1.65,Kilograms,Total,21,Total,NA,NA,NA
-IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-3,Chinook salmon,Oncorhynchus tshawytscha,species,Immature,Chinook salmon,Laurie Weitkamp,2/27/2022,5.4,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-7,Chinook salmon,Oncorhynchus tshawytscha,species,Immature,Chinook salmon,Laurie Weitkamp,3/2/2022,0.76,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-2,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2/16/2022,1.257,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-3,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2/21/2022,0.263,Kilograms,Total,1,Total,NA,NA,INCOMPLETE
-IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-4,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2/22/2022,0.092,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-3,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2/23/2022,0.407,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-3,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2/24/2022,1.358,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-5,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2/25/2022,6.574,Kilograms,Total,15,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-5,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2/26/2022,42.22,Kilograms,Total,173,Subsampled,NA,NA,ESTIMATED
-IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-3,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2/26/2022,0.132,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-3,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2/28/2022,0.094,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-6,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,3/1/2022,0.572,Kilograms,Total,7,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-6,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2/26/2022,1.31,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-4,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2/26/2022,14.89,Kilograms,Total,11,Total,NA,NA,NA
-IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-5,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2/27/2022,10.31,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-4,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2/27/2022,14.98,Kilograms,Total,29,Total,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-7,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,3/1/2022,1.08,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-4,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,3/1/2022,2.649,Kilograms,Total,7,Total,NA,NA,NA
-IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-8,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,3/2/2022,0.38,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-4,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,3/4/2022,4.08,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-3-Trawl,IYS2022-Shimada-4-3-Trawl-3,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Jim Murphy,2/10/2022,1.8,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-6,Coho salmon,Oncorhynchus kisutch,species,Immature,Coho salmon,Laurie Weitkamp,2/27/2022,2.04,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-5,Coho salmon,Oncorhynchus kisutch,species,Immature,Coho salmon,Laurie Weitkamp,3/1/2022,0.43,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-9,Coho salmon,Oncorhynchus kisutch,species,Immature,Coho salmon,Laurie Weitkamp,3/2/2022,4.75,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-4,Cyanea sp.,Cyanea,genus,NA,Lion's mane jellyfish,Alicia Billings,2/24/2022,1.809,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-3,Euphausiid unident.,Euphausiidae,family,NA,krill,Alicia Billings,2/22/2022,0.013,Kilograms,Total,41,Total,NA,NA,NA
-IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-6,Euphausiid unident.,Euphausiidae,family,NA,krill,Alicia Billings,2/23/2022,0.001,Kilograms,Total,17,Total,NA,NA,NA
-IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-6,Euphausiid unident.,Euphausiidae,family,NA,krill,Alicia Billings,2/25/2022,0.001,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-7,Euphausiid unident.,Euphausiidae,family,NA,krill,Alicia Billings,2/27/2022,0,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-8,Euphausiid unident.,Euphausiidae,family,NA,krill,Alicia Billings,3/1/2022,0,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-5,Fish larvae unident.,Actinopterygii,class,Larvae,Ray-finned fish,Alicia Billings,2/24/2022,0.001,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-9,Gonatopsis sp.,Gonatopsis,genus,juvenile,Armhook squid,Alicia Billings,3/1/2022,0,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-6,Gonatopsis sp.,Gonatopsis,genus,juvenile,Armhook squid,Alicia Billings,3/1/2022,0.101,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-10,Gonatopsis sp.,Gonatopsis,genus,juvenile,Armhook squid,Alicia Billings,3/2/2022,6.8229,Kilograms,Total,981,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-5,Gonatopsis sp.,Gonatopsis,genus,juvenile,Armhook squid,Alicia Billings,3/4/2022,2.037,Kilograms,Total,17,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-3,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2/16/2022,0.016,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-4,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2/21/2022,0.116,Kilograms,Total,26,Total,NA,NA,NA
-IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-5,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2/22/2022,0.052,Kilograms,Total,9,Total,NA,NA,NA
-IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-7,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2/23/2022,0.28,Kilograms,Total,215,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-4,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2/23/2022,0.194,Kilograms,Total,31,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-7,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2/25/2022,0.059,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-7,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2/26/2022,0.014,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-5,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2/26/2022,0.02,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-8,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2/27/2022,0.138,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-10,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,3/1/2022,0.749,Kilograms,Total,5,Total,NA,NA,"SOME SORT OF ARMHOOK, KEPT AND SEE PHOTOS"
-IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-4,Heteropoda,Heteropoda,genus,NA,Sea elephant,Alicia Billings,2/28/2022,0.039,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-4,Hormiphora cucumis,Hormiphora cucumis,species,NA,Comb jelly,Alicia Billings,2/16/2022,0.035,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-5,Medusafish,Icichthys lockingtoni,species,juvenile,Medusafish,Alicia Billings,2/21/2022,0.007,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-5,Minimal armhook squid,Berryteuthis anonychus,species,NA,Minimal armhook squid,Alicia Billings,2/16/2022,0.003,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-6,Mollusk unident.,Heterobranchia,subclass,NA,Pelagic mollusc,Alicia Billings,2/21/2022,0.076,Kilograms,Total,1,Total,NA,NA,PICTURE AND SPECIMEN TAKEN
-IYS2022-Shimada-4-1-Trawl,IYS2022-Shimada-4-1-Trawl-3,North Pacific Daggertooth,Anotopterus nikparini,species,NA,North Pacific Daggertooth,Jim Murphy,2/5/2022,0.018,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-28-Trawl,IYS2022-Shimada-4-28-Trawl-2,Pacific sardine,Sardinops sagax,species,NA,Pacific sardine,Alicia Billings,3/4/2022,0.032,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-10-Trawl,IYS2022-Shimada-4-10-Trawl-2,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2/15/2022,0.92,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-6,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2/16/2022,0.177,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-7,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2/21/2022,2.814,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-4,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2/22/2022,0.12,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-6,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2/22/2022,0.168,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-5,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2/23/2022,0.021,Kilograms,Total,1,Total,NA,NA,INCOMPLETE
-IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-6,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2/24/2022,0.619,Kilograms,Total,5,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-8,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2/25/2022,0.116,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-9,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2/27/2022,15.09,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-5,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2/27/2022,20.58,Kilograms,Total,21,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-5,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2/28/2022,15.06,Kilograms,Total,20,Subsampled,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-11,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,3/1/2022,4.01,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-3-Trawl,IYS2022-Shimada-4-3-Trawl-4,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Jim Murphy,2/10/2022,6.35,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-6,Pink salmon,Oncorhynchus gorbuscha,species,Immature,Pink salmon,Laurie Weitkamp,2/26/2022,0.39,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-6,Pink salmon,Oncorhynchus gorbuscha,species,Immature,Pink salmon,Laurie Weitkamp,2/27/2022,0.56,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-7,Pink salmon,Oncorhynchus gorbuscha,species,Immature,Pink salmon,Laurie Weitkamp,3/1/2022,1.758,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-11,Pink salmon,Oncorhynchus gorbuscha,species,Immature,Pink salmon,Laurie Weitkamp,3/2/2022,0.44,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-9,Prowfish,Zaprora silenus,species,adult,Prowfish,Alicia Billings,2/25/2022,0.409,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-6,Salmon shark,Lamna ditropis,species,adult,Salmon shark,Sabrina Garcia,3/4/2022,116.85,Kilograms,Total,1,Total,NA,NA,WEIGHT ESTIMATED USING PRECAUDAL LENGTH FOR A FEMALE SPECIFIC LENGTH REGRESSION - 8.2 10-5 X L EXP 2.759
-IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-5,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2/22/2022,0.019,Kilograms,Total,16,Total,NA,NA,NA
-IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-7,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2/22/2022,0.003,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-8,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2/23/2022,0.008,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-6,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2/23/2022,0.005,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-10,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2/25/2022,0.006,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-8,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2/26/2022,0.084,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-6,Smooth lumpsucker,Aptocyclus ventricosus,species,juvenile,Smooth lumpsucker,Alicia Billings,2/22/2022,0.01,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-9,Smooth lumpsucker,Aptocyclus ventricosus,species,juvenile,Smooth lumpsucker,Alicia Billings,2/23/2022,0.269,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-8,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2/21/2022,0.119,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-8,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2/22/2022,0.934,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-10,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2/23/2022,3.758,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-7,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2/23/2022,7.33,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-7,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2/24/2022,1,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-11,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2/25/2022,6.56,Kilograms,Total,7,Total,NA,NA,NA
-IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-9,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2/26/2022,3.76,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-7,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2/26/2022,0.39,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-10,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2/27/2022,3.86,Kilograms,Total,7,Total,NA,NA,includes 2 sockeye that were not weighed.
-IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-7,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2/27/2022,5.43,Kilograms,Total,9,Total,NA,NA,NA
-IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-6,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2/28/2022,3.58,Kilograms,Total,4,Total,NA,NA,NA
-IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-12,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,3/1/2022,6.6,Kilograms,Total,10,Total,NA,NA,NA
-IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-8,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,3/1/2022,1.523,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-Shimada-4-3-Trawl,IYS2022-Shimada-4-3-Trawl-5,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Jim Murphy,2/10/2022,7.36,Kilograms,Total,12,Total,NA,NA,NA
-IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-9,Squid unident.,Oegopsida,order,juvenile,squid,Alicia Billings,2/21/2022,0.032,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-10,Staurophora mertensii,Staurophora mertensii,species,NA,cross jellyfish,Alicia Billings,2/21/2022,0.114,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-11,Threespine stickleback,Gasterosteus aculeatus,species,adult,Threespine stickleback,Alicia Billings,2/21/2022,0.005,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-10-Trawl,IYS2022-Shimada-4-10-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-15,0.13,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-21,1.211,Kilograms,Total,15,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-22,0.06,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-22,0.29,Kilograms,Total,13,Subsampled,NA,NA,INCOMPLETE
+IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-23,2.475,Kilograms,Total,28,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-23,2.2,Kilograms,Total,22,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-24,11.405,Kilograms,Total,165,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-25,16.571,Kilograms,Total,176,Subsampled,NA,NA,INCOMPLETE
+IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-26,40.31,Kilograms,Total,209,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-1-Trawl,IYS2022-Shimada-4-1-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Jim Murphy,2022-02-05,1.45,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-26,4.8,Kilograms,Total,0,Total,NA,NA,ALL INCOMPLETE
+IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-27,0,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-27,1.841,Kilograms,Total,5,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-02-28,13.243,Kilograms,Total,117,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-03-01,0.216,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-03-01,0,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Alicia Billings,2022-03-02,0.326,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-3-Trawl,IYS2022-Shimada-4-3-Trawl-1,Aequorea sp.,Aequorea,genus,NA,water jelly,Jim Murphy,2022-02-10,12.26,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-2,Amphipod unident.,Amphipod,order,NA,amphipod,Alicia Billings,2022-02-26,0.001,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-02-21,0.085,Kilograms,Total,1,Total,NA,NA,INCOMPLETE
+IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-02-22,0.13,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-02-23,2.378,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-02-23,0.117,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-02-24,0,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-02-25,0.057,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-3,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-02-26,0.929,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-Shimada-4-1-Trawl,IYS2022-Shimada-4-1-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Jim Murphy,2022-02-05,3.3,Kilograms,Total,7,Total,NA,NA,NA
+IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-02-26,0.066,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-02-27,0,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-02-27,0.216,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-02-28,10.664,Kilograms,Total,49,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Alicia Billings,2022-03-01,1.25,Kilograms,Total,10,Total,NA,NA,NA
+IYS2022-Shimada-4-3-Trawl,IYS2022-Shimada-4-3-Trawl-2,Aurelia sp.,Aurelia,genus,NA,moon jelly,Jim Murphy,2022-02-10,1.22,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-3,Beroe sp.,Beroe,genus,NA,cigar comb jelly,Alicia Billings,2022-02-22,0.06,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-3,Beroe sp.,Beroe,genus,NA,cigar comb jelly,Alicia Billings,2022-02-23,0.056,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-2,Beroe sp.,Beroe,genus,NA,cigar comb jelly,Alicia Billings,2022-03-02,0.1,Kilograms,Total,12,Total,NA,NA,NA
+IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-1,Beroe sp.,Beroe,genus,NA,cigar comb jelly,Alicia Billings,2022-03-04,0.125,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-4,Berry armhook squid,Gonatus berryi,species,NA,Berry armhook squid,Alicia Billings,2022-02-23,0.004,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-3,Berry armhook squid,Gonatus berryi,species,NA,Berry armhook squid,Alicia Billings,2022-02-25,0.139,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-3,Berry armhook squid,Gonatus berryi,species,NA,Berry armhook squid,Alicia Billings,2022-03-01,0,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-2,Berry armhook squid,Gonatus berryi,species,NA,Berry armhook squid,Alicia Billings,2022-03-01,0,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-3,Berry armhook squid,Gonatus berryi,species,NA,Berry armhook squid,Alicia Billings,2022-03-02,2.0284,Kilograms,Total,277,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-4,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,2022-02-25,0.002,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-4,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,2022-02-26,0.005,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-3,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,2022-02-27,0.822,Kilograms,Total,357,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-4,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,2022-03-01,0.294,Kilograms,Total,109,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-4,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,2022-03-02,0.536,Kilograms,Total,185,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-2,Blue lanternfish,Tarletonbeania crenularis,species,NA,Blue lanternfish,Alicia Billings,2022-03-04,0.814,Kilograms,Total,238,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-5,Boreal clubhook squid,Onychoteuthis borealijaponica,species,NA,Boreal clubhook squid,Alicia Billings,2022-03-01,0.201,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-3,Boreal clubhook squid,Onychoteuthis borealijaponica,species,NA,Boreal clubhook squid,Alicia Billings,2022-03-01,0.141,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-5,Boreal clubhook squid,Onychoteuthis borealijaponica,species,NA,Boreal clubhook squid,Alicia Billings,2022-03-02,0.839,Kilograms,Total,10,Total,NA,NA,NA
+IYS2022-Shimada-4-28-Trawl,IYS2022-Shimada-4-28-Trawl-1,Boreal clubhook squid,Onychoteuthis borealijaponica,species,NA,Boreal clubhook squid,Alicia Billings,2022-03-04,0.066,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-1,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,2022-02-16,0.09,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-2,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,2022-02-22,0.313,Kilograms,Total,105,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-5,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,2022-02-23,0.149,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-4,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,2022-02-27,0.222,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-6,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,2022-03-02,0.777,Kilograms,Total,16,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-3,Boreopacific armhook squid,Gonatopsis borealis,species,NA,Boreopacific armhook squid,Alicia Billings,2022-03-04,1.65,Kilograms,Total,21,Total,NA,NA,NA
+IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-3,Chinook salmon,Oncorhynchus tshawytscha,species,Immature,Chinook salmon,Laurie Weitkamp,2022-02-27,5.4,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-7,Chinook salmon,Oncorhynchus tshawytscha,species,Immature,Chinook salmon,Laurie Weitkamp,2022-03-02,0.76,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-2,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2022-02-16,1.257,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-3,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2022-02-21,0.263,Kilograms,Total,1,Total,NA,NA,INCOMPLETE
+IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-4,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2022-02-22,0.092,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-3,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2022-02-23,0.407,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-3,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2022-02-24,1.358,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-5,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2022-02-25,6.574,Kilograms,Total,15,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-5,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2022-02-26,42.22,Kilograms,Total,173,Subsampled,NA,NA,ESTIMATED
+IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-3,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2022-02-26,0.132,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-3,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2022-02-28,0.094,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-6,Chrysaora melanaster,Chrysaora melanaster,species,NA,Northern sea nettle,Alicia Billings,2022-03-01,0.572,Kilograms,Total,7,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-6,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2022-02-26,1.31,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-4,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2022-02-26,14.89,Kilograms,Total,11,Total,NA,NA,NA
+IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-5,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2022-02-27,10.31,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-4,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2022-02-27,14.98,Kilograms,Total,29,Total,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-7,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2022-03-01,1.08,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-4,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2022-03-01,2.649,Kilograms,Total,7,Total,NA,NA,NA
+IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-8,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2022-03-02,0.38,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-4,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Laurie Weitkamp,2022-03-04,4.08,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-3-Trawl,IYS2022-Shimada-4-3-Trawl-3,Chum salmon,Oncorhynchus keta,species,Immature,Chum salmon,Jim Murphy,2022-02-10,1.8,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-6,Coho salmon,Oncorhynchus kisutch,species,Immature,Coho salmon,Laurie Weitkamp,2022-02-27,2.04,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-5,Coho salmon,Oncorhynchus kisutch,species,Immature,Coho salmon,Laurie Weitkamp,2022-03-01,0.43,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-9,Coho salmon,Oncorhynchus kisutch,species,Immature,Coho salmon,Laurie Weitkamp,2022-03-02,4.75,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-4,Cyanea sp.,Cyanea,genus,NA,Lion's mane jellyfish,Alicia Billings,2022-02-24,1.809,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-3,Euphausiid unident.,Euphausiidae,family,NA,krill,Alicia Billings,2022-02-22,0.013,Kilograms,Total,41,Total,NA,NA,NA
+IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-6,Euphausiid unident.,Euphausiidae,family,NA,krill,Alicia Billings,2022-02-23,0.001,Kilograms,Total,17,Total,NA,NA,NA
+IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-6,Euphausiid unident.,Euphausiidae,family,NA,krill,Alicia Billings,2022-02-25,0.001,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-7,Euphausiid unident.,Euphausiidae,family,NA,krill,Alicia Billings,2022-02-27,0,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-8,Euphausiid unident.,Euphausiidae,family,NA,krill,Alicia Billings,2022-03-01,0,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-5,Fish larvae unident.,Actinopterygii,class,Larvae,Ray-finned fish,Alicia Billings,2022-02-24,0.001,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-9,Gonatopsis sp.,Gonatopsis,genus,juvenile,Armhook squid,Alicia Billings,2022-03-01,0,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-6,Gonatopsis sp.,Gonatopsis,genus,juvenile,Armhook squid,Alicia Billings,2022-03-01,0.101,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-10,Gonatopsis sp.,Gonatopsis,genus,juvenile,Armhook squid,Alicia Billings,2022-03-02,6.8229,Kilograms,Total,981,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-5,Gonatopsis sp.,Gonatopsis,genus,juvenile,Armhook squid,Alicia Billings,2022-03-04,2.037,Kilograms,Total,17,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-3,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2022-02-16,0.016,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-4,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2022-02-21,0.116,Kilograms,Total,26,Total,NA,NA,NA
+IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-5,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2022-02-22,0.052,Kilograms,Total,9,Total,NA,NA,NA
+IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-7,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2022-02-23,0.28,Kilograms,Total,215,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-4,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2022-02-23,0.194,Kilograms,Total,31,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-7,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2022-02-25,0.059,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-7,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2022-02-26,0.014,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-5,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2022-02-26,0.02,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-8,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2022-02-27,0.138,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-10,Gonatus sp.,Gonatus,genus,juvenile,Armhook squid,Alicia Billings,2022-03-01,0.749,Kilograms,Total,5,Total,NA,NA,"SOME SORT OF ARMHOOK, KEPT AND SEE PHOTOS"
+IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-4,Heteropoda,Heteropoda,genus,NA,Sea elephant,Alicia Billings,2022-02-28,0.039,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-4,Hormiphora cucumis,Hormiphora cucumis,species,NA,Comb jelly,Alicia Billings,2022-02-16,0.035,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-5,Medusafish,Icichthys lockingtoni,species,juvenile,Medusafish,Alicia Billings,2022-02-21,0.007,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-5,Minimal armhook squid,Berryteuthis anonychus,species,NA,Minimal armhook squid,Alicia Billings,2022-02-16,0.003,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-6,Mollusk unident.,Heterobranchia,subclass,NA,Pelagic mollusc,Alicia Billings,2022-02-21,0.076,Kilograms,Total,1,Total,NA,NA,PICTURE AND SPECIMEN TAKEN
+IYS2022-Shimada-4-1-Trawl,IYS2022-Shimada-4-1-Trawl-3,North Pacific Daggertooth,Anotopterus nikparini,species,NA,North Pacific Daggertooth,Jim Murphy,2022-02-05,0.018,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-28-Trawl,IYS2022-Shimada-4-28-Trawl-2,Pacific sardine,Sardinops sagax,species,NA,Pacific sardine,Alicia Billings,2022-03-04,0.032,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-10-Trawl,IYS2022-Shimada-4-10-Trawl-2,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-02-15,0.92,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-Shimada-4-11-Trawl,IYS2022-Shimada-4-11-Trawl-6,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-02-16,0.177,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-7,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-02-21,2.814,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-4,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-02-22,0.12,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-6,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-02-22,0.168,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-5,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-02-23,0.021,Kilograms,Total,1,Total,NA,NA,INCOMPLETE
+IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-6,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-02-24,0.619,Kilograms,Total,5,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-8,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-02-25,0.116,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-9,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-02-27,15.09,Kilograms,Total,0,Total,NA,NA,NA
+IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-5,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-02-27,20.58,Kilograms,Total,21,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-5,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-02-28,15.06,Kilograms,Total,20,Subsampled,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-11,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Alicia Billings,2022-03-01,4.01,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-3-Trawl,IYS2022-Shimada-4-3-Trawl-4,Phacellophora camtchatica,Phacellophora camtchatica,species,NA,Fried egg jellyfish,Jim Murphy,2022-02-10,6.35,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-6,Pink salmon,Oncorhynchus gorbuscha,species,Immature,Pink salmon,Laurie Weitkamp,2022-02-26,0.39,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-6,Pink salmon,Oncorhynchus gorbuscha,species,Immature,Pink salmon,Laurie Weitkamp,2022-02-27,0.56,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-7,Pink salmon,Oncorhynchus gorbuscha,species,Immature,Pink salmon,Laurie Weitkamp,2022-03-01,1.758,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-Shimada-4-26-Trawl,IYS2022-Shimada-4-26-Trawl-11,Pink salmon,Oncorhynchus gorbuscha,species,Immature,Pink salmon,Laurie Weitkamp,2022-03-02,0.44,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-9,Prowfish,Zaprora silenus,species,adult,Prowfish,Alicia Billings,2022-02-25,0.409,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-27-Trawl,IYS2022-Shimada-4-27-Trawl-6,Salmon shark,Lamna ditropis,species,adult,Salmon shark,Sabrina Garcia,2022-03-04,116.85,Kilograms,Total,1,Total,NA,NA,WEIGHT ESTIMATED USING PRECAUDAL LENGTH FOR A FEMALE SPECIFIC LENGTH REGRESSION - 8.2 10-5 X L EXP 2.759
+IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-5,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2022-02-22,0.019,Kilograms,Total,16,Total,NA,NA,NA
+IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-7,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2022-02-22,0.003,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-8,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2022-02-23,0.008,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-6,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2022-02-23,0.005,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-10,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2022-02-25,0.006,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-8,Salps unident.,Salpidae,family,NA,sea grape,Alicia Billings,2022-02-26,0.084,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-Shimada-4-13-Trawl,IYS2022-Shimada-4-13-Trawl-6,Smooth lumpsucker,Aptocyclus ventricosus,species,juvenile,Smooth lumpsucker,Alicia Billings,2022-02-22,0.01,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-9,Smooth lumpsucker,Aptocyclus ventricosus,species,juvenile,Smooth lumpsucker,Alicia Billings,2022-02-23,0.269,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-8,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-02-21,0.119,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-14-Trawl,IYS2022-Shimada-4-14-Trawl-8,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-02-22,0.934,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-15-Trawl,IYS2022-Shimada-4-15-Trawl-10,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-02-23,3.758,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-Shimada-4-16-Trawl,IYS2022-Shimada-4-16-Trawl-7,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-02-23,7.33,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-Shimada-4-17-Trawl,IYS2022-Shimada-4-17-Trawl-7,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-02-24,1,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-Shimada-4-18-Trawl,IYS2022-Shimada-4-18-Trawl-11,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-02-25,6.56,Kilograms,Total,7,Total,NA,NA,NA
+IYS2022-Shimada-4-19-Trawl,IYS2022-Shimada-4-19-Trawl-9,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-02-26,3.76,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-Shimada-4-20-Trawl,IYS2022-Shimada-4-20-Trawl-7,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-02-26,0.39,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-Shimada-4-21-Trawl,IYS2022-Shimada-4-21-Trawl-10,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-02-27,3.86,Kilograms,Total,7,Total,NA,NA,includes 2 sockeye that were not weighed.
+IYS2022-Shimada-4-22-Trawl,IYS2022-Shimada-4-22-Trawl-7,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-02-27,5.43,Kilograms,Total,9,Total,NA,NA,NA
+IYS2022-Shimada-4-23-Trawl,IYS2022-Shimada-4-23-Trawl-6,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-02-28,3.58,Kilograms,Total,4,Total,NA,NA,NA
+IYS2022-Shimada-4-24-Trawl,IYS2022-Shimada-4-24-Trawl-12,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-03-01,6.6,Kilograms,Total,10,Total,NA,NA,NA
+IYS2022-Shimada-4-25-Trawl,IYS2022-Shimada-4-25-Trawl-8,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Laurie Weitkamp,2022-03-01,1.523,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-Shimada-4-3-Trawl,IYS2022-Shimada-4-3-Trawl-5,Sockeye salmon,Oncorhynchus nerka,species,Immature,Sockeye salmon,Jim Murphy,2022-02-10,7.36,Kilograms,Total,12,Total,NA,NA,NA
+IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-9,Squid unident.,Oegopsida,order,juvenile,squid,Alicia Billings,2022-02-21,0.032,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-10,Staurophora mertensii,Staurophora mertensii,species,NA,cross jellyfish,Alicia Billings,2022-02-21,0.114,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-Shimada-4-12-Trawl,IYS2022-Shimada-4-12-Trawl-11,Threespine stickleback,Gasterosteus aculeatus,species,adult,Threespine stickleback,Alicia Billings,2022-02-21,0.005,Kilograms,Total,2,Total,NA,NA,NA

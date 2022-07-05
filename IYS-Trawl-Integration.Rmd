@@ -63,13 +63,13 @@ tab
 Now that we have the latest versions of the trawl data downloaded, we can read them in:
 
 ```{r event data, eval = FALSE}
-NW_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Sampling_Event_Info") %>%
+NW_event <- read_excel(here("IYS2022_NW_Data.xlsx"), sheet = "Sampling_Event_Info") %>%
   filter(Event_Type == "CanTrawl")
-TINRO_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "4. SAMPLING EVENT INFO") %>%
+TINRO_event <- read_excel(here("IYS2022_TINRO_Data.xlsx"), sheet = "4. SAMPLING EVENT INFO") %>%
   filter(Event_Type %in% c("Trawl", "CTD"))
-Shimada_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_Shimada_Data.xlsx", sheet = "4. SAMPLING EVENT INFO") %>%
+Shimada_event <- read_excel(here("IYS2022_Shimada_Data.xlsx"), sheet = "4. SAMPLING EVENT INFO") %>%
   filter(Event_Type %in% c("Trawl", "CTD"))
-GoA2019_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx", 
+GoA2019_event <- read_excel(here("JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx"), 
                             sheet = "BRIDGE_LOG_FINAL")
 ```
 
@@ -82,23 +82,23 @@ janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event)
 
 Looks like we have to do a little bit of cleaning before we join the data frames!
 
-```{r Shimada cleaning, eval = FALSE}
+```{r Shimada event cleaning, eval = FALSE}
 Shimada_event <- Shimada_event %>%
   mutate(Time_Start = as.POSIXct(Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S"),
          Time_End = as.POSIXct(Time_End, format = "%H:%M:%S") %>% format("%H:%M:%S"),
-         Time_Zone_Code = "GMT",
+         Time_Zone_Code = "UTC",
          Station_Event_ID = ifelse(Event_Type == "CTD", paste0(Station_Event_ID, Maximum_Sampling_Depth_Meters), Station_Event_ID)) %>%
   dplyr::rename(Bottom_Depth_Meters = `Bottom_Depth*_Meters`)
 ```
 
 For NW data:
 
-```{r NW cleaning, eval = FALSE}
+```{r NW event cleaning, eval = FALSE}
 NW_event <- NW_event %>%
   dplyr::rename(Maximum_Sampling_Depth_Meters = Maximum_Sampling_Depth,
                 Minimum_Sampling_Depth_Meters = Minimum_Sampling_Depth,
                 Cruise_name = Cruise_Name) %>% # remember: rename(new = old)
-  mutate(Time_Zone_Code = "GMT")
+  mutate(Time_Zone_Code = "UTC")
 
 # Change class where needed:
 NW_event$Month <- as.numeric(NW_event$Month)
@@ -116,7 +116,7 @@ NW_event$Station_Event_ID <- str_replace(NW_event$Station_Event_ID, "NW2201", "I
 
 And for TINRO data:
 
-```{r TINRO cleaning, eval = FALSE}
+```{r TINRO event cleaning, eval = FALSE}
 # Trawl data is collected in GMT+12:00. So we have to subtract 12 hours from the Time_Start and Time_End to get to UTC. Additionally, we have to make sure this is then accurately reflected in the sampling **day** as well!
 hrs <- 12 * 60 * 60
 
@@ -148,7 +148,7 @@ TINRO_event$Sampling_Duration_Minutes <- 60 * 24 * as.numeric(chron::times(TINRO
 TINRO_event$Sampling_Duration_Minutes <- round(TINRO_event$Sampling_Duration_Minutes, digits = 2)
 
 # Change Time_Zone_Code to state that the Time_Start and Time_End now reflects UTC:
-TINRO_event$Time_Zone_Code <- "GMT"
+TINRO_event$Time_Zone_Code <- "UTC"
 
 # Remove temporary columns:
 TINRO_event <- TINRO_event %>% select(-c(date, eventDate_start))
@@ -156,7 +156,7 @@ TINRO_event <- TINRO_event %>% select(-c(date, eventDate_start))
 
 Clean up the GoA2019 Trawl event data:
 
-```{r GOA2019, eval = FALSE}
+```{r GOA2019 event cleaning, eval = FALSE}
 GoA2019_event$END_DEPLOYMENT_TIME <- substr(as.POSIXct(sprintf("%04.0f", GoA2019_event$END_DEPLOYMENT_TIME), format = "%H%M"), 12, 16) 
 GoA2019_event$BEGIN_RETRIEVAL_TIME <- substr(as.POSIXct(sprintf("%04.0f", GoA2019_event$BEGIN_RETRIEVAL_TIME), format = "%H%M"), 12, 16)
 
@@ -220,10 +220,10 @@ write_csv(IYS2022_trawl_event, "IYS2022_trawl_event.csv")
 Now let's join the overall catch data from these vessels into a specific data frame as well. 
 
 ```{r overall catch, eval = FALSE}
-NW_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Catch_Info")
-TINRO_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "5. CATCH_FINAL INFO")
-Shimada_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_Shimada_Data.xlsx", sheet = "5. CATCH_FINAL INFO")
-GoA2019_catch <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx",
+NW_catch <- read_excel(here("IYS2022_NW_Data.xlsx"), sheet = "Catch_Info")
+TINRO_catch <- read_excel(here("IYS2022_TINRO_Data.xlsx"), sheet = "5. CATCH_FINAL INFO")
+Shimada_catch <- read_excel(here("IYS2022_Shimada_Data.xlsx"), sheet = "5. CATCH_FINAL INFO")
+GoA2019_catch <- read_excel(here("JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx"),
                             sheet = "CATCH_FINAL")
 ```
 
@@ -294,20 +294,14 @@ write_csv(IYS2022_trawl_catch, "IYS2022_trawl_catch.csv")
 Now let's join the overall specimen data from these vessels into a specific data frame as well. 
 
 ```{r overall catch, eval = FALSE}
-NW_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Specimen_Info")
-TINRO_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "6. SPECIMEN INFO")
-Shimada_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_Shimada_Data.xlsx", sheet = "6. SPECIMEN INFO")
-GoA2019_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY (2).xlsx",
+NW_specimen <- read_excel(here("IYS2022_NW_Data.xlsx"), sheet = "Specimen_Info")
+TINRO_specimen <- read_excel(here("IYS2022_TINRO_Data.xlsx"), sheet = "6. SPECIMEN INFO")
+Shimada_specimen <- read_excel(here("IYS2022_Shimada_Data.xlsx"), sheet = "6. SPECIMEN INFO")
+GoA2019_specimen <- read_excel(here("JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY (2).xlsx"),
                             sheet = "SPECIMEN_FINAL")
 ```
 
 #Selecting TINRO specimen column names for integration:
-
-#```{r TINRO specimen clean, eval = FALSE}
-#TINRO_specimen <- TINRO_specimen %>%
-#  select(Station_Event_ID, Catch_ID, Specimen_ID, Alternative_ID, Species_Recorded, Scientific_Name, Taxonomic_rank, common_name, Sex,
-#        Lifestage, Specimen_Length, Length_Units, Length_Type, Specimen_Weight, Weight_Units, Weight_Type, Comments)
-#```
 
 Cleaning NW specimen column names:
 
@@ -389,20 +383,48 @@ IYS2022_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specime
 # Confirm no duplicates in Specimen_ID:
 IYS2022_trawl_specimen$Specimen_ID[duplicated(IYS2022_trawl_specimen$Specimen_ID)] # should print character(0)
 
-# Save event data:
+# Save specimen data:
 write_csv(IYS2022_trawl_specimen, "IYS2022_trawl_specimen.csv")
 ```
 
 Next, integrate the CTD data (please note, we do not have CTD/Rosette data from the NW Explorer):
 
 ```{r overall CTD, eval = FALSE}
-TINRO_CTD <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "7. CTD INFO")
-Shimada_CTD <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_Shimada_Data.xlsx", sheet = "7. CTD INFO")
+#TODO: read in corrected CTD dataset? not sure if needed
+TINRO_CTD <- read_excel(here("IYS2022_TINRO_Data.xlsx"), sheet = "7. CTD INFO")
 
-IYS2022_CTD <- bind_rows(TINRO_CTD, Shimada_CTD)
+
+IYS2022_CTD <- bind_rows(TINRO_CTD)
 
 write_csv(IYS2022_CTD, "IYS2022_CTD.csv")
 ```
+
+
+```{r QC relations}
+library(dm)
+
+dm_no_keys <- dm(IYS2022_trawl_catch, IYS2022_trawl_event, IYS2022_trawl_specimen, IYS2022_CTD)
+
+# add primary keys
+only_pk <- dm_no_keys %>% 
+  dm_add_pk(IYS2022_trawl_catch, Catch_ID) %>% 
+  dm_add_pk(IYS2022_trawl_event, Station_Event_ID) %>% 
+  dm_add_pk(IYS2022_trawl_specimen, Specimen_ID)
+  
+only_pk %>% dm_examine_constraints() # checks for duplicates in PK
+
+# add foreign keys
+dm <- only_pk %>% 
+  dm_add_fk(IYS2022_CTD, Station_Event_ID, IYS2022_trawl_event) %>% 
+  dm_add_fk(IYS2022_trawl_specimen, Catch_ID, IYS2022_trawl_catch) %>% 
+  dm_add_fk(IYS2022_trawl_catch, Station_Event_ID, IYS2022_trawl_event)
+
+dm %>% dm_examine_constraints() # checks that foreign keys all have a matching primary key in  the parent table
+
+# manually  export the drawing from the viewer pane to figs to update the data model image
+dm_draw(dm)
+```
+
 
 Combine all data frames into a single .xlsx workbook:
 
