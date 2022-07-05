@@ -66,7 +66,7 @@ Now that we have the latest versions of the trawl data downloaded, we can read t
 NW_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_NW_Data.xlsx", sheet = "Sampling_Event_Info") %>%
   filter(Event_Type == "CanTrawl")
 TINRO_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "4. SAMPLING EVENT INFO") %>%
-  filter(Event_Type == "Trawl")
+  filter(Event_Type %in% c("Trawl", "CTD"))
 Shimada_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_Shimada_Data.xlsx", sheet = "4. SAMPLING EVENT INFO") %>%
   filter(Event_Type %in% c("Trawl", "CTD"))
 GoA2019_event <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx", 
@@ -85,7 +85,9 @@ Looks like we have to do a little bit of cleaning before we join the data frames
 ```{r Shimada cleaning, eval = FALSE}
 Shimada_event <- Shimada_event %>%
   mutate(Time_Start = as.POSIXct(Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S"),
-         Time_End = as.POSIXct(Time_End, format = "%H:%M:%S") %>% format("%H:%M:%S")) %>%
+         Time_End = as.POSIXct(Time_End, format = "%H:%M:%S") %>% format("%H:%M:%S"),
+         Time_Zone_Code = "GMT",
+         Station_Event_ID = ifelse(Event_Type == "CTD", paste0(Station_Event_ID, Maximum_Sampling_Depth_Meters), Station_Event_ID)) %>%
   dplyr::rename(Bottom_Depth_Meters = `Bottom_Depth*_Meters`)
 ```
 
@@ -95,7 +97,8 @@ For NW data:
 NW_event <- NW_event %>%
   dplyr::rename(Maximum_Sampling_Depth_Meters = Maximum_Sampling_Depth,
                 Minimum_Sampling_Depth_Meters = Minimum_Sampling_Depth,
-                Cruise_name = Cruise_Name) # remember: rename(new = old)
+                Cruise_name = Cruise_Name) %>% # remember: rename(new = old)
+  mutate(Time_Zone_Code = "GMT")
 
 # Change class where needed:
 NW_event$Month <- as.numeric(NW_event$Month)
@@ -106,6 +109,9 @@ NW_event$Time_Start <- as.POSIXct(NW_event$Time_Start, format = "%H:%M:%S") %>% 
 # NW Cruise_name and Station Event ID have to be slightly altered:
 NW_event$Cruise_name <- str_replace(NW_event$Cruise_name, "NW2201", "IYS2022")
 NW_event$Station_Event_ID <- str_replace(NW_event$Station_Event_ID, "NW2201", "IYS2022")
+
+# Additionally, you'll notice that there are three duplicate Station_Event_IDs. Likely - though needs confirmation - all the catch and specimen data comes from the trawl events that were ~60 minutes in length. Therefore, events that lasted 15 minutes will likely have to be filtered out. 
+# NW_event <- NW_event %>% filter(Sampling_Duration_Minutes != "15") # Confirm with Jim & Murphy!
 ```
 
 And for TINRO data:
@@ -119,7 +125,8 @@ TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S"
 TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S")
 
 TINRO_event <- TINRO_event %>%
-  mutate(eventDate_start = paste(date, Time_Start)) %>%
+  mutate(eventDate_start = paste(date, Time_Start))
+TINRO_event <- TINRO_event %>%
   mutate(eventDate_start = as.POSIXlt(TINRO_event$eventDate_start))
 TINRO_event$eventDate_start$hour = TINRO_event$eventDate_start$hour-12
 
@@ -277,6 +284,9 @@ janitor::compare_df_cols(NW_catch, TINRO_catch, Shimada_catch)
 IYS2022_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch)
 IYS2022_trawl_catch$dateIdentified <- as.character(IYS2022_trawl_catch$dateIdentified)
 
+# Confirm there are no duplicates in the Catch_ID:
+IYS2022_trawl_catch$Catch_ID[duplicated(IYS2022_trawl_catch$Catch_ID)] # should print character(0)
+
 # Save catch data:
 write_csv(IYS2022_trawl_catch, "IYS2022_trawl_catch.csv")
 ```
@@ -291,20 +301,13 @@ GoA2019_specimen <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/JuvSalmo
                             sheet = "SPECIMEN_FINAL")
 ```
 
-Cleaning Shimada specimen column names, only remove Barcode column:
+#Selecting TINRO specimen column names for integration:
 
-```{r Shimada specimen clean, eval = FALSE}
-Shimada_specimen <- Shimada_specimen %>%
-  select(-`Barcode number`)
-```
-
-Selecting TINRO specimen column names for integration:
-
-```{r TINRO specimen clean, eval = FALSE}
-TINRO_specimen <- TINRO_specimen %>%
-  select(Station_Event_ID, Catch_ID, Specimen_ID, Alternative_ID, Species_Recorded, Scientific_Name, Taxonomic_rank, common_name, Sex,
-         Lifestage, Specimen_Length, Length_Units, Length_Type, Specimen_Weight, Weight_Units, Weight_Type, Comments)
-```
+#```{r TINRO specimen clean, eval = FALSE}
+#TINRO_specimen <- TINRO_specimen %>%
+#  select(Station_Event_ID, Catch_ID, Specimen_ID, Alternative_ID, Species_Recorded, Scientific_Name, Taxonomic_rank, common_name, Sex,
+#        Lifestage, Specimen_Length, Length_Units, Length_Type, Specimen_Weight, Weight_Units, Weight_Type, Comments)
+#```
 
 Cleaning NW specimen column names:
 
@@ -383,20 +386,28 @@ janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen)
 # Bind rows and save: 
 IYS2022_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen)
 
+# Confirm no duplicates in Specimen_ID:
+IYS2022_trawl_specimen$Specimen_ID[duplicated(IYS2022_trawl_specimen$Specimen_ID)] # should print character(0)
+
 # Save event data:
 write_csv(IYS2022_trawl_specimen, "IYS2022_trawl_specimen.csv")
 ```
 
 Next, integrate the CTD data (please note, we do not have CTD/Rosette data from the NW Explorer):
 
-```{overall CTD, eval = FALSE}
+```{r overall CTD, eval = FALSE}
 TINRO_CTD <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_TINRO_Data.xlsx", sheet = "7. CTD INFO")
 Shimada_CTD <- read_excel("C:/Users/Admin/Desktop/GitHub/IYS-Trawl/IYS2022_Shimada_Data.xlsx", sheet = "7. CTD INFO")
+
+IYS2022_CTD <- bind_rows(TINRO_CTD, Shimada_CTD)
+
+write_csv(IYS2022_CTD, "IYS2022_CTD.csv")
 ```
 
 Combine all data frames into a single .xlsx workbook:
 
 ```{r final_join, eval = FALSE}
-out <- list("Sampling Info" = IYS2022_trawl_event, "Overall_Catch_Data" = IYS2022_trawl_catch, "Overall_Specimen_Data" = IYS2022_trawl_specimen)
+out <- list("Sampling Info" = IYS2022_trawl_event, "Overall_Catch_Data" = IYS2022_trawl_catch, "Overall_Specimen_Data" = IYS2022_trawl_specimen,
+            "Overall_CTD_Data" = IYS2022_CTD)
 writexl::write_xlsx(out, "master.xlsx")
 ```
