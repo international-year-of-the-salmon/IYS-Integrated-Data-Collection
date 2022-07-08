@@ -1,0 +1,19 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+## [V1] - 2022-07-08
+
+### Notes
+
+This is the first version of the Integrated IYS Data collection. It only contains trawl catch and specimen data from 2022. There is a known issue with the NW explorer event IDs and we are working to resovle this. 
+
+This version is mainly interim and will update as new data and corrections become available.
+
+### Added
+- Shimada, TINRO and NW Explorer Trawl event, Catch, and specimen data
+
+### Changed
+- NA
+
+### Removed
+- NA
