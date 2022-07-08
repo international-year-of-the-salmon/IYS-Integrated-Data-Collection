@@ -60,6 +60,10 @@ tab <- readxl::read_excel(temp_file)
 tab
 ```
 
+# Trawl Data
+
+## Event Data 
+
 Now that we have the latest versions of the trawl data downloaded, we can read them in:
 
 ```{r event data, eval = FALSE}
@@ -217,6 +221,9 @@ IYS2022_trawl_event <- bind_rows(TINRO_event, NW_event, Shimada_event)
 write_csv(IYS2022_trawl_event, "IYS2022_trawl_event.csv")
 ```
 
+
+## Catch Data
+
 Now let's join the overall catch data from these vessels into a specific data frame as well. 
 
 ```{r overall catch, eval = FALSE}
@@ -291,17 +298,24 @@ IYS2022_trawl_catch$Catch_ID[duplicated(IYS2022_trawl_catch$Catch_ID)] # should 
 write_csv(IYS2022_trawl_catch, "IYS2022_trawl_catch.csv")
 ```
 
+## Specimen Data
+
 Now let's join the overall specimen data from these vessels into a specific data frame as well. 
 
-```{r overall catch, eval = FALSE}
+Note: Evgeny indicated it would be good to have GSI and age data in the specimen tables once they are available
+
+
+```{r overall specimen, eval = FALSE}
 NW_specimen <- read_excel(here("IYS2022_NW_Data.xlsx"), sheet = "Specimen_Info")
 TINRO_specimen <- read_excel(here("IYS2022_TINRO_Data.xlsx"), sheet = "6. SPECIMEN INFO")
 Shimada_specimen <- read_excel(here("IYS2022_Shimada_Data.xlsx"), sheet = "6. SPECIMEN INFO")
 GoA2019_specimen <- read_excel(here("JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY (2).xlsx"),
                             sheet = "SPECIMEN_FINAL")
+
+#TODO: Integrate age data
+#TODO: Integrate genetic stock ID data
 ```
 
-#Selecting TINRO specimen column names for integration:
 
 Cleaning NW specimen column names:
 
@@ -389,8 +403,11 @@ write_csv(IYS2022_trawl_specimen, "IYS2022_trawl_specimen.csv")
 
 Next, integrate the CTD data (please note, we do not have CTD/Rosette data from the NW Explorer):
 
+# CTD
+
 ```{r overall CTD, eval = FALSE}
-#TODO: read in corrected CTD dataset? not sure if needed
+#TODO: read in corrected 2022 TINRO CTD dataset? not sure if needed
+#TODO Include 2019 and 2020 CTD data
 TINRO_CTD <- read_excel(here("IYS2022_TINRO_Data.xlsx"), sheet = "7. CTD INFO")
 
 
@@ -399,6 +416,20 @@ IYS2022_CTD <- bind_rows(TINRO_CTD)
 write_csv(IYS2022_CTD, "IYS2022_CTD.csv")
 ```
 
+# Biogeochemistry Data
+
+Include Biogeochemistry data
+
+```{r}
+#TODO add 2019 POM data
+#TODO add 2019 Chl and  Phaeopigment data
+#TODO add 2019 Nutrient, Oxygen data
+#TODO add 2020 Nutrient data
+#TODO add 2022 Nutrient and oxygend data
+```
+
+
+# QC
 
 ```{r QC relations}
 library(dm)
@@ -433,3 +464,28 @@ out <- list("Sampling Info" = IYS2022_trawl_event, "Overall_Catch_Data" = IYS202
             "Overall_CTD_Data" = IYS2022_CTD)
 writexl::write_xlsx(out, "master.xlsx")
 ```
+
+Create polygon coordinates for all events
+
+```{r polygon coords}
+
+polygon_coords <- function(df) {
+  df <- df %>% tidyr::drop_na(lat, lon) %>% 
+    dplyr::mutate(lon = dplyr::if_else(lon < 0, 360 + lon, lon))
+  ch <- chull(df)
+  coords <- df[c(ch, ch[1]), ]
+  coords <- paste(coords$lat, coords$lon, sep = ",", collapse = " ")
+  coords
+}
+
+df <- IYS2022_trawl_event %>% 
+  select(lat = Latitude_Start_DecDeg, lon = Longitude_Start_DecDeg) %>% 
+  filter(lat != 0 | lon != 0)
+
+#copy output from console into metadata intake form polygon coordinates  
+polygon_coords(df)
+
+max(IYS2022_trawl_event$Maximum_Sampling_Depth_Meters)
+
+```
+
