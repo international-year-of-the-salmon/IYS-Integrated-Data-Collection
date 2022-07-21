@@ -73,8 +73,10 @@ TINRO_event <- read_excel(here("IYS2022_TINRO_Data.xlsx"), sheet = "4. SAMPLING 
   filter(Event_Type %in% c("Trawl", "CTD"))
 Shimada_event <- read_excel(here("IYS2022_Shimada_Data.xlsx"), sheet = "4. SAMPLING EVENT INFO") %>%
   filter(Event_Type %in% c("Trawl", "CTD"))
-GoA2019_event <- read_excel(here("JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx"), 
-                            sheet = "BRIDGE_LOG_FINAL")
+
+# Commented out for now since we aren't including that cruise yet
+#GoA2019_event <- read_excel(here("JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx"), 
+#                            sheet = "BRIDGE_LOG_FINAL")
 ```
 
 Compare event tables from the various vessel sampling events:
@@ -405,15 +407,16 @@ Next, integrate the CTD data (please note, we do not have CTD/Rosette data from 
 
 # CTD
 
-```{r overall CTD, eval = FALSE}
-#TODO: read in corrected 2022 TINRO CTD dataset? not sure if needed
+```{r TINRO CTD, eval = FALSE}
 #TODO Include 2019 and 2020 CTD data
 TINRO_CTD <- read_excel(here("IYS2022_TINRO_Data.xlsx"), sheet = "7. CTD INFO")
 
+```
 
+```{r Overall CTD}
 IYS2022_CTD <- bind_rows(TINRO_CTD)
 
-write_csv(IYS2022_CTD, "IYS2022_CTD.csv")
+write_csv(IYS2022_CTD, here("output_datasets", "IYS2022_CTD.csv"))
 ```
 
 # Biogeochemistry Data
