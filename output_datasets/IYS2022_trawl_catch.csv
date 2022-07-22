@@ -259,19 +259,19 @@ IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-4,Chrysaora melanaster,Chrysaora
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-5,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.127,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-6,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,4.459,Kilograms,Total,28.044,Total,NA,NA,NA
 IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-7,Rex sole,Glyptocephalus zachiris,NA,Larval,NA,NA,NA,0.002,Kilograms,Total,0,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-8,White barracudina,Arctozenus risso,NA,None,NA,NA,NA,0.027000000000000003,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-9,Pacific viperfish,Chauliodus macouni,NA,None,NA,NA,NA,0.078,Kilograms,Total,16,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-10,Northern lampfish,Stenobrachius leucopsarus,NA,None,NA,NA,NA,1.6785,Kilograms,Total,422.8172,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-11,California headlightfish,Diaphus theta,NA,None,NA,NA,NA,0.8969,Kilograms,Total,96.0948,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-12,Northern flashlightfish,Protomyctophum thompsoni,NA,None,NA,NA,NA,0.1153,Kilograms,Total,96.0948,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-13,Blue lanternfish,Tarletonbeania crenularis,NA,None,NA,NA,NA,0.14700000000000002,Kilograms,Total,59.4255,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-14,Slender barracudina,Lestidiops ringens,NA,None,NA,NA,NA,0.015,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-15,Periphylla sp.,Periphylla sp.,NA,None,NA,NA,NA,0.167,Kilograms,Total,36.3043,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-16,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.464,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-17,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.5810000000000001,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-18,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,0.7420000000000001,Kilograms,Total,5.1528,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-19,Sergestid shrimp,Sergestes similis,NA,None,NA,NA,NA,0.05,Kilograms,Total,100,Total,NA,NA,NA
-IYS2022-NW-2-6-CanTrawl,IYS2022-NW-2-6-CanTrawl-20,Fiery armhook squid,Gonatus pyros,NA,None,NA,NA,NA,0.027000000000000003,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-1,White barracudina,Arctozenus risso,NA,None,NA,NA,NA,0.027000000000000003,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-2,Pacific viperfish,Chauliodus macouni,NA,None,NA,NA,NA,0.078,Kilograms,Total,16,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-3,Northern lampfish,Stenobrachius leucopsarus,NA,None,NA,NA,NA,1.6785,Kilograms,Total,422.8172,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-4,California headlightfish,Diaphus theta,NA,None,NA,NA,NA,0.8969,Kilograms,Total,96.0948,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-5,Northern flashlightfish,Protomyctophum thompsoni,NA,None,NA,NA,NA,0.1153,Kilograms,Total,96.0948,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-6,Blue lanternfish,Tarletonbeania crenularis,NA,None,NA,NA,NA,0.14700000000000002,Kilograms,Total,59.4255,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-7,Slender barracudina,Lestidiops ringens,NA,None,NA,NA,NA,0.015,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-8,Periphylla sp.,Periphylla sp.,NA,None,NA,NA,NA,0.167,Kilograms,Total,36.3043,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-9,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.464,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-10,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.5810000000000001,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-11,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,0.7420000000000001,Kilograms,Total,5.1528,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-12,Sergestid shrimp,Sergestes similis,NA,None,NA,NA,NA,0.05,Kilograms,Total,100,Total,NA,NA,NA
+IYS2022-NW-2-6-CanTrawl2,IYS2022-NW-2-6-CanTrawl2-13,Fiery armhook squid,Gonatus pyros,NA,None,NA,NA,NA,0.027000000000000003,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-7-CanTrawl,IYS2022-NW-2-7-CanTrawl-1,Chum salmon,Oncorhynchus keta,NA,Immature,NA,NA,NA,1.35,Kilograms,Total,3,Total,NA,NA,NA
 IYS2022-NW-2-7-CanTrawl,IYS2022-NW-2-7-CanTrawl-2,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,7.8,Kilograms,Total,10,Total,NA,NA,NA
 IYS2022-NW-2-7-CanTrawl,IYS2022-NW-2-7-CanTrawl-3,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.043,Kilograms,Total,1,Total,NA,NA,NA
@@ -296,15 +296,15 @@ IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-2,Phacellophora camtchatica,Ph
 IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-3,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,0.062000000000000006,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-4,North Pacific Daggertooth,Anotopterus nikparini,NA,None,NA,NA,NA,0.115,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-5,Threespine stickleback,Gasterosteus aculeatus,NA,None,NA,NA,NA,0.004,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-6,Walleye pollock,Gadus chalcogrammus,NA,Age 1+,NA,NA,NA,6.4,Kilograms,Total,6,Total,NA,NA,NA
-IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-7,Lowcrest hatchetfish,Argropelecus sladeni,NA,None,NA,NA,NA,0.004,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-8,Salps unident.,Salpidae,NA,None,NA,NA,NA,0.122,Kilograms,Total,2,Total,NA,NA,NA
-IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-9,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.113,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-10,Jellyfish unident.,Scyphozoa (class),NA,None,NA,NA,NA,0.021,Kilograms,Total,5,Total,NA,NA,NA
-IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-11,Slender barracudina,Lestidiops ringens,NA,None,NA,NA,NA,0.016,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-12,Northern flashlightfish,Protomyctophum thompsoni,NA,None,NA,NA,NA,0.006,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-13,Lanternfish unident.,Myctophidae,NA,None,NA,NA,NA,0.004,Kilograms,Total,7,Total,NA,NA,NA
-IYS2022-NW-2-10-CanTrawl,IYS2022-NW-2-10-CanTrawl-14,Northern lampfish,Stenobrachius leucopsarus,NA,None,NA,NA,NA,0.003,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-10-CanTrawl2,IYS2022-NW-2-10-CanTrawl2-1,Walleye pollock,Gadus chalcogrammus,NA,Age 1+,NA,NA,NA,6.4,Kilograms,Total,6,Total,NA,NA,NA
+IYS2022-NW-2-10-CanTrawl2,IYS2022-NW-2-10-CanTrawl2-2,Lowcrest hatchetfish,Argropelecus sladeni,NA,None,NA,NA,NA,0.004,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-10-CanTrawl2,IYS2022-NW-2-10-CanTrawl2-3,Salps unident.,Salpidae,NA,None,NA,NA,NA,0.122,Kilograms,Total,2,Total,NA,NA,NA
+IYS2022-NW-2-10-CanTrawl2,IYS2022-NW-2-10-CanTrawl2-4,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.113,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-10-CanTrawl2,IYS2022-NW-2-10-CanTrawl2-5,Jellyfish unident.,Scyphozoa (class),NA,None,NA,NA,NA,0.021,Kilograms,Total,5,Total,NA,NA,NA
+IYS2022-NW-2-10-CanTrawl2,IYS2022-NW-2-10-CanTrawl2-6,Slender barracudina,Lestidiops ringens,NA,None,NA,NA,NA,0.016,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-10-CanTrawl2,IYS2022-NW-2-10-CanTrawl2-7,Northern flashlightfish,Protomyctophum thompsoni,NA,None,NA,NA,NA,0.006,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-10-CanTrawl2,IYS2022-NW-2-10-CanTrawl2-8,Lanternfish unident.,Myctophidae,NA,None,NA,NA,NA,0.004,Kilograms,Total,7,Total,NA,NA,NA
+IYS2022-NW-2-10-CanTrawl2,IYS2022-NW-2-10-CanTrawl2-9,Northern lampfish,Stenobrachius leucopsarus,NA,None,NA,NA,NA,0.003,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-11-CanTrawl,IYS2022-NW-2-11-CanTrawl-1,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,14.22,Kilograms,Total,8,Total,NA,NA,NA
 IYS2022-NW-2-11-CanTrawl,IYS2022-NW-2-11-CanTrawl-2,Chum salmon,Oncorhynchus keta,NA,Immature,NA,NA,NA,2.08,Kilograms,Total,1,Total,NA,NA,NA
 IYS2022-NW-2-11-CanTrawl,IYS2022-NW-2-11-CanTrawl-3,Threespine stickleback,Gasterosteus aculeatus,NA,None,NA,NA,NA,0.003,Kilograms,Total,1,Total,NA,NA,NA
@@ -328,14 +328,14 @@ IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-6,Chrysaora melanaster,Chrysao
 IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-7,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,4.92,Kilograms,Total,11.7703,Total,NA,NA,NA
 IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-8,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,3.898,Kilograms,Total,25.2298,Total,NA,NA,NA
 IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-9,Gonatus kamtschaticus,Gonatus kamtschaticus,NA,None,NA,NA,NA,0.043,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-10,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,0.27,Kilograms,Total,2.4771,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-11,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.47200000000000003,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-12,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,1.302,Kilograms,Total,3,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-13,Jellyfish unident.,Scyphozoa (class),NA,None,NA,NA,NA,0.08900000000000001,Kilograms,Total,8,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-14,California headlightfish,Diaphus theta,NA,None,NA,NA,NA,0.5025000000000001,Kilograms,Total,79.945,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-15,Northern flashlightfish,Protomyctophum thompsoni,NA,None,NA,NA,NA,0.1028,Kilograms,Total,85.6554,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-16,Pacific viperfish,Chauliodus macouni,NA,None,NA,NA,NA,0.004,Kilograms,Total,1,Total,NA,NA,NA
-IYS2022-NW-2-13-CanTrawl,IYS2022-NW-2-13-CanTrawl-17,Northern lampfish,Stenobrachius leucopsarus,NA,None,NA,NA,NA,1.8673000000000002,Kilograms,Total,531.0634,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl2,IYS2022-NW-2-13-CanTrawl2-1,Aequorea sp.,Aequorea sp.,NA,None,NA,NA,NA,0.27,Kilograms,Total,2.4771,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl2,IYS2022-NW-2-13-CanTrawl2-2,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,0.47200000000000003,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl2,IYS2022-NW-2-13-CanTrawl2-3,Chrysaora melanaster,Chrysaora melanaster,NA,None,NA,NA,NA,1.302,Kilograms,Total,3,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl2,IYS2022-NW-2-13-CanTrawl2-4,Jellyfish unident.,Scyphozoa (class),NA,None,NA,NA,NA,0.08900000000000001,Kilograms,Total,8,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl2,IYS2022-NW-2-13-CanTrawl2-5,California headlightfish,Diaphus theta,NA,None,NA,NA,NA,0.5025000000000001,Kilograms,Total,79.945,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl2,IYS2022-NW-2-13-CanTrawl2-6,Northern flashlightfish,Protomyctophum thompsoni,NA,None,NA,NA,NA,0.1028,Kilograms,Total,85.6554,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl2,IYS2022-NW-2-13-CanTrawl2-7,Pacific viperfish,Chauliodus macouni,NA,None,NA,NA,NA,0.004,Kilograms,Total,1,Total,NA,NA,NA
+IYS2022-NW-2-13-CanTrawl2,IYS2022-NW-2-13-CanTrawl2-8,Northern lampfish,Stenobrachius leucopsarus,NA,None,NA,NA,NA,1.8673000000000002,Kilograms,Total,531.0634,Total,NA,NA,NA
 IYS2022-NW-2-14-CanTrawl,IYS2022-NW-2-14-CanTrawl-1,Phacellophora camtchatica,Phacellophora camtchatica,NA,None,NA,NA,NA,1.444,Kilograms,Total,9.3766,Total,NA,NA,NA
 IYS2022-NW-2-14-CanTrawl,IYS2022-NW-2-14-CanTrawl-2,Chum salmon,Oncorhynchus keta,NA,Immature,NA,NA,NA,6.12,Kilograms,Total,8,Total,NA,NA,NA
 IYS2022-NW-2-14-CanTrawl,IYS2022-NW-2-14-CanTrawl-3,Sockeye salmon,Oncorhynchus nerka,NA,Immature,NA,NA,NA,13.1,Kilograms,Total,28,Total,NA,NA,1 WASHDOWN ADDED TO COUNT NOT IN SPECIMEN NOSAMPLES TAKEN

@@ -20,11 +20,11 @@ knitr::opts_chunk$set(echo = TRUE)
 For date integration, first download the processed data. For the 2022 data, this will be included in the IYS-data-template. From public repositories, we can download straight from the repository:  
 
 ```{r download}
-download.file("https://github.com/international-year-of-the-salmon/2022-NW-Data-Template/blob/main/IYS2022_NW_Data.xlsx?raw=true", here::here("IYS2022_NW_Data.xlsx"), quiet = TRUE, mode = "wb")
+download.file("https://github.com/international-year-of-the-salmon/2022-NW-Data-Template/blob/main/IYS2022_NW_Data.xlsx?raw=true", here::here("input_datasets",  "IYS2022_NW_Data.xlsx"), quiet = TRUE, mode = "wb")
 
-download.file("https://github.com/international-year-of-the-salmon/2022-TINRO-Data-Template/blob/main/IYS2022_TINRO.xlsx?raw=true", here::here("IYS2022_TINRO_Data.xlsx"), quiet = TRUE, mode = "wb")
+download.file("https://github.com/international-year-of-the-salmon/2022-TINRO-Data-Template/blob/main/IYS2022_TINRO.xlsx?raw=true", here::here("input_datasets", "IYS2022_TINRO_Data.xlsx"), quiet = TRUE, mode = "wb")
 
-download.file("https://github.com/international-year-of-the-salmon/2022-shimada-data-template/blob/main/IYS2022_Shimada_Data_template.xlsx?raw=true", here::here("IYS2022_Shimada_Data.xlsx"), quiet = TRUE, mode = "wb")
+download.file("https://github.com/international-year-of-the-salmon/2022-shimada-data-template/blob/main/IYS2022_Shimada_Data_template.xlsx?raw=true", here::here("input_datasets", "IYS2022_Shimada_Data.xlsx"), quiet = TRUE, mode = "wb")
 ```
 
 From private repositories, use the following chunk of code, making sure to change the github_link to point to the correct private repository.
@@ -67,12 +67,14 @@ tab
 Now that we have the latest versions of the trawl data downloaded, we can read them in:
 
 ```{r event data, eval = FALSE}
-NW_event <- read_excel(here("IYS2022_NW_Data.xlsx"), sheet = "Sampling_Event_Info") %>%
+NW_event <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Sampling_Event_Info") %>%
   filter(Event_Type == "CanTrawl")
-TINRO_event <- read_excel(here("IYS2022_TINRO_Data.xlsx"), sheet = "4. SAMPLING EVENT INFO") %>%
+TINRO_event <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "4. SAMPLING EVENT INFO") %>%
   filter(Event_Type %in% c("Trawl", "CTD"))
-Shimada_event <- read_excel(here("IYS2022_Shimada_Data.xlsx"), sheet = "4. SAMPLING EVENT INFO") %>%
+Shimada_event <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "4. SAMPLING EVENT INFO") %>%
   filter(Event_Type %in% c("Trawl", "CTD"))
+
+
 
 # Commented out for now since we aren't including that cruise yet
 #GoA2019_event <- read_excel(here("JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx"), 
@@ -220,7 +222,7 @@ janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event)
 IYS2022_trawl_event <- bind_rows(TINRO_event, NW_event, Shimada_event)
 
 # Save event data:
-write_csv(IYS2022_trawl_event, "IYS2022_trawl_event.csv")
+write_csv(IYS2022_trawl_event, here("output_datasets", "IYS2022_trawl_event.csv"))
 ```
 
 
@@ -229,11 +231,12 @@ write_csv(IYS2022_trawl_event, "IYS2022_trawl_event.csv")
 Now let's join the overall catch data from these vessels into a specific data frame as well. 
 
 ```{r overall catch, eval = FALSE}
-NW_catch <- read_excel(here("IYS2022_NW_Data.xlsx"), sheet = "Catch_Info")
-TINRO_catch <- read_excel(here("IYS2022_TINRO_Data.xlsx"), sheet = "5. CATCH_FINAL INFO")
-Shimada_catch <- read_excel(here("IYS2022_Shimada_Data.xlsx"), sheet = "5. CATCH_FINAL INFO")
-GoA2019_catch <- read_excel(here("JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx"),
-                            sheet = "CATCH_FINAL")
+NW_catch <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Catch_Info")
+TINRO_catch <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "5. CATCH_FINAL INFO")
+Shimada_catch <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "5. CATCH_FINAL INFO")
+
+# GoA2019_catch <- read_excel(here("input_datasets", "JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx"),
+#                            sheet = "CATCH_FINAL")
 ```
 
 Cleaning NW catch column names:
@@ -297,7 +300,7 @@ IYS2022_trawl_catch$dateIdentified <- as.character(IYS2022_trawl_catch$dateIdent
 IYS2022_trawl_catch$Catch_ID[duplicated(IYS2022_trawl_catch$Catch_ID)] # should print character(0)
 
 # Save catch data:
-write_csv(IYS2022_trawl_catch, "IYS2022_trawl_catch.csv")
+write_csv(IYS2022_trawl_catch, here("output_datasets", "IYS2022_trawl_catch.csv"))
 ```
 
 ## Specimen Data
@@ -308,9 +311,9 @@ Note: Evgeny indicated it would be good to have GSI and age data in the specimen
 
 
 ```{r overall specimen, eval = FALSE}
-NW_specimen <- read_excel(here("IYS2022_NW_Data.xlsx"), sheet = "Specimen_Info")
-TINRO_specimen <- read_excel(here("IYS2022_TINRO_Data.xlsx"), sheet = "6. SPECIMEN INFO")
-Shimada_specimen <- read_excel(here("IYS2022_Shimada_Data.xlsx"), sheet = "6. SPECIMEN INFO")
+NW_specimen <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Specimen_Info")
+TINRO_specimen <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "6. SPECIMEN INFO")
+Shimada_specimen <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "6. SPECIMEN INFO")
 GoA2019_specimen <- read_excel(here("JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY (2).xlsx"),
                             sheet = "SPECIMEN_FINAL")
 
@@ -396,11 +399,12 @@ janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen)
 # Bind rows and save: 
 IYS2022_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen)
 
+#TODO: Get corrections for duplicate specimen IDs
 # Confirm no duplicates in Specimen_ID:
 IYS2022_trawl_specimen$Specimen_ID[duplicated(IYS2022_trawl_specimen$Specimen_ID)] # should print character(0)
 
 # Save specimen data:
-write_csv(IYS2022_trawl_specimen, "IYS2022_trawl_specimen.csv")
+write_csv(IYS2022_trawl_specimen, here("output_datasets", "IYS2022_trawl_specimen.csv"))
 ```
 
 Next, integrate the CTD data (please note, we do not have CTD/Rosette data from the NW Explorer):
