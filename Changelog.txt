@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [V2] - Unreleased
+
+### Notes
+
+Mostly minor updates for formatting of column names and the addition of 2019 CTD data
+
+### Added
+- 2019 CTD data from the Professor Kaganovksy
+
+### Changed
+- Column headers are now all in lower_case
+
+### Removed
+
 ## [V1] - 2022-07-08
 
 ### Notes
