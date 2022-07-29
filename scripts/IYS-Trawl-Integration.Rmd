@@ -327,11 +327,17 @@ Now let's join the overall catch data from these vessels into a specific data fr
 NW_catch <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Catch_Info")
 TINRO_catch <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "5. CATCH_FINAL INFO")
 Shimada_catch <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "5. CATCH_FINAL INFO")
+Franklin_catch <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"), sheet = "4. CATCH_FINAL INFO")
 
-#TODO Include 2022 Franklin Catch
 #TODO Include 2019 catch data
 GoA2019_catch <- read_excel(here("input_datasets", "JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx"),
                             sheet = "CATCH_FINAL")
+```
+
+Cleaning TINRO catch names:
+
+```{r TINRO catch clean, eval = FALSE}
+TINRO_catch <- TINRO_catch %>% rename_with(tolower)
 ```
 
 Cleaning NW catch column names:
@@ -342,18 +348,22 @@ NW_catch <- NW_catch %>%
                 Catch_ID = `Catch ID`,
                 Species_recorded = Species_Recorded,
                 Catch_weight = Catch_Weight,
-                Catch_count = Catch_Count)
-
-# Change NW2201 in Station Event ID and Catch ID:
-NW_catch$Station_Event_ID <- str_replace(NW_catch$Station_Event_ID, "NW2201", "IYS2022")
-NW_catch$Catch_ID <- str_replace(NW_catch$Catch_ID, "NW2201", "IYS2022")
+                Catch_count = Catch_Count) %>%
+  rename_with(tolower)
 ```
 
 Cleaning Shimada catch column names to ensure integration:
 
 ```{r Shimada catch clean, eval = FALSE}
 Shimada_catch <- Shimada_catch %>%
-  dplyr::rename(dateIdentified = `dateIdentified (UTC)`)
+  dplyr::rename(dateIdentified = `dateIdentified (UTC)`) %>%
+  rename_with(tolower)
+```
+
+Cleaning Franklin catch column names:
+
+```{r Franklin catch clean, eval = FALSE}
+Franklin_catch <- Franklin_catch %>% rename_with(tolower)
 ```
 
 Cleaning GoA2019 catch column names:
@@ -385,14 +395,14 @@ Compare column names between catch data frames:
 
 ```{r bridgelog, eval = FALSE}
 # Check for differences in column header names between those two data frames:
-janitor::compare_df_cols(NW_catch, TINRO_catch, Shimada_catch)
+janitor::compare_df_cols(NW_catch, TINRO_catch, Shimada_catch, Franklin_catch)
 
 # Bind rows and save: 
-IYS2022_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch)
-IYS2022_trawl_catch$dateIdentified <- as.character(IYS2022_trawl_catch$dateIdentified)
+IYS2022_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch, Franklin_catch)
+IYS2022_trawl_catch$dateidentified <- as.character(IYS2022_trawl_catch$dateidentified)
 
 # Confirm there are no duplicates in the Catch_ID:
-IYS2022_trawl_catch$Catch_ID[duplicated(IYS2022_trawl_catch$Catch_ID)] # should print character(0)
+IYS2022_trawl_catch$catch_id[duplicated(IYS2022_trawl_catch$catch_id)] # should print character(0)
 
 # Save catch data:
 write_csv(IYS2022_trawl_catch, here("output_datasets", "IYS2022_trawl_catch.csv"))
@@ -409,6 +419,7 @@ Note: Evgeny indicated it would be good to have GSI and age data in the specimen
 NW_specimen <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Specimen_Info")
 TINRO_specimen <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "6. SPECIMEN INFO")
 Shimada_specimen <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "6. SPECIMEN INFO")
+Franklin_specimen <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"), sheet = "5. SPECIMEN INFO")
 GoA2019_specimen <- read_excel(here("JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY (2).xlsx"),
                             sheet = "SPECIMEN_FINAL")
 
@@ -425,12 +436,19 @@ NW_specimen <- NW_specimen %>%
                 Catch_ID = `Catch ID`,
                 Specimen_ID = `Specimen ID`,
                 Specimen_Length = Length,
-                Specimen_Weight = Weight)
+                Specimen_Weight = Weight) %>%
+  rename_with(tolower)
+```
 
-# Change NW2201 in Station Event ID and Catch ID:
-NW_specimen$Station_Event_ID <- str_replace(NW_specimen$Station_Event_ID, "NW2201", "IYS2022")
-NW_specimen$Catch_ID <- str_replace(NW_specimen$Catch_ID, "NW2201", "IYS2022")
-NW_specimen$Specimen_ID <- str_replace(NW_specimen$Specimen_ID, "NW2201", "IYS2022")
+Cleaning Franklin, TINRO, and Shimada specimen column names:
+
+```{r TINRO, Shimada, Frankin, eval = FALSE}
+TINRO_specimen <- TINRO_specimen %>% rename_with(tolower)
+Shimada_specimen <- Shimada_specimen %>% rename_with(tolower)
+
+Franklin_specimen <- Franklin_specimen %>% rename_with(tolower)
+Franklin_specimen$specimen_length <- as.numeric(Franklin_specimen$specimen_length)
+Franklin_specimen$specimen_weight <- as.numeric(Franklin_specimen$specimen_weight)
 ```
 
 Clean the GOA2019 Trawl specimen data to integrate with 2022 data:
@@ -489,14 +507,14 @@ Join the specimen data rows.
 
 ```{r specimen, eval = FALSE}
 # Check for differences in column header names between those two data frames:
-janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen)
+janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen, Franklin_specimen)
 
 # Bind rows and save: 
-IYS2022_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen)
+IYS2022_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen, Franklin_specimen)
 
 #TODO: Get corrections for duplicate specimen IDs
 # Confirm no duplicates in Specimen_ID:
-IYS2022_trawl_specimen$Specimen_ID[duplicated(IYS2022_trawl_specimen$Specimen_ID)] # should print character(0)
+IYS2022_trawl_specimen$specimen_id[duplicated(IYS2022_trawl_specimen$specimen_id)] # should print character(0)
 
 # Save specimen data:
 write_csv(IYS2022_trawl_specimen, here("output_datasets", "IYS2022_trawl_specimen.csv"))
