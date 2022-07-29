@@ -71,8 +71,8 @@ GoA2020_event <- read_excel(here("input_datasets",
 Compare event tables from the various vessel sampling events:
 
 ```{r event comparison, eval = FALSE}
-# Check for differences in column header names and class between those two data frames:
-janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, GoA2019_event, GoA2020_event)
+# Check for differences in column header names and class between those data frames:
+janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event)
 ```
 
 Looks like we have to do a little bit of cleaning before we join the data frames!
@@ -85,6 +85,9 @@ Shimada_event <- Shimada_event %>%
          Station_Event_ID = ifelse(Event_Type == "CTD", paste0(Station_Event_ID, Maximum_Sampling_Depth_Meters), Station_Event_ID)) %>%
   dplyr::rename(Bottom_Depth_Meters = `Bottom_Depth*_Meters`) |> 
   rename_with(tolower)
+
+# Change station class to character:
+Shimada_event$station <- as.character(Shimada_event$station)
 ```
 
 For NW data:
@@ -109,7 +112,10 @@ NW_event$Station_Event_ID <- str_replace(NW_event$Station_Event_ID, "NW2201", "I
 NW_event <- NW_event |> 
   rename_with(tolower)
 
-# Additionally, you'll notice that there are three duplicate Station_Event_IDs. Likely - though needs confirmation - all the catch and specimen data comes from the trawl events that were ~60 minutes in length. Therefore, events that lasted 15 minutes will likely have to be filtered out. 
+# Change station class to character:
+NW_event$station <- as.character(NW_event$station)
+
+# TODO: Additionally, you'll notice that there are three duplicate Station_Event_IDs. Likely - though needs confirmation - all the catch and specimen data comes from the trawl events that were ~60 minutes in length. Therefore, events that lasted 15 minutes will likely have to be filtered out. 
 # NW_event <- NW_event %>% filter(Sampling_Duration_Minutes != "15") # Confirm with Jim & Murphy!
 ```
 
@@ -149,9 +155,65 @@ TINRO_event$Sampling_Duration_Minutes <- round(TINRO_event$Sampling_Duration_Min
 # Change Time_Zone_Code to state that the Time_Start and Time_End now reflects UTC:
 TINRO_event$Time_Zone_Code <- "UTC"
 
+# Change station class to character:
+TINRO_event$station <- as.character(TINRO_event$station)
+
 # Remove temporary columns:
 TINRO_event <- TINRO_event %>% select(-c(date, eventDate_start)) |> 
   rename_with(tolower)
+```
+
+And for Franklin data:
+
+```{r Franklin event cleaning, eval = FALSE}
+Franklin_event$Month <- ifelse(Franklin_event$Month == "Feb", "2", "3") %>% as.numeric()
+
+# Change Tow_distance from kilometers per hour to nautical miles:
+Franklin_event$Tow_distance[Franklin_event$Tow_distance=="NA"] <- 0
+Franklin_event$Tow_distance <- as.numeric(Franklin_event$Tow_distance)
+Franklin_event <- Franklin_event %>%
+  mutate(tow_distance_nautical_miles = Tow_distance / 1.852)
+
+Franklin_event$tow_distance_nautical_miles <- round(Franklin_event$tow_distance_nautical_miles, digits = 4)
+
+# TODO: If I run the next 4 lines of code at the same time it doesn't work, have to fix:
+Franklin_event <- Franklin_event %>%
+  mutate(Time_Start_UTC = gsub(".*T", "", Franklin_event$Time_Start_UTC)) %>%
+  mutate(Time_End_UTC = gsub(".*T", "", Franklin_event$Time_End_UTC)) %>%
+  mutate(Time_Start_UTC = gsub("Z","",Franklin_event$Time_Start_UTC)) %>%
+  mutate(Time_End_UTC = gsub("Z", "", Franklin_event$Time_End_UTC))
+
+Franklin_event$Time_End_UTC <- as.POSIXct(Franklin_event$Time_End_UTC, format = "%H:%M:%S")  %>% format("%H:%M:%S")
+Franklin_event$Time_Start_UTC <- as.POSIXct(Franklin_event$Time_Start_UTC, format = "%H:%M:%S") %>% format("%H:%M:%S")
+
+# Rename and select columns to integrate:
+Franklin_event <- Franklin_event %>%  
+  rename_with(tolower) %>%
+  dplyr::rename(time_start = time_start_utc,
+                time_end = time_end_utc,
+                tow_speed_kilometers_per_hour = tow_speed,
+                bottom_depth_meters = bottom_depth_start,
+                wave_height_meters = wave_height,
+                sampling_duration_minutes = sampling_duration)
+
+Franklin_event <- Franklin_event %>%
+  mutate(time_zone_code = "UTC",
+         wind_direction_degrees = NA,
+         wind_direction_kilometers_per_hour = NA,
+         swell_height_meters = NA,
+         weather_description = NA) %>%
+  select(cruise_name, vessel_name_abbr, zone, station, event_type, station_event_id, year, month, day, time_start, time_end,
+         sampling_duration_minutes, day_night, time_zone_code, minimum_sampling_depth_meters, maximum_sampling_depth_meters,
+         tow_speed_kilometers_per_hour, latitude_start_decdeg, longitude_start_decdeg, latitude_end_decdeg, longitude_end_decdeg,
+         bottom_depth_meters, tow_distance_nautical_miles, wave_height_meters, swell_height_meters, weather_description, comments)
+
+# TODO: Rather than select columns to include, remove columns not used.
+
+# TODO: Clean up the following code lines: 
+Franklin_event$sampling_duration_minutes <- as.numeric(Franklin_event$sampling_duration_minutes)
+Franklin_event$minimum_sampling_depth_meters <- as.numeric(Franklin_event$minimum_sampling_depth_meters)
+Franklin_event$maximum_sampling_depth_meters <- as.numeric(Franklin_event$maximum_sampling_depth_meters)
+Franklin_event$wave_height_meters <- as.numeric(Franklin_event$wave_height_meters)
 ```
 
 Clean up the GoA2019 Trawl event data:
@@ -239,10 +301,10 @@ Finally, join the data frames into a single sampling event data table:
 ```{r IYS2022 all sampling events, eval = FALSE}
 #TODO Include 2020 GoA Events
 # Check for differences in column header names and class between those two data frames:
-janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, GoA2019_event)
+janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event)
 
 # Join the individual event data frames and make all column names :
-IYS2022_events <- bind_rows(TINRO_event, NW_event, Shimada_event, GoA2019_event) |> 
+IYS2022_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event) |> 
   mutate(event_date = paste0(year,"-", 
                              ifelse(nchar(month) < 2, 
                                     paste0("0", month), month), "-",
