@@ -59,8 +59,8 @@ Franklin_event <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"
 
 # Need to download this file manually from 2019 Trawl git repo
 GoA2019_event <- read_excel(here("input_datasets",
-                                 "JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx"),
-                            sheet = "BRIDGE_LOG_FINAL")
+                                 "2019_GoA_Fish_Trawl_catchdata.xlsx"),
+                            sheet = "BRIDGE_LOG_FINAL") %>% filter(EVENT_TYPE == "Trawl")
 
 # Need to download this file manually from 2020 Trawl git repo
 GoA2020_event <- read_excel(here("input_datasets",
@@ -150,13 +150,13 @@ TINRO_event$Time_Start <- as.POSIXct(TINRO_event$Time_Start, format = "%H:%M:%S"
 
 # Sampling duration minutes has to be reformatted.
 TINRO_event$Sampling_Duration_Minutes <- 60 * 24 * as.numeric(chron::times(TINRO_event$Sampling_Duration_Minutes)) 
-TINRO_event$Sampling_Duration_Minutes <- round(TINRO_event$Sampling_Duration_Minutes, digits = 2)
+TINRO_event$Sampling_Duration_Minutes <- round(TINRO_event$Sampling_Duration_Minutes, digits = 0)
 
 # Change Time_Zone_Code to state that the Time_Start and Time_End now reflects UTC:
-TINRO_event$Time_Zone_Code <- "UTC"
+TINRO_event$Time_Zone_Code <- "GMT"
 
 # Change station class to character:
-TINRO_event$station <- as.character(TINRO_event$station)
+TINRO_event$Station <- as.character(TINRO_event$Station)
 
 # Remove temporary columns:
 TINRO_event <- TINRO_event %>% select(-c(date, eventDate_start)) |> 
@@ -222,16 +222,28 @@ Clean up the GoA2019 Trawl event data:
 GoA2019_event$END_DEPLOYMENT_TIME <- substr(as.POSIXct(sprintf("%04.0f", GoA2019_event$END_DEPLOYMENT_TIME), format = "%H%M"), 12, 16) 
 GoA2019_event$BEGIN_RETRIEVAL_TIME <- substr(as.POSIXct(sprintf("%04.0f", GoA2019_event$BEGIN_RETRIEVAL_TIME), format = "%H%M"), 12, 16)
 
+# Change the date/time to UTC: 
 GoA2019_event <- GoA2019_event %>%
-  mutate(Cruise_name = "IYS2022",
+  mutate(eventDate_start = as.POSIXct(paste(EVENT_DATE_START, END_DEPLOYMENT_TIME)),
+         eventDate_finish = as.POSIXct(paste(EVENT_DATE_FINISH, BEGIN_RETRIEVAL_TIME)))
+
+GoA2019_event$eventDate_start <- lubridate::ymd_hms(GoA2019_event$eventDate_start, tz = "Asia/Vladivostok")
+GoA2019_event$eventDate_start <- lubridate::with_tz(GoA2019_event$eventDate_start, "GMT")
+GoA2019_event$eventDate_finish <- lubridate::ymd_hms(GoA2019_event$eventDate_finish, tz = "Asia/Vladivostok")
+GoA2019_event$eventDate_finish <- lubridate::with_tz(GoA2019_event$eventDate_finish, "GMT")
+
+# Extract time from the created eventDate_start and eventDate_finish:
+GoA2019_event <- GoA2019_event %>% mutate(Time_Start = format(eventDate_start, "%H:%M:%S"),
+                                          Time_End = format(eventDate_finish, "%H:%M:%S"))
+
+GoA2019_event <- GoA2019_event %>%
+  mutate(Cruise_name = "IYS2019",
          Vessel_Name_Abbr = "Kaganovsky",
-         Zone = " ",
-         Time_Zone_Code = "GMT+12",
+         Zone = NA,
+         Time_Zone_Code = "GMT",
          Minimum_Sampling_Depth_Meters = 0) %>%
   dplyr::rename(Station = TOW_NUMBER,
                 Event_Type = EVENT_TYPE,
-                Time_Start = END_DEPLOYMENT_TIME,
-                Time_End = BEGIN_RETRIEVAL_TIME,
                 Sampling_Duration_Minutes = TOW_DURATION,
                 Day_Night = `Day /Night`,
                 Maximum_Sampling_Depth_Meters = MOUTH_OPENING_HEIGHT,
@@ -247,14 +259,14 @@ GoA2019_event <- GoA2019_event %>%
                 Weather_description = WEATHER_COMMENTS, 
                 Comments = `COMMENTS TRANSLATED TO ENGLISH`)
 
-GoA2019_event$Year <- as.numeric(format(as.Date(GoA2019_event$EVENT_DATE), "%Y"))
-GoA2019_event$Month <- as.numeric(format(as.Date(GoA2019_event$EVENT_DATE), "%m"))
-GoA2019_event$Day <- as.numeric(format(as.Date(GoA2019_event$EVENT_DATE), "%d"))
+GoA2019_event$Year <- as.numeric(format(as.Date(GoA2019_event$eventDate_start), "%Y"))
+GoA2019_event$Month <- as.numeric(format(as.Date(GoA2019_event$eventDate_start), "%m"))
+GoA2019_event$Day <- as.numeric(format(as.Date(GoA2019_event$eventDate_start), "%d"))
 
 # Change some classes:
-GoA2019_event$Zone <- as.numeric(GoA2019_event$Zone)
 GoA2019_event$Wind_Direction_Degrees <- as.numeric(GoA2019_event$Wind_Direction_Degrees)
 GoA2019_event$Wind_Speed_kilometers_per_hour <- as.numeric(GoA2019_event$Wind_Speed_kilometers_per_hour)
+GoA2019_event$Station <- as.character(GoA2019_event$Station)
 
 GoA2019_event <- GoA2019_event %>%
   mutate(Sampling_Duration_Minutes = Sampling_Duration_Minutes * 60,
@@ -301,10 +313,10 @@ Finally, join the data frames into a single sampling event data table:
 ```{r IYS2022 all sampling events, eval = FALSE}
 #TODO Include 2020 GoA Events
 # Check for differences in column header names and class between those two data frames:
-janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event)
+janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, GoA2019_event)
 
 # Join the individual event data frames and make all column names :
-IYS2022_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event) |> 
+IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, GoA2019_event) |> 
   mutate(event_date = paste0(year,"-", 
                              ifelse(nchar(month) < 2, 
                                     paste0("0", month), month), "-",
@@ -315,7 +327,7 @@ IYS2022_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event
   select(cruise_name:station_event_ID, event_date, year:comments)
 
 # Save event data:
-write_csv(IYS2022_events, here("output_datasets", "IYS2022_events.csv"))
+write_csv(IYS_events, here("output_datasets", "IYS_events.csv"))
 ```
 
 
