@@ -291,14 +291,87 @@ ctd_2019_event <- IYS_2019_CTD |>
   mutate(time_start = as.character(time_start)) |> 
   rename(station_event_id = station_event_ID)
 
+ctd_2019_event$station <- as.character(ctd_2019_event$station)
+
 janitor::compare_df_cols(GoA2019_event, ctd_2019_event)
 
 GoA2019_event <- bind_rows(GoA2019_event, ctd_2019_event)
 ```
 
 ```{r GOA2020 event cleaning, eval = FALSE}
-#TODO clean 2020 event data
+GoA2020_event <- GoA2020_event %>%
+  mutate(Cruise_name = "IYS2020",
+         Vessel_Name_Abbr = "Legacy",
+         Zone = NA,
+         Time_Zone_Code = "GMT",
+         Minimum_Sampling_Depth_Meters = 0,
+         Event_Type = "Trawl")
 
+# Change the date/time to UTC: 
+GoA2020_event$TIME_FISHING_START <- format(GoA2020_event$TIME_FISHING_START, "%H:%M:%S")
+GoA2020_event$TIME_NET_RETREIVAL_START <- format(GoA2020_event$TIME_NET_RETREIVAL_START, "%H:%M:%S")
+
+GoA2020_event <- GoA2020_event %>%
+  mutate(eventDate_start = as.POSIXct(paste(EVENT_DATE, TIME_FISHING_START)),
+         eventDate_finish = as.POSIXct(paste(EVENT_DATE, TIME_NET_RETREIVAL_START)))
+
+GoA2020_event$eventDate_start <- lubridate::ymd_hms(GoA2020_event$eventDate_start, tz = "Asia/Kamchatka")
+GoA2020_event$eventDate_start <- lubridate::with_tz(GoA2020_event$eventDate_start, "GMT")
+GoA2020_event$eventDate_finish <- lubridate::ymd_hms(GoA2020_event$eventDate_finish, tz = "Asia/Kamchatka")
+GoA2020_event$eventDate_finish <- lubridate::with_tz(GoA2020_event$eventDate_finish, "GMT")
+
+GoA2020_event <- GoA2020_event %>%
+  dplyr::rename(Station = SET_NUMBER,
+                Sampling_Duration_Minutes = `DURATION OF TOW (min)`,
+                Day_Night = `DAY/NIGHT`,
+                Latitude_Start_DecDeg = START_LAT_DECDEGREE,
+                Longitude_Start_DecDeg = START_LONG_DECDEGREE,
+                Latitude_End_DecDeg = END_LAT_DECDEGREE,
+                Longitude_End_DecDeg = END_LONG_DECDEGREE,
+                Tow_distance_nautical_miles = `DISTANCE OF FISHING OPERATION (nm)`,
+                Wind_Direction_Degrees = `WIND DIRECTION (degrees)`,
+                Wind_Speed_kilometers_per_hour = `WIND SPEED (knots)`, # have to standardize this to kilometers per hour ,
+                Weather_description = `CLOUD/WEATHER`, 
+                Comments = COMMENTS)
+
+GoA2020_event$Year <- as.numeric(format(as.Date(GoA2020_event$eventDate_start), "%Y"))
+GoA2020_event$Month <- as.numeric(format(as.Date(GoA2020_event$eventDate_start), "%m"))
+GoA2020_event$Day <- as.numeric(format(as.Date(GoA2020_event$eventDate_start), "%d"))
+
+# Change some classes:
+GoA2020_event$Wind_Direction_Degrees <- as.numeric(GoA2020_event$Wind_Direction_Degrees)
+GoA2020_event$Wind_Speed_kilometers_per_hour <- as.numeric(GoA2020_event$Wind_Speed_kilometers_per_hour)
+GoA2020_event$Station <- as.character(GoA2020_event$Station)
+
+# For Maximum_Sampling_Depth_Meters, Bottom_Depth_Meters and Tow_speed_kilometers_per_hour, these were measured at 15 minutes intervals. We'll take the average:
+GoA2020_event <- GoA2020_event %>%
+  mutate(Maximum_Sampling_Depth_Meters = rowMeans(GoA2020_event[ , c("NET OPENING DEPTH (metres) - 15 min", "NET OPENING DEPTH (metres) - 30 min",
+                                                                     "NET OPENING DEPTH (metres) - 45 min", "NET OPENING DEPTH (metres) - END")],
+                                                  na.rm = TRUE),
+         Bottom_Depth_Meters = rowMeans(GoA2020_event[ , c("BOTTOM DEPTH (M) - 15 min", "BOTTOM DEPTH (M) - 30 min", 
+                                                           "BOTTOM DEPTH (M) - 45 min", "BOTTOM DEPTH (M) - END")], na.rm = TRUE),
+         Tow_speed_kilometers_per_hour = rowMeans(GoA2020_event[ , c("SPEED (Kn) - 15 min", "SPEED (Kn) - 30 min", "SPEED (Kn) - 45 min",
+                                                                     "SPEED (Kn) - END")], na.rm = TRUE))
+
+GoA2020_event <- GoA2020_event %>%
+  mutate(station_event_id = paste(Cruise_name, Vessel_Name_Abbr, Station, Event_Type, sep = "-")) %>%
+  select(Cruise_name, Vessel_Name_Abbr, Zone, Station, station_event_id, 
+         Event_Type, Year, Month, Day,
+         Time_Start = TIME_FISHING_START,
+         Time_End = TIME_NET_RETREIVAL_START, 
+         Sampling_Duration_Minutes,
+         Day_Night, Time_Zone_Code, Minimum_Sampling_Depth_Meters, Maximum_Sampling_Depth_Meters,
+         Bottom_Depth_Meters, Tow_speed_kilometers_per_hour,
+         Latitude_Start_DecDeg, Longitude_Start_DecDeg, Latitude_End_DecDeg, Longitude_End_DecDeg, 
+         Tow_distance_nautical_miles, Wind_Direction_Degrees, Wind_Speed_kilometers_per_hour, Comments) 
+
+# To verify, manually check:
+# check <-  GoA2020_event %>% select(c("NET OPENING DEPTH (metres) - 15 min", "NET OPENING DEPTH (metres) - 30 min", "NET OPENING DEPTH (metres) - 45 min", NET OPENING DEPTH (metres) - END", Maximum_Sampling_Depth_Meters"))
+
+# Change tow speed, currently in knots, to kilometers per hour for easy integration:
+GoA2020_event$Tow_speed_kilometers_per_hour <-  GoA2020_event$Tow_speed_kilometers_per_hour * 1.852
+
+GoA2020_event <- GoA2020_event %>% rename_with(tolower)
 
 # Create event data for 2020 CTD
 #TODO: replace this data file with standardized one sent to ERDDAP (just used this file temporarily to get a complete list of stations for Tetjana)
@@ -313,10 +386,10 @@ Finally, join the data frames into a single sampling event data table:
 ```{r IYS2022 all sampling events, eval = FALSE}
 #TODO Include 2020 GoA Events
 # Check for differences in column header names and class between those two data frames:
-janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, GoA2019_event)
+janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, GoA2019_event, GoA2020_event)
 
 # Join the individual event data frames and make all column names :
-IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, GoA2019_event) |> 
+IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, GoA2019_event, GoA2020_event) |> 
   mutate(event_date = paste0(year,"-", 
                              ifelse(nchar(month) < 2, 
                                     paste0("0", month), month), "-",
@@ -329,7 +402,6 @@ IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, Go
 # Save event data:
 write_csv(IYS_events, here("output_datasets", "IYS_events.csv"))
 ```
-
 
 ## Catch Data
 
