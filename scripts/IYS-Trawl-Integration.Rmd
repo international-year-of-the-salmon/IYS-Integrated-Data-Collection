@@ -732,7 +732,18 @@ TINRO_CTD <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet
          instrument_model = Instrument_Model,
          comments = Comments,
          sampling_depth_dbar = Sampling_Depth_Dbar,
-         sea_water_chl_a_concentration = sea_water_chl_concentration
+         #TODO: confirm [chl] is for a 
+         `sea_water_chl_a_concentration_ug/L` = sea_water_chl_concentration, 
+         sea_water_temperature_degC = sea_water_temperature,
+         sea_water_turbidity_NTU = sea_water_turbidity,
+         sea_water_salinity_PSU = sea_water_salinity,
+         `sea_water_EC25_uS/cm` = sea_water_EC25,
+         `sea_water_dissolvedO2_sat_%` = sea_water_dissolvedO2_sat,
+         `sea_water_density_kg/m3` = sea_water_density,
+         `sea_water_conductivity_mS/cm` = sea_water_conductivity,
+         sea_water_chl_fluorescence_PPB = sea_water_chl_fluorescence,
+         `sea_water_BOD5_mL/L` = sea_water_BOD5, 
+         `sea_water_dissolvedO2_mg/L`  = sea_water_dissolvedO2
          ) |> 
   mutate(comments = as.character(comments))
 ```
@@ -740,11 +751,13 @@ TINRO_CTD <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet
 ```{r 2019 Kaganovsky CTD}
  
 ctd_2019_data <- IYS_2019_CTD |> 
-   select(station_event_ID, instrument_type:sea_water_BOD5)
+   select(station_event_ID, instrument_type:`sea_water_BOD5_mL/L`)
 
 ```
 
 ```{r 2020 CTD}
+ctd_2020 <- read_csv("https://raw.githubusercontent.com/international-year-of-the-salmon/2020-CTD/master/standardized_data/2020_ctd.csv") |> 
+  select(-cast)
 
 ```
 
@@ -752,22 +765,25 @@ ctd_2019_data <- IYS_2019_CTD |>
 ```{r Overall CTD}
 #TODO Include 2020 CTD data
 
-janitor::compare_df_cols(TINRO_CTD, ctd_2019_data)
+janitor::compare_df_cols(TINRO_CTD, ctd_2019_data, ctd_2020)
 
-IYS2022_CTD <- bind_rows(TINRO_CTD, ctd_2019_data) |> 
+IYS_CTD <- bind_rows(TINRO_CTD, ctd_2019_data, ctd_2020) |> 
   select(station_event_ID:sampling_depth_dbar, sampling_depth_meters,
-         sea_water_temperature:sea_water_dissolvedO2_sat,
-         sea_water_concentration_of_oxygen, sea_water_pH:comments)
+         sea_water_temperature_degC:`sea_water_dissolvedO2_sat_%`,
+         `sea_water_concentration_of_oxygen_mL/L`, sea_water_pH:comments)
 
 # QC value ranges for unit issues
-ranges <- IYS2022_CTD |> 
-  left_join(select(IYS2022_events, station_event_ID, vessel_name_abbr)) |> 
+ranges <- IYS_CTD |> 
+  left_join(select(IYS_events, station_event_ID, vessel_name_abbr)) |> 
   group_by(vessel_name_abbr) |> 
   summarise_all(range, na.rm = TRUE)
 
-write_csv(IYS2022_CTD, here("output_datasets", "IYS2022_CTD.csv"))
+#TODO: Investigate Pacific Legacy sea water density units (range is off)
+#TODO: Figure out why there isn't conductivity from TINRO vessel
+#TODO: Figure out whether oxygen measurementments can be unit converted and combined
 
-range(ctd_2019_data$TINRO_CTD, na.rm = TRUE)
+write_csv(IYS_CTD, here("output_datasets", "IYS2022_CTD.csv"))
+
 ```
 
 # Biogeochemistry Data
