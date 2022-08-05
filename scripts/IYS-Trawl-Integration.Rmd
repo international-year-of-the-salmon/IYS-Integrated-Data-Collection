@@ -11,10 +11,9 @@ library(lubridate)
 library(readxl)
 library(here)
 library(lubridate)
-library(obistools)
+#library(obistools)
 library(chron)
 library(janitor)
-library(rerddap)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -30,8 +29,6 @@ download.file("https://github.com/international-year-of-the-salmon/2022-shimada-
 download.file("https://github.com/international-year-of-the-salmon/2022-Franklin-Data-Template/blob/main/IYS_2022_FRANKLIN.xlsx?raw=true", here::here("input_datasets", "IYS2022_Franklin_Data.xlsx"), quiet = TRUE, mode = "wb")
 
 ```
-
-From private repositories, use the following chunk of code, making sure to change the github_link to point to the correct private repository.
 
 # Trawl Data
 
@@ -153,7 +150,7 @@ TINRO_event$Sampling_Duration_Minutes <- 60 * 24 * as.numeric(chron::times(TINRO
 TINRO_event$Sampling_Duration_Minutes <- round(TINRO_event$Sampling_Duration_Minutes, digits = 0)
 
 # Change Time_Zone_Code to state that the Time_Start and Time_End now reflects UTC:
-TINRO_event$Time_Zone_Code <- "GMT"
+TINRO_event$Time_Zone_Code <- "UTC"
 
 # Change station class to character:
 TINRO_event$Station <- as.character(TINRO_event$Station)
@@ -373,18 +370,21 @@ GoA2020_event$Tow_speed_kilometers_per_hour <-  GoA2020_event$Tow_speed_kilomete
 
 GoA2020_event <- GoA2020_event %>% rename_with(tolower)
 
-# Create event data for 2020 CTD
-#TODO: replace this data file with standardized one sent to ERDDAP (just used this file temporarily to get a complete list of stations for Tetjana)
-IYS_2020_CTD <- read_csv("https://github.com/international-year-of-the-salmon/2020-CTD/blob/master/original_data/IYS%202020%20CTD%20-%20Processed%2020200415.csv?raw=true")
+# Import event data for 2020 CTD
+ctd_2020_events <- read_csv("https://raw.githubusercontent.com/international-year-of-the-salmon/2020-CTD/master/standardized_data/ctd_events.csv") |> 
+  rename(station_event_id = station_event_ID) |> 
+  mutate(time_start = as.character(time_start),
+         time_end = as.character(time_end))
 
-#TODO: Add 2020 CTD event data to 2020 GoA Trawl Data
+janitor::compare_df_cols(GoA2020_event, ctd_2020_events)
+
+GoA2020_event <- bind_rows(GoA2020_event, ctd_2020_events)
 
 ```
 
 Finally, join the data frames into a single sampling event data table: 
 
 ```{r IYS2022 all sampling events, eval = FALSE}
-#TODO Include 2020 GoA Events
 # Check for differences in column header names and class between those two data frames:
 janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, GoA2019_event, GoA2020_event)
 
@@ -504,7 +504,7 @@ NW_specimen <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet 
 TINRO_specimen <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "6. SPECIMEN INFO")
 Shimada_specimen <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "6. SPECIMEN INFO")
 Franklin_specimen <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"), sheet = "5. SPECIMEN INFO")
-GoA2019_specimen <- read_excel(here("JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY (2).xlsx"),
+GoA2019_specimen <- read_excel(here("input_datasets", "JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY (2).xlsx"),
                             sheet = "SPECIMEN_FINAL")
 
 #TODO: Integrate age data
