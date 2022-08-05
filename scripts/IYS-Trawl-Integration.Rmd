@@ -57,7 +57,7 @@ Franklin_event <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"
 # Need to download this file manually from 2019 Trawl git repo
 GoA2019_event <- read_excel(here("input_datasets",
                                  "2019_GoA_Fish_Trawl_catchdata.xlsx"),
-                            sheet = "BRIDGE_LOG_FINAL") %>% filter(EVENT_TYPE == "Trawl")
+                            sheet = "BRIDGE_LOG_FINAL") %>% filter(EVENT_TYPE == "Trawl") # TODO: Include Can EEZ as well. 
 
 # Need to download this file manually from 2020 Trawl git repo
 GoA2020_event <- read_excel(here("input_datasets",
@@ -413,8 +413,10 @@ TINRO_catch <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), she
 Shimada_catch <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "5. CATCH_FINAL INFO")
 Franklin_catch <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"), sheet = "4. CATCH_FINAL INFO")
 
-#TODO Include 2019 catch data
-GoA2019_catch <- read_excel(here("input_datasets", "JuvSalmon_2019-01_catch.v20.12_FINAL_SUBMITTED (2).xlsx"),
+GoA2019_catch <- read_excel(here("input_datasets", "2019_GoA_Fish_Trawl_catchdata.xlsx"),
+                            sheet = "CATCH_FINAL")
+
+GoA2020_catch <- read_excel(here("input_datasets", "JuvSalmon_2020-01_Catch_v2021.1C_FINAL SUBMIT_jan18_2021 (2).xlsx"), 
                             sheet = "CATCH_FINAL")
 ```
 
@@ -454,9 +456,9 @@ Cleaning GoA2019 catch column names:
 
 ```{r GOA2019 catch clean, eval = FALSE}
 GoA2019_catch <- GoA2019_catch %>%
-  mutate(cruise_name = "IYS2022",
-         Vessel_Name_Abbr = "Professor Kaganovskiy",
-         Zone = " ",
+  mutate(cruise_name = "IYS2019",
+         Vessel_Name_Abbr = "Kaganovsky",
+         Zone = NA,
          Event_Type = "Trawl") %>%
   dplyr::rename(Station = `TOW_NUMBER (number)`,
                 common_name = `common name`,
@@ -471,25 +473,56 @@ GoA2019_catch <- GoA2019_catch %>%
          Taxonomic_rank = ifelse(grepl("sp.", GoA2019_catch$species), "genus", "species"),
          Catch_weight_units = "kilograms") %>%
   select(Station_Event_ID, Catch_ID, Species_recorded, Scientific_Name, Taxonomic_rank, Lifestage, common_name, Catch_weight, Catch_weight_units,
-         Catch_count, Comments)
+         Catch_count, Comments) %>%
+  rename_with(tolower)
 
+# Remove the sp., sp and gen. sp. 1 from the scientific_name column, as the taxonomic rank is provided in a different column:
+GoA2019_catch$scientific_name <- gsub("\\b sp.\\b|\\b sp\\b|\\b gen. sp. 1\\b", "", GoA2019_catch$scientific_name)
+
+#TODO: Determine whether taxa names should be corrected to fit WoRMS database?
 ```
+
+Cleaning GoA2020 catch column names:
+
+```{r GOA2020 catch clean, eval = FALSE}
+GoA2020_catch <- GoA2020_catch %>%
+  mutate(cruise_name = "IYS2020",
+         Vessel_Name_Abbr = "Legacy",
+         Zone = NA,
+         Event_Type = "Trawl") %>%
+  mutate(Station_Event_ID = paste(cruise_name, Vessel_Name_Abbr, SET_NUMBER, Event_Type, sep = "-"),
+         Catch_ID = paste(Station_Event_ID, row_number(), sep = "-")) %>%
+  dplyr::rename(common_name = `SPECIES (Description if needed)`,
+                catch_weight = `CATCH_WEIGHT (KG)`,
+                catch_count = CATCH_NUMBER,
+                Scientific_name = SPECIES) %>%
+  mutate(catch_weight_units = "kilograms",
+         Species_recorded = NA,
+         Taxonomic_rank = NA,
+         Lifestage = NA) %>%
+  select(Station_Event_ID, Catch_ID, Species_recorded, Scientific_name, Taxonomic_rank, Lifestage, common_name, catch_weight,
+         catch_weight_units, catch_count, Comments) %>%
+  rename_with(tolower)
+
+# TODO: Determine whether taxa names should be corrected to fit WoRMS Database, if so, taxonomic rank can be deduced. 
+```
+
 
 Compare column names between catch data frames: 
 
 ```{r bridgelog, eval = FALSE}
 # Check for differences in column header names between those two data frames:
-janitor::compare_df_cols(NW_catch, TINRO_catch, Shimada_catch, Franklin_catch)
+janitor::compare_df_cols(NW_catch, TINRO_catch, Shimada_catch, Franklin_catch, GoA2019_catch, GoA2020_catch)
 
 # Bind rows and save: 
-IYS2022_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch, Franklin_catch)
-IYS2022_trawl_catch$dateidentified <- as.character(IYS2022_trawl_catch$dateidentified)
+IYS_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch, Franklin_catch, GoA2019_catch, GoA2020_catch)
+IYS_trawl_catch$dateidentified <- as.character(IYS_trawl_catch$dateidentified)
 
 # Confirm there are no duplicates in the Catch_ID:
-IYS2022_trawl_catch$catch_id[duplicated(IYS2022_trawl_catch$catch_id)] # should print character(0)
+IYS_trawl_catch$catch_id[duplicated(IYS_trawl_catch$catch_id)] # should print character(0)
 
 # Save catch data:
-write_csv(IYS2022_trawl_catch, here("output_datasets", "IYS2022_trawl_catch.csv"))
+write_csv(IYS_trawl_catch, here("output_datasets", "IYS_trawl_catch.csv"))
 ```
 
 ## Specimen Data
@@ -504,7 +537,8 @@ NW_specimen <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet 
 TINRO_specimen <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "6. SPECIMEN INFO")
 Shimada_specimen <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "6. SPECIMEN INFO")
 Franklin_specimen <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"), sheet = "5. SPECIMEN INFO")
-GoA2019_specimen <- read_excel(here("input_datasets", "JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY (2).xlsx"),
+GoA2019_specimen <- read_excel(here("input_datasets", "JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY.xlsx"), sheet = "SPECIMEN_FINAL")
+GoA2020_specimen <- read_excel(here("input_datasets", "2020-01 Specimen file.v21.1c_FINAL SUBMIT_jan18_2021.xlsx"), 
                             sheet = "SPECIMEN_FINAL")
 
 #TODO: Integrate age data
@@ -539,9 +573,9 @@ Clean the GOA2019 Trawl specimen data to integrate with 2022 data:
 
 ```{r GOA2019 specimen clean, eval = FALSE}
 GoA2019_specimen <- GoA2019_specimen %>%
-  mutate(cruise_name = "IYS2022",
-         Vessel_name_abbr = "Professor Kaganovskiy", 
-         Zone = " ",
+  mutate(cruise_name = "IYS2019",
+         Vessel_name_abbr = "Kaganovsky", 
+         Zone = NA,
          Event_Type = "Trawl",
          data_type = "specimen",
          Scientific_Name = paste(genus, species, sep = " ")) %>%
@@ -555,7 +589,7 @@ GoA2019_specimen <- GoA2019_specimen %>%
 
 # We want to compare the catch and the specimen data tables by joining them by Station_Event_ID and Scientific_Name. Therefore, we have to ensure that the spelling of Scientific_Names at least matches between these data frames (regardless of whether it is accuratedly represented in WORMS)
 specimen_unique <- unique(GoA2019_specimen$Scientific_Name)
-catch_unique <- unique(GoA2019_catch$Scientific_Name)
+catch_unique <- unique(GoA2019_catch$scientific_name)
 
 setdiff(specimen_unique, catch_unique)
 
@@ -565,43 +599,126 @@ GoA2019_specimen$Scientific_Name <- gsub(" неполов.", "", GoA2019_specime
 GoA2019_specimen$Scientific_Name <- gsub(" сегол.", "", GoA2019_specimen$Scientific_Name)
 GoA2019_specimen$Scientific_Name <- gsub(" полов.", "", GoA2019_specimen$Scientific_Name)
 GoA2019_specimen$Scientific_Name <- gsub(" мол.", "", GoA2019_specimen$Scientific_Name)
+GoA2019_specimen$Scientific_Name <- gsub("\\b sp. 1\\b|\\b sp.\\b", "", GoA2019_specimen$Scientific_Name)
 
-# Make sure to remove the  мол. from the catch data as well. 
-GoA2019_catch$Scientific_Name <- gsub("[()]", "", GoA2019_catch$Scientific_Name)
-GoA2019_catch$Scientific_Name <- gsub(" мол.", "", GoA2019_catch$Scientific_Name)
-GoA2019_catch$Scientific_Name <- gsub("Phacellophora camtshchatica", "Phacellophora camtschatica", GoA2019_catch$Scientific_Name)
+GoA2019_catch$scientific_name <- gsub("Phacellophora camtshchatica", "Phacellophora camtschatica", GoA2019_catch$scientific_name)
+
+GoA2019_specimen <- GoA2019_specimen %>%
+  rename_with(tolower)
 
 # Left join to the GoA2019_catch data table so that we can create the specimen_IDs
-merge <- left_join(GoA2019_catch, GoA2019_specimen, by = c("Station_Event_ID", "Scientific_Name"))
-merge <- merge %>% group_by(Catch_ID) %>% 
-  mutate(Specimen_ID = paste(Catch_ID, row_number(), sep = "-")) %>%
+merge <- left_join(GoA2019_catch, GoA2019_specimen, by = c("station_event_id", "scientific_name"))
+merge <- merge %>% group_by(catch_id) %>% 
+  mutate(specimen_id = paste(catch_id, row_number(), sep = "-")) %>%
   ungroup()
 
-GOA2019_specimen_tab <- merge %>% filter(data_type == "specimen") %>%
-  dplyr::rename(Species_Recorded = Species_recorded,
-                Specimen_Length = LENGTH,
-                Specimen_Weight = `WEIGHT - TOTAL`,
-                Sex = SEX_CODE) %>%
-  select(Station_Event_ID, Catch_ID, Specimen_ID, Species_Recorded, Scientific_Name, Lifestage, Specimen_Length,
-         Specimen_Weight, Sex)
+GoA2019_specimen_tab <- merge %>% filter(data_type == "specimen") %>%
+  dplyr::rename(specimen_length = length,
+                specimen_weight = `weight - total`,
+                sex = sex_code) %>%
+  select(station_event_id, catch_id, specimen_id, species_recorded, scientific_name, lifestage, specimen_length,
+         specimen_weight, sex) %>%
+  mutate(length_units = "millimeters",
+         weight_units = "grams") 
+```
 
+Clean the GoA2020 Trawl specimen data to integrate with 2022 data:
+
+```{r GOA2020 specimen clean, eval = FALSE}
+GoA2020_specimen <- read_excel(here("input_datasets", "2020-01 Specimen file.v21.1c_FINAL SUBMIT_jan18_2021.xlsx"), 
+                            sheet = "SPECIMEN_FINAL")
+
+GoA2020_specimen <- GoA2020_specimen %>%
+  mutate(cruise_name = "IYS2020",
+         Vessel_name_abbr = "Legacy", 
+         Zone = NA,
+         Event_Type = "Trawl",
+         data_type = "specimen") %>%
+  mutate(station_event_id = paste(cruise_name, Vessel_name_abbr, SET_NUMBER, Event_Type, sep = "-")) %>%
+  select(station_event_id, data_type, SET_NUMBER, SPECIES, SPECIES_DESCRIPTION, `LENGTH (FORK) - mm`, `LENGTH (STANDARD) - mm`, `LENGTH (TOTAL)`, 
+         `LENGTH (MANTLE) - cm`, `WEIGHT - ROUND (g)`, SEX, `DEVELOPMENTAL STAGE`, COMMENTS) %>%
+  dplyr::rename(scientific_name = SPECIES,
+                lifestage = `DEVELOPMENTAL STAGE`)
+
+# We want to compare the catch and the specimen data tables by joining them by Station_Event_ID and Scientific_Name. Therefore, we have to ensure that the spelling of Scientific_Names at least matches between these data frames (regardless of whether it is accuratedly represented in WORMS)
+specimen_unique <- unique(GoA2020_specimen$scientific_name)
+catch_unique <- unique(GoA2020_catch$scientific_name)
+
+setdiff(specimen_unique, catch_unique)
+
+# There are 7 taxa whose names have to be adjusted between the catch and specimen data to align them:
+# Paralepididae, Oncorhynchus gorbusha, Pterotrachea sp., Phacellophoroa camtschatica, Dosidicus gigas?, Calycopsis, Unknown jelly
+GoA2020_specimen$scientific_name <- gsub("Paralepididae", "Paralepidadae", GoA2020_specimen$scientific_name)
+GoA2020_specimen$scientific_name <- gsub("Oncorhynchus gorbusha", "Oncorhynchus gorbuscha", GoA2020_specimen$scientific_name)
+GoA2020_specimen$scientific_name <- gsub("Pterotrachea sp.", "Ptereotrachea sp.", GoA2020_specimen$scientific_name)
+GoA2020_specimen$scientific_name <- gsub("Phacellophoroa camtschatica", "Phacellophora camtschatica", GoA2020_specimen$scientific_name)
+GoA2020_specimen$scientific_name <- gsub("\\?", "", GoA2020_specimen$scientific_name) # To remove the ? from Dosidicus gigas
+GoA2020_specimen$scientific_name <- gsub("Calycopsis", "Calycopsis sp.", GoA2020_specimen$scientific_name)
+GoA2020_specimen$scientific_name <- gsub("Unknown jelly", "jellyfish", GoA2020_specimen$scientific_name)
+
+# Confirm no different in species names between catch data and specimen data:
+setdiff(specimen_unique, catch_unique) # should be character(0)
+
+# Left join to the GoA2019_catch data table so that we can create the specimen_IDs
+merge <- left_join(GoA2020_catch, GoA2020_specimen, by = c("station_event_id", "scientific_name", "lifestage"))
+merge <- merge %>% group_by(catch_id) %>% 
+  mutate(specimen_id = paste(catch_id, row_number(), sep = "-")) %>%
+  ungroup()
+
+#TODO: Figure out how to standardize if 2 length measurements are provided:
+
+GoA2020_specimen_tab <- merge %>% filter(data_type == "specimen") %>% select(-comments) %>%
+  mutate(specimen_length = ifelse(
+    !is.na(`LENGTH (FORK) - mm`), `LENGTH (FORK) - mm`, ifelse(
+    !is.na(`LENGTH (STANDARD) - mm`), `LENGTH (STANDARD) - mm`, ifelse(
+    !is.na(`LENGTH (TOTAL)`), `LENGTH (TOTAL)`, ifelse(
+    !is.na(`LENGTH (MANTLE) - cm`), `LENGTH (MANTLE) - cm`, NA)))))  
+
+# Check to see if it works:
+manual_check <- GoA2020_specimen_tab %>% select(`LENGTH (FORK) - mm`, `LENGTH (STANDARD) - mm`, `LENGTH (TOTAL)`, `LENGTH (MANTLE) - cm`, specimen_length)
+
+# Notice how sometimes multiple length measurements are given (i.e. both fork and standard). We have to account for this:
+
+GoA2020_specimen_tab <- GoA2020_specimen_tab %>%
+  mutate(specimen_length2 = ifelse(!is.na(`LENGTH (FORK) - mm`) & !is.na(`LENGTH (STANDARD) - mm`), `LENGTH (STANDARD) - mm`, NA)) %>%
+  mutate(length_type = case_when(`LENGTH (FORK) - mm` > 0 ~ "Fork Length",
+                                 `LENGTH (STANDARD) - mm` > 0 ~ "Standard Length",
+                                 `LENGTH (TOTAL)` > 0 ~  "Total Length",
+                                 `LENGTH (MANTLE) - cm` > 0 ~ "Bell Diameter"),
+         length_type2 = case_when(`LENGTH (FORK) - mm` > 0 & `LENGTH (STANDARD) - mm` > 0 ~ "Standard Length"),
+         length_units = case_when(`LENGTH (FORK) - mm` > 0 ~ "millimeters",
+                                  `LENGTH (STANDARD) - mm` > 0 ~ "millimeters",
+                                  `LENGTH (TOTAL)` > 0 ~ "millimeters",
+                                  `LENGTH (MANTLE) - cm` > 0 ~ "centimeters"))
+
+GoA2020_specimen_tab <- GoA2020_specimen_tab %>%
+  dplyr::rename(specimen_weight = `WEIGHT - ROUND (g)`) %>%
+  mutate(weight_units = "grams") %>%
+  rename_with(tolower) %>%
+  select(station_event_id, catch_id, specimen_id, species_recorded, scientific_name, taxonomic_rank, lifestage, common_name, 
+         specimen_length, specimen_length2, length_type, length_units, length_type2, specimen_weight, weight_units, sex, comments)
+
+# Change class for two columns:
+GoA2020_specimen_tab$specimen_length <- as.numeric(GoA2020_specimen_tab$specimen_length)
+GoA2020_specimen_tab$specimen_length2 <- as.numeric(GoA2020_specimen_tab$specimen_length2)
+GoA2020_specimen_tab$sex <- as.character(GoA2020_specimen_tab$sex)
 ```
 
 Join the specimen data rows. 
 
 ```{r specimen, eval = FALSE}
 # Check for differences in column header names between those two data frames:
-janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen, Franklin_specimen)
+janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen, Franklin_specimen, GoA2019_specimen_tab, GoA2020_specimen_tab)
 
 # Bind rows and save: 
-IYS2022_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen, Franklin_specimen)
+IYS_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen, Franklin_specimen, GoA2019_specimen_tab, GoA2020_specimen_tab)
 
 #TODO: Get corrections for duplicate specimen IDs
 # Confirm no duplicates in Specimen_ID:
-IYS2022_trawl_specimen$specimen_id[duplicated(IYS2022_trawl_specimen$specimen_id)] # should print character(0)
+IYS_trawl_specimen$specimen_id[duplicated(IYS_trawl_specimen$specimen_id)] # should print character(0)
 
 # Save specimen data:
-write_csv(IYS2022_trawl_specimen, here("output_datasets", "IYS2022_trawl_specimen.csv"))
+write_csv(IYS_trawl_specimen, here("output_datasets", "IYS_trawl_specimen.csv"))
 ```
 
 Next, integrate the CTD data (please note, we do not have CTD/Rosette data from the NW Explorer):
