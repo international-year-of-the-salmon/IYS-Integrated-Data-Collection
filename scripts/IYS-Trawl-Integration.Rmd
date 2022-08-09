@@ -11,10 +11,9 @@ library(lubridate)
 library(readxl)
 library(here)
 library(lubridate)
-library(obistools)
+#library(obistools)
 library(chron)
 library(janitor)
-library(rerddap)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -30,8 +29,6 @@ download.file("https://github.com/international-year-of-the-salmon/2022-shimada-
 download.file("https://github.com/international-year-of-the-salmon/2022-Franklin-Data-Template/blob/main/IYS_2022_FRANKLIN.xlsx?raw=true", here::here("input_datasets", "IYS2022_Franklin_Data.xlsx"), quiet = TRUE, mode = "wb")
 
 ```
-
-From private repositories, use the following chunk of code, making sure to change the github_link to point to the correct private repository.
 
 # Trawl Data
 
@@ -153,7 +150,7 @@ TINRO_event$Sampling_Duration_Minutes <- 60 * 24 * as.numeric(chron::times(TINRO
 TINRO_event$Sampling_Duration_Minutes <- round(TINRO_event$Sampling_Duration_Minutes, digits = 0)
 
 # Change Time_Zone_Code to state that the Time_Start and Time_End now reflects UTC:
-TINRO_event$Time_Zone_Code <- "GMT"
+TINRO_event$Time_Zone_Code <- "UTC"
 
 # Change station class to character:
 TINRO_event$Station <- as.character(TINRO_event$Station)
@@ -379,21 +376,30 @@ GoA2020_event$Tow_speed_kilometers_per_hour <-  GoA2020_event$Tow_speed_kilomete
 
 GoA2020_event <- GoA2020_event %>% rename_with(tolower)
 
+<<<<<<< HEAD
 #TODO: Check with Chrys Neville whether the event_date for set_number 13 should be March 19 instead of March 18.
 #TODO: Require trawl coordinates for set_number 20. 
 
 # Create event data for 2020 CTD
 #TODO: replace this data file with standardized one sent to ERDDAP (just used this file temporarily to get a complete list of stations for Tetjana)
 IYS_2020_CTD <- read_csv("https://github.com/international-year-of-the-salmon/2020-CTD/blob/master/original_data/IYS%202020%20CTD%20-%20Processed%2020200415.csv?raw=true")
+=======
+# Import event data for 2020 CTD
+ctd_2020_events <- read_csv("https://raw.githubusercontent.com/international-year-of-the-salmon/2020-CTD/master/standardized_data/ctd_events.csv") |> 
+  rename(station_event_id = station_event_ID) |> 
+  mutate(time_start = as.character(time_start),
+         time_end = as.character(time_end))
+>>>>>>> d844a4c3cb266bd71eadf84e4cb8d5e39efc7633
 
-#TODO: Add 2020 CTD event data to 2020 GoA Trawl Data
+janitor::compare_df_cols(GoA2020_event, ctd_2020_events)
+
+GoA2020_event <- bind_rows(GoA2020_event, ctd_2020_events)
 
 ```
 
 Finally, join the data frames into a single sampling event data table: 
 
 ```{r IYS2022 all sampling events, eval = FALSE}
-#TODO Include 2020 GoA Events
 # Check for differences in column header names and class between those two data frames:
 janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, GoA2019_event, GoA2020_event)
 
@@ -782,7 +788,18 @@ TINRO_CTD <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet
          instrument_model = Instrument_Model,
          comments = Comments,
          sampling_depth_dbar = Sampling_Depth_Dbar,
-         sea_water_chl_a_concentration = sea_water_chl_concentration
+         #TODO: confirm [chl] is for a 
+         `sea_water_chl_a_concentration_ug/L` = sea_water_chl_concentration, 
+         sea_water_temperature_degC = sea_water_temperature,
+         sea_water_turbidity_NTU = sea_water_turbidity,
+         sea_water_salinity_PSU = sea_water_salinity,
+         `sea_water_EC25_uS/cm` = sea_water_EC25,
+         `sea_water_dissolvedO2_sat_%` = sea_water_dissolvedO2_sat,
+         `sea_water_density_kg/m3` = sea_water_density,
+         `sea_water_conductivity_mS/cm` = sea_water_conductivity,
+         sea_water_chl_fluorescence_PPB = sea_water_chl_fluorescence,
+         `sea_water_BOD5_mL/L` = sea_water_BOD5, 
+         `sea_water_dissolvedO2_mg/L`  = sea_water_dissolvedO2
          ) |> 
   mutate(comments = as.character(comments))
 ```
@@ -790,11 +807,13 @@ TINRO_CTD <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet
 ```{r 2019 Kaganovsky CTD}
  
 ctd_2019_data <- IYS_2019_CTD |> 
-   select(station_event_ID, instrument_type:sea_water_BOD5)
+   select(station_event_ID, instrument_type:`sea_water_BOD5_mL/L`)
 
 ```
 
 ```{r 2020 CTD}
+ctd_2020 <- read_csv("https://raw.githubusercontent.com/international-year-of-the-salmon/2020-CTD/master/standardized_data/2020_ctd.csv") |> 
+  select(-cast)
 
 ```
 
@@ -802,22 +821,25 @@ ctd_2019_data <- IYS_2019_CTD |>
 ```{r Overall CTD}
 #TODO Include 2020 CTD data
 
-janitor::compare_df_cols(TINRO_CTD, ctd_2019_data)
+janitor::compare_df_cols(TINRO_CTD, ctd_2019_data, ctd_2020)
 
-IYS2022_CTD <- bind_rows(TINRO_CTD, ctd_2019_data) |> 
+IYS_CTD <- bind_rows(TINRO_CTD, ctd_2019_data, ctd_2020) |> 
   select(station_event_ID:sampling_depth_dbar, sampling_depth_meters,
-         sea_water_temperature:sea_water_dissolvedO2_sat,
-         sea_water_concentration_of_oxygen, sea_water_pH:comments)
+         sea_water_temperature_degC:`sea_water_dissolvedO2_sat_%`,
+         `sea_water_concentration_of_oxygen_mL/L`, sea_water_pH:comments)
 
 # QC value ranges for unit issues
-ranges <- IYS2022_CTD |> 
-  left_join(select(IYS2022_events, station_event_ID, vessel_name_abbr)) |> 
+ranges <- IYS_CTD |> 
+  left_join(select(IYS_events, station_event_ID, vessel_name_abbr)) |> 
   group_by(vessel_name_abbr) |> 
   summarise_all(range, na.rm = TRUE)
 
-write_csv(IYS2022_CTD, here("output_datasets", "IYS2022_CTD.csv"))
+#TODO: Investigate Pacific Legacy sea water density units (range is off)
+#TODO: Figure out why there isn't conductivity from TINRO vessel
+#TODO: Figure out whether oxygen measurementments can be unit converted and combined
 
-range(ctd_2019_data$TINRO_CTD, na.rm = TRUE)
+write_csv(IYS_CTD, here("output_datasets", "IYS2022_CTD.csv"))
+
 ```
 
 # Biogeochemistry Data
