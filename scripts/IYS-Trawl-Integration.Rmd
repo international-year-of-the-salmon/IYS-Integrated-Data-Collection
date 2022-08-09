@@ -11,7 +11,6 @@ library(lubridate)
 library(readxl)
 library(here)
 library(lubridate)
-#library(obistools)
 library(chron)
 library(janitor)
 knitr::opts_chunk$set(echo = TRUE)
@@ -229,9 +228,9 @@ GoA2019_event <- GoA2019_event %>%
          eventDate_finish = as.POSIXct(paste(EVENT_DATE_FINISH, BEGIN_RETRIEVAL_TIME)))
 
 GoA2019_event$eventDate_start <- lubridate::ymd_hms(GoA2019_event$eventDate_start, tz = "Asia/Vladivostok")
-GoA2019_event$eventDate_start <- lubridate::with_tz(GoA2019_event$eventDate_start, "GMT")
+GoA2019_event$eventDate_start <- lubridate::with_tz(GoA2019_event$eventDate_start, "UTC")
 GoA2019_event$eventDate_finish <- lubridate::ymd_hms(GoA2019_event$eventDate_finish, tz = "Asia/Vladivostok")
-GoA2019_event$eventDate_finish <- lubridate::with_tz(GoA2019_event$eventDate_finish, "GMT")
+GoA2019_event$eventDate_finish <- lubridate::with_tz(GoA2019_event$eventDate_finish, "UTC")
 
 # Extract time from the created eventDate_start and eventDate_finish:
 GoA2019_event <- GoA2019_event %>% mutate(Time_Start = format(eventDate_start, "%H:%M:%S"),
@@ -241,7 +240,7 @@ GoA2019_event <- GoA2019_event %>%
   mutate(Cruise_name = "IYS2019",
          Vessel_Name_Abbr = "Kaganovsky",
          Zone = NA,
-         Time_Zone_Code = "GMT",
+         Time_Zone_Code = "UTC",
          Minimum_Sampling_Depth_Meters = 0) %>%
   dplyr::rename(Station = TOW_NUMBER,
                 Event_Type = EVENT_TYPE,
@@ -297,6 +296,7 @@ ctd_2019_event$station <- as.character(ctd_2019_event$station)
 janitor::compare_df_cols(GoA2019_event, ctd_2019_event)
 
 GoA2019_event <- bind_rows(GoA2019_event, ctd_2019_event)
+#TODO: confirm station number for trawls and ctd casts match
 ```
 
 ```{r GOA2020 event cleaning, eval = FALSE}
@@ -304,7 +304,7 @@ GoA2020_event <- GoA2020_event %>%
   mutate(Cruise_name = "IYS2020",
          Vessel_Name_Abbr = "Legacy",
          Zone = NA,
-         Time_Zone_Code = "GMT",
+         Time_Zone_Code = "UTC",
          Minimum_Sampling_Depth_Meters = 0,
          Event_Type = "Trawl")
 
@@ -318,9 +318,9 @@ GoA2020_event <- GoA2020_event %>%
 
 GoA2020_event$eventDate_start <- lubridate::ymd_hms(GoA2020_event$eventDate_start, tz = "America/Los_Angeles") 
 #TODO: Confirm: March 12, 2020 is PST (according to metadata), which is GMT-7. Confirm that time changes are accurate with tz = "America/Los_Angeles".
-GoA2020_event$eventDate_start <- lubridate::with_tz(GoA2020_event$eventDate_start, "GMT")
+GoA2020_event$eventDate_start <- lubridate::with_tz(GoA2020_event$eventDate_start, "UTC")
 GoA2020_event$eventDate_finish <- lubridate::ymd_hms(GoA2020_event$eventDate_finish, tz = "America/Los_Angeles")
-GoA2020_event$eventDate_finish <- lubridate::with_tz(GoA2020_event$eventDate_finish, "GMT")
+GoA2020_event$eventDate_finish <- lubridate::with_tz(GoA2020_event$eventDate_finish, "UTC")
 
 GoA2020_event <- GoA2020_event %>%
   dplyr::rename(Station = SET_NUMBER,
@@ -381,10 +381,6 @@ GoA2020_event <- GoA2020_event %>% rename_with(tolower)
 #TODO: Check with Chrys Neville whether the event_date for set_number 13 should be March 19 instead of March 18.
 #TODO: Require trawl coordinates for set_number 20. 
 
-# Create event data for 2020 CTD
-#TODO: replace this data file with standardized one sent to ERDDAP (just used this file temporarily to get a complete list of stations for Tetjana)
-IYS_2020_CTD <- read_csv("https://github.com/international-year-of-the-salmon/2020-CTD/blob/master/original_data/IYS%202020%20CTD%20-%20Processed%2020200415.csv?raw=true")
-
 # Import event data for 2020 CTD
 ctd_2020_events <- read_csv("https://raw.githubusercontent.com/international-year-of-the-salmon/2020-CTD/master/standardized_data/ctd_events.csv") |> 
   rename(station_event_id = station_event_ID) |> 
@@ -399,20 +395,9 @@ GoA2020_event <- bind_rows(GoA2020_event, ctd_2020_events)
 
 Finally, join the data frames into a single sampling event data table: 
 
-```{r IYS2022 all sampling events, eval = FALSE}
+```{r All sampling events, eval = FALSE}
 # Check for differences in column header names and class between those two data frames:
 janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, GoA2019_event, GoA2020_event)
-
-# Join the individual event data frames from the 2022 IYS High Seas Expeditions and make the event_date column:
-IYS2022_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event) %>%
-  mutate(event_date = paste0(year,"-",
-                             ifelse(nchar(month) < 2,
-                                    paste0("0", month), month), "-",
-                             ifelse(nchar(day) < 2,
-                                    paste0("0", day), day),
-                             "T", time_start, "Z")) %>%
-  rename(station_event_ID = station_event_id) %>%
-  select(cruise_name:station_event_ID, event_date, year:comments)
 
 # Join the individual event data frames from all IYS High Seas Expeditions and make all column names :
 IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, GoA2019_event, GoA2020_event) |> 
@@ -426,7 +411,6 @@ IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, Go
   select(cruise_name:station_event_ID, event_date, year:comments)
 
 # Save event data:
-write_csv(IYS2022_events, here("output_datasets", "IYS2022_events.csv"))
 write_csv(IYS_events, here("output_datasets", "IYS_events.csv"))
 ```
 
@@ -561,17 +545,17 @@ Compare column names between catch data frames:
 janitor::compare_df_cols(NW_catch, TINRO_catch, Shimada_catch, Franklin_catch, GoA2019_catch, GoA2020_catch)
 
 # Bind rows and save for catch from only 2022 and catch from all IYS High Seas Expeditions:
-IYS2022_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch, Franklin_catch)
-IYS_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch, Franklin_catch, GoA2019_catch, GoA2020_catch)
 
-IYS2022_trawl_catch$dateidentified <- as.character(IYS2022_trawl_catch$dateidentified)
+#TODO: Include GoA2019_catch and GoA2020_catch once confident
+IYS_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch, Franklin_catch) |> 
+  rename(station_event_ID = station_event_id)
+
 IYS_trawl_catch$dateidentified <- as.character(IYS_trawl_catch$dateidentified)
 
 # Confirm there are no duplicates in the Catch_ID:
 IYS_trawl_catch$catch_id[duplicated(IYS_trawl_catch$catch_id)] # should print character(0)
 
 # Save catch data:
-write_csv(IYS2022_trawl_catch, here("output_datasets", "IYS2022_trawl_catch.csv"))
 write_csv(IYS_trawl_catch, here("output_datasets", "IYS_trawl_catch.csv"))
 ```
 
@@ -589,7 +573,7 @@ Shimada_specimen <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx
 Franklin_specimen <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"), sheet = "5. SPECIMEN INFO")
 GoA2019_specimen <- read_excel(here("input_datasets", "JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY.xlsx"), sheet = "SPECIMEN_FINAL")
 GoA2020_specimen <- read_excel(here("input_datasets", "2020-01 Specimen file.v21.1c_FINAL SUBMIT_jan18_2021.xlsx"), 
-                            sheet = "SPECIMEN_FINAL")
+                            sheet = "SPECIMEN_FINAL", guess_max = 5900)
 
 #TODO: Integrate age data
 #TODO: Integrate genetic stock ID data
@@ -784,15 +768,14 @@ Join the specimen data rows.
 janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen, Franklin_specimen, GoA2019_specimen_tab, GoA2020_specimen_tab)
 
 # Bind rows and save: 
-IYS2022_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen, Franklin_specimen)
-IYS_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen, Franklin_specimen, GoA2019_specimen_tab, GoA2020_specimen_tab)
+#TODO Include GoA2019_specimen_tab and GoA2020_specimen_tab when confident
+IYS_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen, Franklin_specimen)
 
 #TODO: Get corrections for duplicate specimen IDs
 # Confirm no duplicates in Specimen_ID:
 IYS_trawl_specimen$specimen_id[duplicated(IYS_trawl_specimen$specimen_id)] # should print character(0)
 
 # Save specimen data:
-write_csv(IYS2022_trawl_specimen, here("output_datasets", "IYS2022_trawl_specimen.csv"))
 write_csv(IYS_trawl_specimen, here("output_datasets", "IYS_trawl_specimen.csv"))
 ```
 
@@ -838,7 +821,6 @@ ctd_2020 <- read_csv("https://raw.githubusercontent.com/international-year-of-th
 
 
 ```{r Overall CTD}
-#TODO Include 2020 CTD data
 
 janitor::compare_df_cols(TINRO_CTD, ctd_2019_data, ctd_2020)
 
@@ -853,11 +835,16 @@ ranges <- IYS_CTD |>
   group_by(vessel_name_abbr) |> 
   summarise_all(range, na.rm = TRUE)
 
-#TODO: Investigate Pacific Legacy sea water density units (range is off)
-#TODO: Figure out why there isn't conductivity from TINRO vessel
-#TODO: Figure out whether oxygen measurementments can be unit converted and combined
+#TODO Include more columns/variables once confident in comparability
+IYS_CTD <- IYS_CTD |> 
+  select(station_event_ID, instrument_type, sampling_depth_meters,
+         sea_water_temperature_degC, sea_water_salinity_PSU, `sea_water_density_kg/m3`, sea_water_sigmaT)
 
-write_csv(IYS_CTD, here("output_datasets", "IYS2022_CTD.csv"))
+#TODO calculate sampling_depth_meters for TINRO based on pressure_dbar whatever else TEOS tells me
+#TODO: Figure out why there isn't conductivity from TINRO vessel
+#TODO: Figure out whether oxygen measurements can be unit converted and combined
+
+write_csv(IYS_CTD, here("output_datasets", "IYS_CTD.csv"))
 
 ```
 
@@ -881,46 +868,40 @@ Include Biogeochemistry data
 ```{r QC relations}
 library(dm)
 
-dm_no_keys <- dm(IYS2022_trawl_catch, IYS2022_trawl_event, IYS2022_trawl_specimen, IYS2022_CTD)
+dm_no_keys <- dm(IYS_trawl_catch, IYS_events, IYS_trawl_specimen, IYS_CTD)
 
 # add primary keys
 only_pk <- dm_no_keys %>% 
-  dm_add_pk(IYS2022_trawl_catch, Catch_ID) %>% 
-  dm_add_pk(IYS2022_trawl_event, Station_Event_ID) %>% 
-  dm_add_pk(IYS2022_trawl_specimen, Specimen_ID)
+  dm_add_pk(IYS_trawl_catch, catch_id) %>% 
+  dm_add_pk(IYS_events, station_event_ID) %>% 
+  dm_add_pk(IYS_trawl_specimen, specimen_id)
   
 only_pk %>% dm_examine_constraints() # checks for duplicates in PK
 
 # add foreign keys
 dm <- only_pk %>% 
-  dm_add_fk(IYS2022_CTD, Station_Event_ID, IYS2022_trawl_event) %>% 
-  dm_add_fk(IYS2022_trawl_specimen, Catch_ID, IYS2022_trawl_catch) %>% 
-  dm_add_fk(IYS2022_trawl_catch, Station_Event_ID, IYS2022_trawl_event)
+  dm_add_fk(IYS_CTD, station_event_ID, IYS_events) %>% 
+  dm_add_fk(IYS_trawl_specimen, catch_id, IYS_trawl_catch) %>% 
+  dm_add_fk(IYS_trawl_catch, station_event_ID, IYS_events)
+
 
 dm %>% dm_examine_constraints() # checks that foreign keys all have a matching primary key in  the parent table
 
+#TODO: satisfy all unment constraints
+
 # manually  export the drawing from the viewer pane to figs to update the data model image
 dm_draw(dm)
-```
-
-```{r Data Dictionary}
-#TODO Decide to create a data dictionary, or use secondary columns to define units, or include units in column name
-
-data_dictionary <- read_csv(here("output_datasets", "data_dictionary.csv"))
 ```
 
 Combine all data frames into a single .xlsx workbook:
 
 ```{r final_join, eval = FALSE}
 # All IYS Expeditions:
-out <- list("Data Dictionary" = data_dictionary, "Sampling Event Info" = IYS_events, "Overall_Catch_Data" = IYS_trawl_catch, "Overall_Specimen_Data" = IYS_trawl_specimen,
-            "Overall_CTD_Data" = IYS2022_CTD)
+out <- list("Sampling Event Info" = IYS_events, "Overall_Catch_Data" = IYS_trawl_catch, "Overall_Specimen_Data" = IYS_trawl_specimen,
+            "Overall_CTD_Data" = IYS_CTD)
 
-# Only the 2022 Expeditions:
-out_2022 <- list("Sampling Event Info" = IYS2022_events, "Overall_Catch_Data" = IYS2022_trawl_catch, "Overall_Specimen_Data" = IYS2022_trawl_specimen)
-
-writexl::write_xlsx(out_2022, here("output_datasets", "master2022.xlsx"))
-writexl::write_xlsx(out, here("output_datasets", "master.xlsx")
+ 
+writexl::write_xlsx(out, here("IYS_Integratedd_Data_Collection.xlsx")
 ```
 
 Create polygon coordinates for all events
