@@ -13,6 +13,9 @@ library(here)
 library(lubridate)
 library(chron)
 library(janitor)
+library(oce) # for computing depth from pressure and latitude
+library(dm)
+library(DiagrammeR)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -35,7 +38,7 @@ download.file("https://github.com/international-year-of-the-salmon/2022-Franklin
 
 Now that we have the latest versions of the trawl data downloaded, we can read them in:
 
-```{r event data, eval = FALSE}
+```{r event data}
 
 NW_event <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), 
                        sheet = "Sampling_Event_Info") %>%
@@ -66,14 +69,14 @@ GoA2020_event <- read_excel(here("input_datasets",
 
 Compare event tables from the various vessel sampling events:
 
-```{r event comparison, eval = FALSE}
+```{r event comparison}
 # Check for differences in column header names and class between those data frames:
 janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event)
 ```
 
 Looks like we have to do a little bit of cleaning before we join the data frames!
 
-```{r Shimada event cleaning, eval = FALSE}
+```{r Shimada event cleaning}
 Shimada_event <- Shimada_event %>%
   mutate(Time_Start = as.POSIXct(Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S"),
          Time_End = as.POSIXct(Time_End, format = "%H:%M:%S") %>% format("%H:%M:%S"),
@@ -88,7 +91,7 @@ Shimada_event$station <- as.character(Shimada_event$station)
 
 For NW data:
 
-```{r NW event cleaning, eval = FALSE}
+```{r NW event cleaning}
 NW_event <- NW_event %>%
   dplyr::rename(Maximum_Sampling_Depth_Meters = Maximum_Sampling_Depth,
                 Minimum_Sampling_Depth_Meters = Minimum_Sampling_Depth,
@@ -117,7 +120,7 @@ NW_event$station <- as.character(NW_event$station)
 
 And for TINRO data:
 
-```{r TINRO event cleaning, eval = FALSE}
+```{r TINRO event cleaning}
 # Trawl data is collected in GMT+12:00. So we have to subtract 12 hours from the Time_Start and Time_End to get to UTC. Additionally, we have to make sure this is then accurately reflected in the sampling **day** as well!
 hrs <- 12 * 60 * 60
 
@@ -163,7 +166,7 @@ TINRO_event <- TINRO_event %>% select(-c(date, eventDate_start)) |>
 
 And for Franklin data:
 
-```{r Franklin event cleaning, eval = FALSE}
+```{r Franklin event cleaning}
 Franklin_event$Month <- ifelse(Franklin_event$Month == "Feb", "2", "3") %>% as.numeric()
 
 # Change Tow_distance from kilometers per hour to nautical miles:
@@ -214,7 +217,7 @@ Franklin_event$wave_height_meters <- as.numeric(Franklin_event$wave_height_meter
 
 Clean up the GoA2019 Trawl event data:
 
-```{r GOA2019 event cleaning, eval = FALSE}
+```{r GOA2019 event cleaning}
 # Make sure the Event_type is consistently "trawl":
 GoA2019_event$EVENT_TYPE <- "Trawl"
 
@@ -299,7 +302,7 @@ GoA2019_event <- bind_rows(GoA2019_event, ctd_2019_event)
 #TODO: confirm station number for trawls and ctd casts match
 ```
 
-```{r GOA2020 event cleaning, eval = FALSE}
+```{r GOA2020 event cleaning}
 GoA2020_event <- GoA2020_event %>%
   mutate(Cruise_name = "IYS2020",
          Vessel_Name_Abbr = "Legacy",
@@ -395,7 +398,7 @@ GoA2020_event <- bind_rows(GoA2020_event, ctd_2020_events)
 
 Finally, join the data frames into a single sampling event data table: 
 
-```{r All sampling events, eval = FALSE}
+```{r All sampling events}
 # Check for differences in column header names and class between those two data frames:
 janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, GoA2019_event, GoA2020_event)
 
@@ -418,7 +421,7 @@ write_csv(IYS_events, here("output_datasets", "IYS_events.csv"))
 
 Now let's join the overall catch data from these vessels into a specific data frame as well. 
 
-```{r overall catch, eval = FALSE}
+```{r overall catch}
 NW_catch <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Catch_Info")
 TINRO_catch <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "5. CATCH_FINAL INFO")
 Shimada_catch <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "5. CATCH_FINAL INFO")
@@ -433,13 +436,13 @@ GoA2020_catch <- read_excel(here("input_datasets", "JuvSalmon_2020-01_Catch_v202
 
 Cleaning TINRO catch names:
 
-```{r TINRO catch clean, eval = FALSE}
+```{r TINRO catch clean}
 TINRO_catch <- TINRO_catch %>% rename_with(tolower)
 ```
 
 Cleaning NW catch column names:
 
-```{r NW catch clean, eval = FALSE}
+```{r NW catch clean}
 NW_catch <- NW_catch %>%
   dplyr::rename(Station_Event_ID = `Station Event ID`,
                 Catch_ID = `Catch ID`,
@@ -451,7 +454,7 @@ NW_catch <- NW_catch %>%
 
 Cleaning Shimada catch column names to ensure integration:
 
-```{r Shimada catch clean, eval = FALSE}
+```{r Shimada catch clean}
 Shimada_catch <- Shimada_catch %>%
   dplyr::rename(dateIdentified = `dateIdentified (UTC)`) %>%
   rename_with(tolower)
@@ -459,13 +462,13 @@ Shimada_catch <- Shimada_catch %>%
 
 Cleaning Franklin catch column names:
 
-```{r Franklin catch clean, eval = FALSE}
+```{r Franklin catch clean}
 Franklin_catch <- Franklin_catch %>% rename_with(tolower) %>% select(-speciesid)
 ```
 
 Cleaning GoA2019 catch column names:
 
-```{r GOA2019 catch clean, eval = FALSE}
+```{r GOA2019 catch clean}
 GoA2019_catch <- GoA2019_catch %>%
   mutate(cruise_name = "IYS2019",
          Vessel_Name_Abbr = "Kaganovsky",
@@ -491,7 +494,7 @@ GoA2019_catch <- GoA2019_catch %>%
 
 **IMPORTANT**: Please note, that the catch_count comes from a column `CATCH_COUNT (pieces)`, which includes Russian expansion for some species. In the original metadata this column is defined as _Total catch count. Note for most species this is total catch in cod end. However, for some small fish and jellies, this is the expanded count based on Russian expansion_. It does _not_ reflect the number in the cod_end (no expansion), or Number_net (expanded catch count-Russian). For these values, please refer back to the original catch data table from 2019. Please also note that the catch_weight reflects the mass in the codend (without expansion), which in the original metadata is defined as _Weight in cod-end - no expansion_.  
 
-```{r GoA2019 catch clean cont., eval = FALSE} 
+```{r GoA2019 catch clean cont.} 
 # Currently, lifestage is either 5, 4, 3 or 0, which is not very descriptive. As per comments in the column, these are changed:
 GoA2019_catch <- GoA2019_catch %>%
   mutate(lifestage = case_when(
@@ -515,7 +518,7 @@ GoA2019_catch <- GoA2019_catch %>% mutate(species_code_russian = ifelse(station 
 
 Cleaning GoA2020 catch column names:
 
-```{r GOA2020 catch clean, eval = FALSE}
+```{r GOA2020 catch clean}
 GoA2020_catch <- GoA2020_catch %>%
   mutate(cruise_name = "IYS2020",
          Vessel_Name_Abbr = "Legacy",
@@ -540,7 +543,7 @@ GoA2020_catch <- GoA2020_catch %>%
 
 Compare column names between catch data frames: 
 
-```{r bridgelog, eval = FALSE}
+```{r bridgelog}
 # Check for differences in column header names between those two data frames:
 janitor::compare_df_cols(NW_catch, TINRO_catch, Shimada_catch, Franklin_catch, GoA2019_catch, GoA2020_catch)
 
@@ -566,7 +569,7 @@ Now let's join the overall specimen data from these vessels into a specific data
 Note: Evgeny indicated it would be good to have GSI and age data in the specimen tables once they are available
 
 
-```{r overall specimen, eval = FALSE}
+```{r overall specimen}
 NW_specimen <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Specimen_Info")
 TINRO_specimen <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "6. SPECIMEN INFO")
 Shimada_specimen <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "6. SPECIMEN INFO")
@@ -582,7 +585,7 @@ GoA2020_specimen <- read_excel(here("input_datasets", "2020-01 Specimen file.v21
 
 Cleaning NW specimen column names:
 
-```{r NW specimen clean, eval = FALSE}
+```{r NW specimen clean}
 NW_specimen <- NW_specimen %>%
   dplyr::rename(Station_Event_ID = `Station Event ID`,
                 Catch_ID = `Catch ID`,
@@ -594,7 +597,7 @@ NW_specimen <- NW_specimen %>%
 
 Cleaning Franklin, TINRO, and Shimada specimen column names:
 
-```{r TINRO, Shimada, Frankin, eval = FALSE}
+```{r TINRO, Shimada, Frankin}
 TINRO_specimen <- TINRO_specimen %>% rename_with(tolower)
 Shimada_specimen <- Shimada_specimen %>% rename_with(tolower)
 
@@ -605,7 +608,7 @@ Franklin_specimen$specimen_weight <- as.numeric(Franklin_specimen$specimen_weigh
 
 Clean the GOA2019 Trawl specimen data to integrate with 2022 data:
 
-```{r GOA2019 specimen clean, eval = FALSE}
+```{r GOA2019 specimen clean}
 GoA2019_specimen <- GoA2019_specimen %>%
   mutate(cruise_name = "IYS2019",
          Vessel_name_abbr = "Kaganovsky", 
@@ -681,7 +684,7 @@ GoA2019_specimen_tab <- merge %>% filter(data_type == "specimen") %>%
 
 Clean the GoA2020 Trawl specimen data to integrate with 2022 data:
 
-```{r GOA2020 specimen clean, eval = FALSE}
+```{r GOA2020 specimen clean}
 GoA2020_specimen <- read_excel(here("input_datasets", "2020-01 Specimen file.v21.1c_FINAL SUBMIT_jan18_2021.xlsx"), 
                             sheet = "SPECIMEN_FINAL")
 
@@ -763,7 +766,7 @@ GoA2020_specimen_tab$sex <- as.character(GoA2020_specimen_tab$sex)
 
 Join the specimen data rows. 
 
-```{r specimen, eval = FALSE}
+```{r specimen}
 # Check for differences in column header names between those two data frames:
 janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen, Franklin_specimen, GoA2019_specimen_tab, GoA2020_specimen_tab)
 
@@ -783,7 +786,7 @@ Next, integrate the CTD data (please note, we do not have CTD/Rosette data from 
 
 # CTD
 
-```{r 2022 TINRO CTD, eval = FALSE}
+```{r 2022 TINRO CTD}
 TINRO_CTD <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "7. CTD INFO") |> 
   rename(station_event_ID = Station_Event_ID,
          instrument_type = Instrument_Type,
@@ -803,7 +806,10 @@ TINRO_CTD <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet
          `sea_water_BOD5_mL/L` = sea_water_BOD5, 
          `sea_water_dissolvedO2_mg/L`  = sea_water_dissolvedO2
          ) |> 
-  mutate(comments = as.character(comments))
+  mutate(comments = as.character(comments)) |> 
+  left_join(select(filter(TINRO_event, event_type == "CTD"), station_event_id, latitude_start_decdeg), by = c("station_event_ID" = "station_event_id")) |> 
+  mutate(sampling_depth_meters = swDepth(sampling_depth_dbar, latitude = latitude_start_decdeg)) |> 
+  select(-latitude_start_decdeg)
 ```
 
 ```{r 2019 Kaganovsky CTD}
@@ -816,6 +822,7 @@ ctd_2019_data <- IYS_2019_CTD |>
 ```{r 2020 CTD}
 ctd_2020 <- read_csv("https://raw.githubusercontent.com/international-year-of-the-salmon/2020-CTD/master/standardized_data/2020_ctd.csv") |> 
   select(-cast)
+
 
 ```
 
@@ -846,6 +853,9 @@ IYS_CTD <- IYS_CTD |>
 
 write_csv(IYS_CTD, here("output_datasets", "IYS_CTD.csv"))
 
+IYS_CTD_w_metadata <- right_join(IYS_events, IYS_CTD, by = "station_event_ID")
+
+write_csv(IYS_CTD_w_metadata, here("output_datasets", "IYS_CTD_and_events.csv"))
 ```
 
 # Biogeochemistry Data
@@ -866,7 +876,6 @@ Include Biogeochemistry data
 # QC
 
 ```{r QC relations}
-library(dm)
 
 dm_no_keys <- dm(IYS_trawl_catch, IYS_events, IYS_trawl_specimen, IYS_CTD)
 
@@ -878,6 +887,8 @@ only_pk <- dm_no_keys %>%
   
 only_pk %>% dm_examine_constraints() # checks for duplicates in PK
 
+#TODO: resolve duplicated specimen_ids for NW Trawl
+
 # add foreign keys
 dm <- only_pk %>% 
   dm_add_fk(IYS_CTD, station_event_ID, IYS_events) %>% 
@@ -885,9 +896,10 @@ dm <- only_pk %>%
   dm_add_fk(IYS_trawl_catch, station_event_ID, IYS_events)
 
 
-dm %>% dm_examine_constraints() # checks that foreign keys all have a matching primary key in  the parent table
+issues <- dm %>% dm_examine_constraints() # checks that foreign keys all have a matching primary key in  the parent table
+issues
 
-#TODO: satisfy all unment constraints
+#TODO: resolve values of `IYS_trawl_specimen$catch_id` not in `IYS_trawl_catch$catch_id`
 
 # manually  export the drawing from the viewer pane to figs to update the data model image
 dm_draw(dm)
@@ -895,13 +907,13 @@ dm_draw(dm)
 
 Combine all data frames into a single .xlsx workbook:
 
-```{r final_join, eval = FALSE}
+```{r final_join}
 # All IYS Expeditions:
 out <- list("Sampling Event Info" = IYS_events, "Overall_Catch_Data" = IYS_trawl_catch, "Overall_Specimen_Data" = IYS_trawl_specimen,
             "Overall_CTD_Data" = IYS_CTD)
 
  
-writexl::write_xlsx(out, here("IYS_Integratedd_Data_Collection.xlsx")
+writexl::write_xlsx(out, here("IYS_Integratedd_Data_Collection.xlsx"))
 ```
 
 Create polygon coordinates for all events
