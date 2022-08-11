@@ -105,12 +105,11 @@ NW_event$Day <- as.numeric(NW_event$Day)
 NW_event$Time_End <- as.POSIXct(NW_event$Time_End, format = "%H:%M:%S") %>% format("%H:%M:%S")
 NW_event$Time_Start <- as.POSIXct(NW_event$Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S")
 
-# NW Cruise_name and Station Event ID have to be slightly altered:
-NW_event$Cruise_name <- str_replace(NW_event$Cruise_name, "NW2201", "IYS2022")
-NW_event$Station_Event_ID <- str_replace(NW_event$Station_Event_ID, "NW2201", "IYS2022")
-
 NW_event <- NW_event |> 
   rename_with(tolower)
+
+# Remove Can from the station_event_id:
+NW_event$station_event_id <- gsub("Can", "", NW_event$station_event_id)
 
 # Change station class to character:
 NW_event$station <- as.character(NW_event$station)
@@ -189,7 +188,8 @@ Franklin_event$Time_Start_UTC <- as.POSIXct(Franklin_event$Time_Start_UTC, forma
 # Rename and select columns to integrate:
 Franklin_event <- Franklin_event %>%  
   rename_with(tolower) %>%
-  dplyr::rename(time_start = time_start_utc,
+  dplyr::rename(alternative_event_id = dfo_station_event_id,
+                time_start = time_start_utc,
                 time_end = time_end_utc,
                 tow_speed_kilometers_per_hour = tow_speed,
                 bottom_depth_meters = bottom_depth_start,
@@ -202,7 +202,7 @@ Franklin_event <- Franklin_event %>%
          wind_direction_kilometers_per_hour = NA,
          swell_height_meters = NA,
          weather_description = NA) %>%
-  select(cruise_name, vessel_name_abbr, zone, station, event_type, station_event_id, dfo_station_event_id, year, month, day, time_start, time_end,
+  select(cruise_name, vessel_name_abbr, zone, station, event_type, station_event_id, alternative_event_id, year, month, day, time_start, time_end,
          sampling_duration_minutes, day_night, time_zone_code, minimum_sampling_depth_meters, maximum_sampling_depth_meters,
          tow_speed_kilometers_per_hour, latitude_start_decdeg, longitude_start_decdeg, latitude_end_decdeg, longitude_end_decdeg,
          bottom_depth_meters, tow_distance_nautical_miles, wave_height_meters, swell_height_meters, weather_description, comments)
@@ -400,7 +400,7 @@ GoA2020_event <- bind_rows(GoA2020_event, ctd_2020_events)
 Finally, join the data frames into a single sampling event data table: 
 
 ```{r All sampling events}
-# Check for differences in column header names and class between those two data frames:
+# Check for differences in column header names and class between those two data frames. 
 janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, GoA2019_event, GoA2020_event)
 
 # Join the individual event data frames from all IYS High Seas Expeditions and make all column names :
@@ -412,7 +412,7 @@ IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, Go
                                     paste0("0", day),day), 
                              "T", time_start, "Z")) |> 
   rename(station_event_ID = station_event_id) |> 
-  select(cruise_name:station_event_ID, event_date, year:comments) |> 
+  select(cruise_name:station_event_ID, alternative_event_id, event_date, year:comments) |> 
   mutate(day_night = tolower(day_night))
 
 #QC event data
@@ -458,6 +458,10 @@ NW_catch <- NW_catch %>%
                 Catch_weight = Catch_Weight,
                 Catch_count = Catch_Count) %>%
   rename_with(tolower)
+
+# Remove Can from station_event_id and catch_id
+NW_catch$station_event_id <- gsub("Can", "", NW_catch$station_event_id)
+NW_catch$catch_id <- gsub("Can", "", NW_catch$catch_id)
 ```
 
 Cleaning Shimada catch column names to ensure integration:
@@ -471,7 +475,9 @@ Shimada_catch <- Shimada_catch %>%
 Cleaning Franklin catch column names:
 
 ```{r Franklin catch clean}
-Franklin_catch <- Franklin_catch %>% rename_with(tolower) %>% select(-speciesid)
+Franklin_catch <- Franklin_catch %>% rename_with(tolower) %>% select(-speciesid) %>%
+  dplyr::rename(alternative_catch_id = dfo_catch_id,
+                alternative_event_id = dfo_station_event_id)
 ```
 
 Cleaning GoA2019 catch column names:
@@ -613,15 +619,28 @@ NW_specimen <- NW_specimen %>%
                 Specimen_Length = Length,
                 Specimen_Weight = Weight) %>%
   rename_with(tolower)
+
+# Remove Can from the station_event_id, catch_id and specimen_id:
+NW_specimen$station_event_id <- gsub("Can", "", NW_specimen$station_event_id)
+NW_specimen$catch_id <- gsub("Can", "", NW_specimen$catch_id)
+NW_specimen$specimen_id <- gsub("Can", "", NW_specimen$specimen_id)
 ```
 
 Cleaning Franklin, TINRO, and Shimada specimen column names:
 
 ```{r TINRO, Shimada, Frankin}
-TINRO_specimen <- TINRO_specimen %>% rename_with(tolower)
+TINRO_specimen <- TINRO_specimen %>% rename_with(tolower) %>%
+  select(-c(fin_clip, gill:note))
+
 Shimada_specimen <- Shimada_specimen %>% rename_with(tolower)
 
-Franklin_specimen <- Franklin_specimen %>% rename_with(tolower)
+Franklin_specimen <- Franklin_specimen %>% rename_with(tolower) %>%
+  dplyr::rename(alternative_event_id = dfo_station_event_id,
+                alternative_catch_id = dfo_catch_id,
+                alternative_specimen_id = dfo_specimen_id,
+                lifestage = ageclass) %>%
+  select(-specimenid)
+
 Franklin_specimen$specimen_length <- as.numeric(Franklin_specimen$specimen_length)
 Franklin_specimen$specimen_weight <- as.numeric(Franklin_specimen$specimen_weight)
 ```
@@ -794,6 +813,26 @@ janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen, Franklin
 #TODO Include GoA2019_specimen_tab and GoA2020_specimen_tab when confident
 IYS_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen, Franklin_specimen)
 
+# Change length_units 'Centimeters' to 'Millimeters' and change the length measurement accordingly:
+IYS_trawl_specimen <- IYS_trawl_specimen %>%
+  mutate(specimen_length = ifelse(length_units == "Centimeters", specimen_length * 10, specimen_length),
+         length_units = "Millimeters")
+
+# Make the lifestages all lowercase, so we don't have both Adult and adult:
+IYS_trawl_specimen$lifestage <- tolower(IYS_trawl_specimen$lifestage)
+
+# Change some of the sex to make integration easier:
+IYS_trawl_specimen <- IYS_trawl_specimen %>%
+  mutate(sex = ifelse(sex == "m", "Male", sex),
+         sex = ifelse(sex == "f", "Female", sex),
+         sex = ifelse(sex == "?", "Unknown", sex))
+
+#TODO: Figure out what to do with "f?" and "N".
+
+# Change specimen_weight to reflect grams, and ensure that weight_units = Grams:
+IYS_trawl_specimen <- IYS_trawl_specimen %>%
+  mutate(specimen_weight = ifelse(weight_units %in% c("Kilograms", "kilograms"), specimen_weight * 1000, specimen_weight),
+         weight_units = "Grams")
 
 #QC specimen data
 #TODO: Get corrections for duplicate specimen IDs
@@ -806,9 +845,7 @@ specimen_names <- IYS_trawl_specimen |>
 
 #TODO be consistent with how sex is represented eg: Male vs m, Femaled vs f
 
-#TODO make length measurements consistently mm or cm
 #TODO figure length type for NW explorer
-#TODO Convert all specimen weights to grams
 
 # Save specimen data:
 write_csv(IYS_trawl_specimen, here("output_datasets", "IYS_trawl_specimen.csv"))
