@@ -914,7 +914,9 @@ ranges <- IYS_CTD |>
 #TODO Include more columns/variables once confident in comparability
 IYS_CTD <- IYS_CTD |> 
   select(station_event_ID, instrument_type, sampling_depth_meters,
-         sea_water_temperature_degC, sea_water_salinity_PSU, `sea_water_density_kg/m3`, sea_water_sigmaT)
+         sea_water_temperature_degC, sea_water_salinity_PSU)
+
+IYS_CTD <- right_join(select(IYS_events, station_event_ID, event_date, latitude_start_decdeg, longitude_start_decdeg), IYS_CTD, by = "station_event_ID")
 
 #TODO calculate sampling_depth_meters for TINRO based on pressure_dbar whatever else TEOS tells me
 #TODO: Figure out why there isn't conductivity from TINRO vessel
@@ -922,9 +924,6 @@ IYS_CTD <- IYS_CTD |>
 
 write_csv(IYS_CTD, here("output_datasets", "IYS_CTD.csv"))
 
-IYS_CTD_w_metadata <- right_join(IYS_events, IYS_CTD, by = "station_event_ID")
-
-write_csv(IYS_CTD_w_metadata, here("output_datasets", "IYS_CTD_and_events.csv"))
 ```
 
 # Biogeochemistry Data
