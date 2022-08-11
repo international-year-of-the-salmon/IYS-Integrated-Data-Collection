@@ -42,7 +42,8 @@ Now that we have the latest versions of the trawl data downloaded, we can read t
 
 NW_event <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), 
                        sheet = "Sampling_Event_Info") %>%
-  filter(Event_Type == "CanTrawl") 
+  filter(Event_Type == "CanTrawl") |> 
+  mutate(Event_Type = "Trawl")
 
 TINRO_event <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), 
                           sheet = "4. SAMPLING EVENT INFO") %>%
@@ -411,7 +412,14 @@ IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, Go
                                     paste0("0", day),day), 
                              "T", time_start, "Z")) |> 
   rename(station_event_ID = station_event_id) |> 
-  select(cruise_name:station_event_ID, event_date, year:comments)
+  select(cruise_name:station_event_ID, event_date, year:comments) |> 
+  mutate(day_night = tolower(day_night))
+
+#QC event data
+IYS_events |> group_by(vessel_name_abbr, event_type) |> 
+  tally()
+
+summary(IYS_events)
 
 # Save event data:
 write_csv(IYS_events, here("output_datasets", "IYS_events.csv"))
@@ -543,7 +551,7 @@ GoA2020_catch <- GoA2020_catch %>%
 
 Compare column names between catch data frames: 
 
-```{r bridgelog}
+```{r All Catch Data}
 # Check for differences in column header names between those two data frames:
 janitor::compare_df_cols(NW_catch, TINRO_catch, Shimada_catch, Franklin_catch, GoA2019_catch, GoA2020_catch)
 
@@ -555,8 +563,20 @@ IYS_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch, Franklin_catc
 
 IYS_trawl_catch$dateidentified <- as.character(IYS_trawl_catch$dateidentified)
 
+#QC Catch data
 # Confirm there are no duplicates in the Catch_ID:
 IYS_trawl_catch$catch_id[duplicated(IYS_trawl_catch$catch_id)] # should print character(0)
+
+sci_names <- IYS_trawl_catch |> count(scientific_name)
+#TODO Fix scientific names that are spelled differently
+
+# Check that all ranks are eithr upper or lower case
+taxonomi_ranks <- IYS_trawl_catch |> count(taxonomic_rank)
+
+IYS_trawl_catch$taxonomic_rank <- tolower(IYS_trawl_catch$taxonomic_rank)
+
+IYS_trawl_catch |> count(lifestage)
+IYS_trawl_catch$lifestage <- tolower(IYS_trawl_catch$lifestage)
 
 # Save catch data:
 write_csv(IYS_trawl_catch, here("output_datasets", "IYS_trawl_catch.csv"))
@@ -766,7 +786,7 @@ GoA2020_specimen_tab$sex <- as.character(GoA2020_specimen_tab$sex)
 
 Join the specimen data rows. 
 
-```{r specimen}
+```{r All specimen Data}
 # Check for differences in column header names between those two data frames:
 janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen, Franklin_specimen, GoA2019_specimen_tab, GoA2020_specimen_tab)
 
@@ -774,9 +794,21 @@ janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen, Franklin
 #TODO Include GoA2019_specimen_tab and GoA2020_specimen_tab when confident
 IYS_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen, Franklin_specimen)
 
+
+#QC specimen data
 #TODO: Get corrections for duplicate specimen IDs
 # Confirm no duplicates in Specimen_ID:
 IYS_trawl_specimen$specimen_id[duplicated(IYS_trawl_specimen$specimen_id)] # should print character(0)
+
+specimen_names <- IYS_trawl_specimen |> 
+  count(scientific_name)
+#TODO: correct issues around discrepant scientific name spellings
+
+#TODO be consistent with how sex is represented eg: Male vs m, Femaled vs f
+
+#TODO make length measurements consistently mm or cm
+#TODO figure length type for NW explorer
+#TODO Convert all specimen weights to grams
 
 # Save specimen data:
 write_csv(IYS_trawl_specimen, here("output_datasets", "IYS_trawl_specimen.csv"))
@@ -909,8 +941,8 @@ Combine all data frames into a single .xlsx workbook:
 
 ```{r final_join}
 # All IYS Expeditions:
-out <- list("Sampling Event Info" = IYS_events, "Overall_Catch_Data" = IYS_trawl_catch, "Overall_Specimen_Data" = IYS_trawl_specimen,
-            "Overall_CTD_Data" = IYS_CTD)
+out <- list("Sampling_Events" = IYS_events, "Trawl_Catch_Data" = IYS_trawl_catch, "Trawl_Specimen_Data" = IYS_trawl_specimen,
+            "CTD_Data" = IYS_CTD)
 
  
 writexl::write_xlsx(out, here("IYS_Integratedd_Data_Collection.xlsx"))
