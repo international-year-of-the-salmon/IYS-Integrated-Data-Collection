@@ -6,14 +6,32 @@ All notable changes to this project will be documented in this file.
 ### Notes
 
 Mostly minor updates for formatting of column names and the addition of 2019 CTD data
+Tab names have been changed to `Sampling_Events`, `Trawl_Catch_Data`, `Trawl_Specimen_Data` and `CTD_Data`. 
 
 ### Added
 - 2019 CTD data from the Professor Kaganovksy
+- 2020 CTD data from the Pacific Legacy
+- In the Sampling Events sheet: day_of_year column
+- In the Trawl_Catch_Data sheet: verbatim_identification column to indicate original formulation of scientific_name per data provider.
+- In the Trawl_Catch_Data sheet: Zero-catch trawl events have been added.
+- Columns alternative_event_id, alternative_catch_id and alternative_specimen_id to reflect naming systems used by different organizations. These columns are populated in their respective data tabs.  
+- In the Trawl_Catch_Data and Trawl_Specimen_Data sheets: scientific_name_id with the LSID to the species or taxa in WoRMS Registry. 
+- In the CTD_Data sheet: columns added for event_date, latitude_start_decdeg and longitude_start_decdeg. 
 
 ### Changed
 - Column headers are now all in lower_case
+- time_zone_code to only show 'UTC' (instead of both UTC and GMT).
+- In the Trawl_Catch_Data sheet: scientific_name now reflects correct WoRMS names. 
+- In the Trawl_Specimen_Data sheet: scientific_name now reflects correct WoRMS names. 
+- In the Trawl_Specimen_Data sheet: length_units and weight_units have been standardized to 'Millimeters' and 'Grams' respectively. 
+- In the Trawl_Specimen_Data sheet: `Barcode number` is now reflected in 'alternative_specimen_id` column. 
+- In the Trawl_Specimen_Data sheet: abbreviations in the sex column (i.e. 'm' and 'f') have been changed to 'male' and 'female' respectively. '?' has been changed to 'unknown'. 
+
 
 ### Removed
+- In the Trawl_Catch_Data and Trawl_Specimen_Data sheets, 'sp.' has been removed from the scientific_name column.
+- In the Trawl_Specimen_Data, columns Fin_clip, and Gill:Note have been removed. 
+- In the CTD_Data, columns sea_water_conductivity:Sampling_Depth_Meters have been removed. 
 
 ## [V1] - 2022-07-08
 
