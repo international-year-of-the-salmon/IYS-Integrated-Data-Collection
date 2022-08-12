@@ -411,9 +411,11 @@ IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, Go
                              ifelse(nchar(day) < 2,
                                     paste0("0", day),day), 
                              "T", time_start, "Z")) |> 
-  rename(station_event_ID = station_event_id) |> 
-  select(cruise_name:station_event_ID, alternative_event_id, event_date, year:comments) |> 
-  mutate(day_night = tolower(day_night))
+  select(cruise_name:station_event_id, alternative_event_id, event_date, year:comments) |> 
+  mutate(day_night = tolower(day_night),
+         date = as.Date(event_date, format = "%Y-%m-%d"),
+         day_of_year = lubridate::yday(date)) %>%
+  select(-date)
 
 #QC event data
 IYS_events |> group_by(vessel_name_abbr, event_type) |> 
@@ -564,8 +566,7 @@ janitor::compare_df_cols(NW_catch, TINRO_catch, Shimada_catch, Franklin_catch, G
 # Bind rows and save for catch from only 2022 and catch from all IYS High Seas Expeditions:
 
 #TODO: Include GoA2019_catch and GoA2020_catch once confident
-IYS_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch, Franklin_catch) |> 
-  rename(station_event_ID = station_event_id)
+IYS_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch, Franklin_catch)
 
 IYS_trawl_catch$dateidentified <- as.character(IYS_trawl_catch$dateidentified)
 
@@ -584,6 +585,45 @@ IYS_trawl_catch$taxonomic_rank <- tolower(IYS_trawl_catch$taxonomic_rank)
 IYS_trawl_catch |> count(lifestage)
 IYS_trawl_catch$lifestage <- tolower(IYS_trawl_catch$lifestage)
 
+# Join station_event_ids from event table to catch_ids, to see if there are any recorded sampling events that didn't end up catching anything:
+trawl_event <- IYS_events %>% filter(event_type == "Trawl" & year == "2022") %>% select(station_event_id)
+IYS_trawl_catch <- left_join(trawl_event, IYS_trawl_catch, by = "station_event_id") %>%
+  mutate(comments = ifelse(station_event_id == "IYS2022-TINRO-3-6-Trawl", "Trawl was successful, but no species were caught.", comments),
+         comments = ifelse(station_event_id == "IYS2022-Shimada-4-2-Trawl", "Codend wasn't fully closed so nothing was retained in codend.", comments))
+
+# Duplicate scientific_name column to 'verbatim_identification', and use worrms to change the names in scientfic_name to fit the WoRMS registry.
+IYS_trawl_catch$verbatim_identification <- IYS_trawl_catch$scientific_name
+
+# Remove " sp." and special characters (i.e. brackets) from scientific_name and adjust spelling: 
+IYS_trawl_catch$scientific_name <- gsub("\\b sp.\\b", "", IYS_trawl_catch$scientific_name)
+IYS_trawl_catch$scientific_name <- gsub("[[:punct:]]", "", IYS_trawl_catch$scientific_name)
+
+# Match the unique recorded species to the WoRMS database. Check manually because sometimes multiple AphiaIDs are associated, which need to be removed.
+IYS_scientificnames <- worrms::wm_records_names(unique(IYS_trawl_catch$scientific_name)) %>% bind_rows() %>% rename(scientific_name = scientificname) %>%
+  select(scientific_name, AphiaID, lsid)
+
+unid_species <- left_join(IYS_trawl_catch, IYS_scientificnames, by = "scientific_name") %>% filter(is.na(AphiaID)) 
+unid_species <- unique(unid_species$scientific_name)
+
+# We see that in the overall catch data there are 9 (including 'NA') species that don't have a match in the WoRMS Registry, change these names in the original dataframe:
+IYS_trawl_catch$scientific_name <- gsub("Oncorhynchus tschawytscha", "Oncorhynchus tshawytscha", IYS_trawl_catch$scientific_name)
+IYS_trawl_catch$scientific_name <- gsub("Phacellophora camtshchatica", "Phacellophora camtschatica", IYS_trawl_catch$scientific_name)
+IYS_trawl_catch$scientific_name <- gsub("Phacellophora camtchatica", "Phacellophora camtschatica", IYS_trawl_catch$scientific_name)
+IYS_trawl_catch$scientific_name <- gsub("Glyptocephalus zachiris", "Glyptocephalus zachirus", IYS_trawl_catch$scientific_name)
+IYS_trawl_catch$scientific_name <- gsub("Argropelecus sladeni", "Argyropelecus sladeni", IYS_trawl_catch$scientific_name)
+IYS_trawl_catch$scientific_name <- gsub("Scyphozoa class", "Scyphozoa", IYS_trawl_catch$scientific_name)
+IYS_trawl_catch$scientific_name <- gsub("^Amphipod$", "Amphipoda", IYS_trawl_catch$scientific_name) # Please not the ^ and $ to indicate start and 
+IYS_trawl_catch$scientific_name <- gsub("Onychoteuthis borealijaponicus", "Onychoteuthis borealijaponica", IYS_trawl_catch$scientific_name)
+IYS_trawl_catch$scientific_name <- gsub("Unknown fish", "Pisces", IYS_trawl_catch$scientific_name)
+
+# Rematch the unique recorded species to the WoRMS registry to ensure all names have been changed appropriately. Check manually because sometimes multiple AphiaIDs are associated to a taxa or species, which need to be removed. 
+IYS_scientificnames <- worrms::wm_records_names(unique(IYS_trawl_catch$scientific_name)) %>% bind_rows() %>% rename(scientific_name = scientificname) %>%
+  select(scientific_name, AphiaID, lsid) %>% filter(!AphiaID %in% c("1434994", "106331", "163921"))
+
+IYS_trawl_catch <- left_join(IYS_trawl_catch, IYS_scientificnames, by = "scientific_name") %>%
+  rename(scientific_name_id = lsid) %>%
+  select(-AphiaID)
+
 # Save catch data:
 write_csv(IYS_trawl_catch, here("output_datasets", "IYS_trawl_catch.csv"))
 ```
@@ -593,7 +633,6 @@ write_csv(IYS_trawl_catch, here("output_datasets", "IYS_trawl_catch.csv"))
 Now let's join the overall specimen data from these vessels into a specific data frame as well. 
 
 Note: Evgeny indicated it would be good to have GSI and age data in the specimen tables once they are available
-
 
 ```{r overall specimen}
 NW_specimen <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Specimen_Info")
@@ -632,7 +671,9 @@ Cleaning Franklin, TINRO, and Shimada specimen column names:
 TINRO_specimen <- TINRO_specimen %>% rename_with(tolower) %>%
   select(-c(fin_clip, gill:note))
 
-Shimada_specimen <- Shimada_specimen %>% rename_with(tolower)
+Shimada_specimen <- Shimada_specimen %>% rename_with(tolower) %>%
+  rename(alternative_specimen_id = `barcode number`)
+Shimada_specimen$alternative_specimen_id <- as.character(Shimada_specimen$alternative_specimen_id)
 
 Franklin_specimen <- Franklin_specimen %>% rename_with(tolower) %>%
   dplyr::rename(alternative_event_id = dfo_station_event_id,
@@ -841,9 +882,35 @@ IYS_trawl_specimen$specimen_id[duplicated(IYS_trawl_specimen$specimen_id)] # sho
 
 specimen_names <- IYS_trawl_specimen |> 
   count(scientific_name)
-#TODO: correct issues around discrepant scientific name spellings
 
-#TODO be consistent with how sex is represented eg: Male vs m, Femaled vs f
+# Duplicate scientific_name column to 'verbatim_identification', and use worrms to change the names in scientfic_name to fit the WoRMS registry.
+IYS_trawl_specimen$verbatim_identification <- IYS_trawl_specimen$scientific_name
+
+# Remove " sp." and special characters (i.e. brackets) from scientific_name and adjust spelling: 
+IYS_trawl_specimen$scientific_name <- gsub("\\b sp.\\b", "", IYS_trawl_specimen$scientific_name)
+
+# Match the unique recorded species to the WoRMS database. Check manually because sometimes multiple AphiaIDs are associated, which need to be removed.
+IYS_spp_scientificnames <- worrms::wm_records_names(unique(IYS_trawl_specimen$scientific_name)) %>% bind_rows() %>% rename(scientific_name = scientificname) %>%
+  select(scientific_name, AphiaID, lsid)
+
+unid_species <- left_join(IYS_trawl_specimen, IYS_spp_scientificnames, by = "scientific_name") %>% filter(is.na(AphiaID)) 
+unid_species <- unique(unid_species$scientific_name)
+
+# We see that in the overall catch data there are 9 (including 'NA') species that don't have a match in the WoRMS Registry, change these names in the original dataframe. Please note that Oncorhynchus tschawythscha does get an AphiaID, but WoRMS indicates that the spelling is wrong. 
+IYS_trawl_specimen$scientific_name <- gsub("Oncorhynchus tschawytscha", "Oncorhynchus tshawytscha", IYS_trawl_specimen$scientific_name)
+IYS_trawl_specimen$scientific_name <- gsub("Phacellophora camtshchatica", "Phacellophora camtschatica", IYS_trawl_specimen$scientific_name)
+IYS_trawl_specimen$scientific_name <- gsub("Phacellophora camtchatica", "Phacellophora camtschatica", IYS_trawl_specimen$scientific_name)
+IYS_trawl_specimen$scientific_name <- gsub("Argropelecus sladeni", "Argyropelecus sladeni", IYS_trawl_specimen$scientific_name)
+IYS_trawl_specimen$scientific_name <- gsub("Onychoteuthis borealijaponicus", "Onychoteuthis borealijaponica", IYS_trawl_specimen$scientific_name)
+IYS_trawl_specimen$scientific_name <- gsub("Unknown fish", "Pisces", IYS_trawl_specimen$scientific_name)
+
+# Rematch the unique recorded species to the WoRMS registry to ensure all names have been changed appropriately. Check manually because sometimes multiple AphiaIDs are associated to a taxa or species, which need to be removed. 
+IYS_spp_scientificnames <- worrms::wm_records_names(unique(IYS_trawl_specimen$scientific_name)) %>% bind_rows() %>% rename(scientific_name = scientificname) %>%
+  select(scientific_name, AphiaID, lsid) %>% filter(!AphiaID %in% c("1434994", "106331", "163921"))
+
+IYS_trawl_specimen <- left_join(IYS_trawl_specimen, IYS_scientificnames, by = "scientific_name") %>%
+  rename(scientific_name_id = lsid) %>%
+  select(-c(AphiaID, alternative_id))
 
 #TODO figure length type for NW explorer
 
@@ -980,7 +1047,6 @@ Combine all data frames into a single .xlsx workbook:
 out <- list("Sampling_Events" = IYS_events, "Trawl_Catch_Data" = IYS_trawl_catch, "Trawl_Specimen_Data" = IYS_trawl_specimen,
             "CTD_Data" = IYS_CTD)
 
- 
 writexl::write_xlsx(out, here("IYS_Integratedd_Data_Collection.xlsx"))
 ```
 
