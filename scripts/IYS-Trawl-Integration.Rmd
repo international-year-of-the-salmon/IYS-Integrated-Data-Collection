@@ -1048,7 +1048,7 @@ Combine all data frames into a single .xlsx workbook:
 out <- list("Sampling_Events" = IYS_events, "Trawl_Catch_Data" = IYS_trawl_catch, "Trawl_Specimen_Data" = IYS_trawl_specimen,
             "CTD_Data" = IYS_CTD)
 
-writexl::write_xlsx(out, here("IYS_Integratedd_Data_Collection.xlsx"))
+writexl::write_xlsx(out, here("IYS_Integrated_Data_Collection_V2.xlsx"))
 ```
 
 Create polygon coordinates for all events
