@@ -960,7 +960,6 @@ ctd_2019_data <- IYS_2019_CTD |>
 ctd_2020 <- read_csv("https://raw.githubusercontent.com/international-year-of-the-salmon/2020-CTD/master/standardized_data/2020_ctd.csv") |> 
   select(-cast) %>%
   rename(station_event_id = station_event_ID)
-
 ```
 
 
