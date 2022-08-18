@@ -34,9 +34,3 @@ bathymetric_station_map
 
 ggsave(here("maps", "bathymetric_station_map.png"))
 
-polygon_map <- basemap(data = iys_data, rotate = TRUE) +
-  geom_spatial_polygon(data = iys_data, aes(x = longitude_start_decdeg,
-                                           y = latitude_start_decdeg), 
-                                           alpha = 0.5)
-
-polygon_map
