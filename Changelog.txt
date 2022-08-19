@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
 - Scripts for generating maps. See maps folder for maps and scripts/map_scripts for the code used to generate maps. Note the script name and map name match
 - The planned Raw Spirit vessel sampling coordinates were added to the sampling event table, despite not having received any data from the Raw Spirit yet.
 
+### Changed
+- 'P PRIME' in the station and station_event_id columns for the 2020 CTD data changed to 'p_prime'. 
+
+### Removed
 
 ## [V2] - 2022-08-17
 
