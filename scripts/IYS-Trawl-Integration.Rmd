@@ -428,6 +428,14 @@ IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, Go
          day_of_year = lubridate::yday(date)) %>%
   select(-date)
 
+# Add dataset DOI by vessel:
+IYS_events <- IYS_events %>%
+  mutate(dataset_doi <- case_when(
+    vessel_name_abbr == "TINRO" ~ "https://doi.org/10.21966/wevm-ww19",
+    vessel_name_abbr == "Shimada" ~ "https://doi.org/10.21966/nt8w-je90",
+    vessel_name_abbr == "Franklin" ~ "https://doi.org/10.21966/gmrz-ad56", # DOI minted, metadata record not yet 'live'. 
+    vessel_name_abbr == "NW" ~ "https://doi.org/10.21966/shnm-s480"))
+
 #QC event data
 IYS_events |> group_by(vessel_name_abbr, event_type) |> 
   tally()
