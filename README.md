@@ -17,3 +17,9 @@ See the Changelog.txt file to get updates on what's changed between dataset vers
 
 🦐 Check out our about page for more info! https://international-year-of-the-salmon.github.io/about/index.html
 
+
+### Entity Relationship Diagram
+
+The Integrated Data Collection can be joined together using the columns that each table has in common.
+
+![Entity Relationship Diagram for the Integrated Data Collection](figs/ERD.png)
