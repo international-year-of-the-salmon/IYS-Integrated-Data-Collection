@@ -434,7 +434,9 @@ IYS_events <- IYS_events %>%
     vessel_name_abbr == "TINRO" ~ "https://doi.org/10.21966/wevm-ww19",
     vessel_name_abbr == "Shimada" ~ "https://doi.org/10.21966/nt8w-je90",
     vessel_name_abbr == "Franklin" ~ "https://doi.org/10.21966/gmrz-ad56", # DOI minted, metadata record not yet 'live'. 
-    vessel_name_abbr == "NW" ~ "https://doi.org/10.21966/shnm-s480"))
+    vessel_name_abbr == "NW" ~ "https://doi.org/10.21966/shnm-s480",
+    vessel_name_abbr == "Kaganovsky" ~ "https://doi.org/10.21966/DPHZ-AS73",
+    vessel_name_abbr == "Legacy" ~ "https://doi.org/10.21966/4J6T-GB64"))
 
 #QC event data
 IYS_events |> group_by(vessel_name_abbr, event_type) |> 
