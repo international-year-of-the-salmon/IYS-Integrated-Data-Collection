@@ -935,25 +935,18 @@ Next, integrate the CTD data (please note, we do not have CTD/Rosette data from 
 
 ```{r 2022 TINRO CTD}
 TINRO_CTD <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "7. CTD INFO") |> 
+    select(-c(sea_water_conductivity, sea_water_EC25, sea_water_turbidity,
+         sea_water_chl_fluorescence, sea_water_chl_concentration,
+         sea_water_dissolvedO2, sea_water_dissolvedO2_sat,
+         sea_water_pH, sea_water_BOD5, Comments)) |> 
   rename(station_event_id = Station_Event_ID,
          instrument_type = Instrument_Type,
          instrument_model = Instrument_Model,
-         comments = Comments,
          sampling_depth_dbar = Sampling_Depth_Dbar,
-         #TODO: confirm [chl] is for a 
-         `sea_water_chl_a_concentration_ug/L` = sea_water_chl_concentration, 
          sea_water_temperature_degC = sea_water_temperature,
-         sea_water_turbidity_NTU = sea_water_turbidity,
          sea_water_salinity_PSU = sea_water_salinity,
-         `sea_water_EC25_uS/cm` = sea_water_EC25,
-         `sea_water_dissolvedO2_sat_%` = sea_water_dissolvedO2_sat,
          `sea_water_density_kg/m3` = sea_water_density,
-         `sea_water_conductivity_mS/cm` = sea_water_conductivity,
-         sea_water_chl_fluorescence_PPB = sea_water_chl_fluorescence,
-         `sea_water_BOD5_mL/L` = sea_water_BOD5, 
-         `sea_water_dissolvedO2_mg/L`  = sea_water_dissolvedO2
          ) |> 
-  mutate(comments = as.character(comments)) |> 
   left_join(select(filter(TINRO_event, event_type == "CTD"), station_event_id, latitude_start_decdeg), by = "station_event_id") |> 
   mutate(sampling_depth_meters = swDepth(sampling_depth_dbar, latitude = latitude_start_decdeg)) |> 
   select(-latitude_start_decdeg)
@@ -982,14 +975,14 @@ janitor::compare_df_cols(TINRO_CTD, ctd_2019_data, ctd_2020)
 IYS_CTD <- bind_rows(TINRO_CTD, ctd_2019_data, ctd_2020) |> 
   select(station_event_id:sampling_depth_dbar, sampling_depth_meters,
          sea_water_temperature_degC:`sea_water_dissolvedO2_sat_%`,
-         `sea_water_concentration_of_oxygen_mL/L`, sea_water_pH:comments)
+         `sea_water_concentration_of_oxygen_mL/L`, sea_water_pH:`sea_water_oxygen_mL/L`)
 
 # QC value ranges for unit issues
 ranges <- IYS_CTD |> 
   left_join(select(IYS_events, station_event_id, vessel_name_abbr)) |> 
   group_by(vessel_name_abbr) |> 
   summarise_all(range, na.rm = TRUE)
-
+ranges
 #TODO Include more columns/variables once confident in comparability
 IYS_CTD <- IYS_CTD |> 
   select(station_event_id, instrument_type, sampling_depth_meters,
@@ -997,9 +990,10 @@ IYS_CTD <- IYS_CTD |>
 
 IYS_CTD <- right_join(select(IYS_events, station_event_id, event_date, latitude_start_decdeg, longitude_start_decdeg), IYS_CTD, by = "station_event_id")
 
-#TODO calculate sampling_depth_meters for TINRO based on pressure_dbar whatever else TEOS tells me
+#TODO: Ensure Sigma T is comparable across vessels
 #TODO: Figure out why there isn't conductivity from TINRO vessel
 #TODO: Figure out whether oxygen measurements can be unit converted and combined
+#
 
 write_csv(IYS_CTD, here("output_datasets", "IYS_CTD.csv"))
 
