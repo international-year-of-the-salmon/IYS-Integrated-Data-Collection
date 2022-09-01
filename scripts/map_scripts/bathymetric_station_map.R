@@ -3,7 +3,6 @@
 library(ggOceanMaps)
 library(tidyverse)
 library(readxl)
-library(here)
 
 # Edit which vessels, years, or sampling event types you would like to plot
 vessel <- c("TINRO", "NW", "Shimada", "Franklin", "Kaganovsky", "Legacy", "Raw_Spirit")
@@ -33,5 +32,5 @@ bathymetric_station_map <-
 
 bathymetric_station_map
 
-ggsave(here("maps", "bathymetric_station_map.png"))
+#ggsave(here("maps", "bathymetric_station_map.png"))
 
