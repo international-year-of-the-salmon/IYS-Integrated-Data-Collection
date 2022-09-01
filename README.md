@@ -10,9 +10,9 @@ See the Changelog.txt file to get updates on what's changed between dataset vers
   * `input_datasets` contains processed data files (not standardized) that have been sent to the IYS Data Scientists.
   * `output_datasets` contains the individual integrated datasets specific to a data type (i.e. bridgelog, trawl, specimen, CTD). 
   
-  These datasets are aggregated and integrated within the IYS_Integrated_Data_Collection_MASTER workbook. 
+  These datasets are aggregated and integrated within the IYS_Integrated_Data_Collection_Vx workbook, with x being the latest released version. 
   
-  * `archived_versions` contains older versions of the IYS_Integrated_Data_Collection_MASTER.xlsx file. Any changes between versions are recorded in the Changelog. 
+  * `archived_versions` contains older versions of the IYS_Integrated_Data_Collection.xlsx file. Any changes between versions are recorded in the Changelog. 
   * `scripts` contains the code used to format and integrate the input datasets into the individual output datasets and the master file.
 
 🦐 Check out our about page for more info! https://international-year-of-the-salmon.github.io/about/index.html
