@@ -21,12 +21,14 @@ iys_data <- read_excel(list.files(pattern = "\\.xlsx$"),
          Vessel = ifelse(Vessel == "Raw_Spirit", "Raw Spirit", Vessel))
 
 bathymetric_station_map <- 
-  basemap(data = iys_data,  rotate = TRUE, bathymetry = TRUE, lon.interval = 3) +
+  basemap(data = iys_data,  rotate = TRUE, bathymetry = TRUE, bathy.style = "poly_greys",
+          lon.interval = 3) +
   guides(fill="none")+ # Removes bathymetry scale legend
   geom_spatial_point(data = iys_data, aes(x = longitude_start_decdeg,
                                           y = latitude_start_decdeg, 
                                           colour = Vessel,
-  ))+
+                     size = I(5)))+
+  guides(colour = guide_legend("Vessel Name")) +
   annotation_scale(location = "br") + 
   annotation_north_arrow(location = "tr", which_north = "true")
 
