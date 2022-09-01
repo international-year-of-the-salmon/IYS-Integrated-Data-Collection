@@ -1,4 +1,4 @@
-# Basic Stations Map with Batymetry
+# Basic Stations Map with Bathymetry
 
 library(ggOceanMaps)
 library(tidyverse)
@@ -11,8 +11,7 @@ sampling_year <- c(2022)
 #event_types could include "Trawl", "CTD" or "CTD-Rosette", "Gillnet"
 event_types <- c("Trawl", "Gillnet")
 
-iys_data <- read_excel(list.files(pattern = "\\.xlsx$"), 
-                       sheet = "Sampling_Events") |> 
+iys_data <- read_csv("https://raw.githubusercontent.com/international-year-of-the-salmon/IYS-Integrated-Data-Collection/main/output_datasets/IYS_events.csv?token=GHSAT0AAAAAABYJRUOVTUZHFB3DXM4SZHSGYYRENFA") |> 
   filter(vessel_name_abbr %in% vessel,
          year %in% sampling_year,
          event_type %in% event_types) |> 
@@ -21,12 +20,14 @@ iys_data <- read_excel(list.files(pattern = "\\.xlsx$"),
          Vessel = ifelse(Vessel == "Raw_Spirit", "Raw Spirit", Vessel))
 
 bathymetric_station_map <- 
-  basemap(data = iys_data,  rotate = TRUE, bathymetry = TRUE, lon.interval = 3) +
+  basemap(data = iys_data,  rotate = TRUE, bathymetry = TRUE, bathy.style = "poly_greys",
+          lon.interval = 3) +
   guides(fill="none")+ # Removes bathymetry scale legend
   geom_spatial_point(data = iys_data, aes(x = longitude_start_decdeg,
                                           y = latitude_start_decdeg, 
                                           colour = Vessel,
-  ))+
+                     size = I(5)))+
+  scale_colour_discrete() +
   annotation_scale(location = "br") + 
   annotation_north_arrow(location = "tr", which_north = "true")
 
