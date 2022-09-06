@@ -28,9 +28,11 @@ bathymetric_station_map <-
                      size = I(5)))+
   scale_colour_discrete() +
   annotation_scale(location = "br") + 
-  annotation_north_arrow(location = "tr", which_north = "true")
+  annotation_north_arrow(location = "tr", which_north = "true") +
+  xlab("Longitude") + 
+  ylab("Latitude")
 
 bathymetric_station_map
 
-#ggsave(here("maps", "bathymetric_station_map.png"))
+ggsave(here("maps", "bathymetric_station_map.png"))
 
