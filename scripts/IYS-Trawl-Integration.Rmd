@@ -430,13 +430,16 @@ IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, Go
 
 # Add dataset DOI by vessel:
 IYS_events <- IYS_events %>%
-  mutate(dataset_doi <- case_when(
-    vessel_name_abbr == "TINRO" ~ "https://doi.org/10.21966/wevm-ww19",
-    vessel_name_abbr == "Shimada" ~ "https://doi.org/10.21966/nt8w-je90",
-    vessel_name_abbr == "Franklin" ~ "https://doi.org/10.21966/gmrz-ad56", 
-    vessel_name_abbr == "NW" ~ "https://doi.org/10.21966/shnm-s480",
-    vessel_name_abbr == "Kaganovsky" ~ "https://doi.org/10.21966/DPHZ-AS73",
-    vessel_name_abbr == "Legacy" ~ "https://doi.org/10.21966/4J6T-GB64"))
+  mutate(dataset_doi = case_when(
+    vessel_name_abbr == "TINRO" & event_type == "Trawl" ~ "https://doi.org/10.21966/wevm-ww19",
+    vessel_name_abbr == "TINRO" & event_type == "CTD" ~ "https://doi.org/10.21966/rfv4-e505",
+    vessel_name_abbr == "Shimada" & event_type == "Trawl" ~ "https://doi.org/10.21966/nt8w-je90",
+    vessel_name_abbr == "Franklin" & event_type == "Trawl" ~ "https://doi.org/10.21966/gmrz-ad56", 
+    vessel_name_abbr == "NW" & event_type == "Trawl" ~ "https://doi.org/10.21966/shnm-s480",
+    vessel_name_abbr == "Kaganovsky" & event_type == "Trawl" ~ "https://doi.org/10.21966/DPHZ-AS73",
+    vessel_name_abbr == "Kaganovsky" & event_type == "CTD" ~ "https://doi.org/10.21966/66gj-7q46",
+    vessel_name_abbr == "Legacy" & event_type == "Trawl" ~ "https://doi.org/10.21966/4J6T-GB64",
+    vessel_name_abbr == "Legacy" & event_type == "CTD" ~ "https://doi.org/10.21966/nkc2-9m58"))
 
 #QC event data
 IYS_events |> group_by(vessel_name_abbr, event_type) |> 
