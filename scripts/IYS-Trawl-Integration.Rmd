@@ -433,7 +433,7 @@ IYS_events <- IYS_events %>%
   mutate(dataset_doi <- case_when(
     vessel_name_abbr == "TINRO" ~ "https://doi.org/10.21966/wevm-ww19",
     vessel_name_abbr == "Shimada" ~ "https://doi.org/10.21966/nt8w-je90",
-    vessel_name_abbr == "Franklin" ~ "https://doi.org/10.21966/gmrz-ad56", # DOI minted, metadata record not yet 'live'. 
+    vessel_name_abbr == "Franklin" ~ "https://doi.org/10.21966/gmrz-ad56", 
     vessel_name_abbr == "NW" ~ "https://doi.org/10.21966/shnm-s480",
     vessel_name_abbr == "Kaganovsky" ~ "https://doi.org/10.21966/DPHZ-AS73",
     vessel_name_abbr == "Legacy" ~ "https://doi.org/10.21966/4J6T-GB64"))
@@ -666,6 +666,7 @@ GoA2020_specimen <- read_excel(here("input_datasets", "2020-01 Specimen file.v21
 
 #TODO: Integrate age data
 #TODO: Integrate genetic stock ID data
+#TODO: Integrate external marks data
 ```
 
 
@@ -1015,11 +1016,12 @@ Include Biogeochemistry data
 ```{r}
 #TODO combine rosette and CTD event IDs where possible
 #TODO creat 'bottle file' from rosette and CTD data (probably just add ctd data to rosette table at appropriate depths)
-#TODO add 2019 POM data
-#TODO add 2019 Chl and  Phaeopigment data
-#TODO add 2019 Nutrient, Oxygen data
-#TODO add 2020 Nutrient data
-#TODO add 2022 Nutrient and oxygend data
+#TODO add 2022 Nutrient and oxygen data
+
+TINRO_bottles <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), 
+                          sheet = "8. ROSETTE INFO")
+
+
 ```
 
 
@@ -1130,3 +1132,27 @@ stations <- bind_rows(stations, Franklin_stations)
 write_csv(stations, "stations.csv")
 ```
 
+```{r match 2019 ctd to trawl}
+# Isolate 2019 CTD events from IYS_events
+nt_ctd_e <- IYS_events |> 
+  filter(vessel_name_abbr == "Kaganovsky",
+         event_type == "CTD") |> 
+  select(station, station_event_id, event_date)
+
+#Isolate 2019 CTD events from IYS_CTD data
+df2 <- IYS_CTD |> 
+  select(station_event_id, event_date)
+
+#join CTD data to CTD events
+df3 <- semi_join(nt_ctd_e, df2, by = "station_event_id")
+
+#That works as expected and gets the station number onto the CTD 
+
+nt_trawl_e <- IYS_events |> 
+  filter(vessel_name_abbr == "Kaganovsky",
+         event_type == "Trawl") |> 
+  select(station, station_event_id, event_date)
+
+join <- full_join(nt_trawl_e, nt_ctd_e, by = "station")
+join
+```

@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - 'P PRIME' in the station and station_event_id columns for the 2020 CTD data changed to 'p_prime'. 
+- Changes the 2019 Kaganovksy CTD station numbers to match Trawl station numbers
 
 ### Removed
 
