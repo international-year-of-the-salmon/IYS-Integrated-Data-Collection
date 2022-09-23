@@ -57,11 +57,13 @@ Franklin_event <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"
                              sheet = "3. SAMPLING EVENT INFO") |> 
   filter(Event_Type %in% c("Trawl", "CTD_Rosette"))
 
+#TODO Update 2019 event and catch data to read directly from public git repo
 # Need to download this file manually from 2019 Trawl git repo
 GoA2019_event <- read_excel(here("input_datasets",
                                  "2019_GoA_Fish_Trawl_catchdata.xlsx"),
                             sheet = "BRIDGE_LOG_FINAL") %>% filter(EVENT_TYPE %in% c("Trawl", "Can EEZ")) 
 
+#TODO Update 2020 event and catch data to read directly from public git repo
 # Need to download this file manually from 2020 Trawl git repo
 GoA2020_event <- read_excel(here("input_datasets",
                                  "JuvSalmon_2020-01_Catch_v2021.1C_FINAL SUBMIT_jan18_2021 (2).xlsx"), 
@@ -399,7 +401,8 @@ GoA2020_event <- GoA2020_event %>% rename_with(tolower)
 ctd_2020_events <- read_csv("https://raw.githubusercontent.com/international-year-of-the-salmon/2020-CTD/master/standardized_data/ctd_events.csv") |> 
   rename(station_event_id = station_event_ID) |> 
   mutate(time_start = as.character(time_start),
-         time_end = as.character(time_end))
+         time_end = as.character(time_end),
+         station = as.character(station))
 
 janitor::compare_df_cols(GoA2020_event, ctd_2020_events)
 
@@ -1135,27 +1138,31 @@ stations <- bind_rows(stations, Franklin_stations)
 write_csv(stations, "stations.csv")
 ```
 
-```{r match 2019 ctd to trawl}
-# Isolate 2019 CTD events from IYS_events
-nt_ctd_e <- IYS_events |> 
-  filter(vessel_name_abbr == "Kaganovsky",
-         event_type == "CTD") |> 
-  select(station, station_event_id, event_date)
+```{r join CTD data}
 
-#Isolate 2019 CTD events from IYS_CTD data
-df2 <- IYS_CTD |> 
-  select(station_event_id, event_date)
+kag_ctd <- dplyr::right_join(IYS_events, IYS_CTD, by = c("station_event_id")) |> 
+  filter(vessel_name_abbr == "Kaganovsky") |> 
+  select(vessel_name_abbr, station, 
+         sampling_depth_meters:sea_water_salinity_PSU)
 
-#join CTD data to CTD events
-df3 <- semi_join(nt_ctd_e, df2, by = "station_event_id")
+kag_trawls <- IYS_events |> 
+  filter (vessel_name_abbr == "Kaganovsky")
 
-#That works as expected and gets the station number onto the CTD 
+kag_ctd_trawls <- dplyr::right_join(kag_trawls, kag_ctd, by = "station")
 
-nt_trawl_e <- IYS_events |> 
-  filter(vessel_name_abbr == "Kaganovsky",
-         event_type == "Trawl") |> 
-  select(station, station_event_id, event_date)
+anti_join(kag_trawls, kag_ctd, by = "station")
 
-join <- full_join(nt_trawl_e, nt_ctd_e, by = "station")
-join
+# Pacific Legacy 
+
+leg_ctd <- dplyr::right_join(IYS_events, IYS_CTD, by = "station_event_id") |> 
+  filter(vessel_name_abbr == "Legacy") |> 
+  select(vessel_name_abbr, station, sampling_depth_meters:sea_water_salinity_PSU)
+
+leg_trawls <- IYS_events |> 
+  filter (vessel_name_abbr == "Legacy")
+
+leg_ctd_trawls <- dplyr::right_join(leg_trawls, leg_ctd, by = "station")
+
+
+anti_join(leg_trawls, leg_ctd, by = "station")
 ```
