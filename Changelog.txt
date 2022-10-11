@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [V3] Unreleased
+## [V3] 2022-09-21
 
 ### Notes
 
@@ -11,10 +11,9 @@ All notable changes to this project will be documented in this file.
 - In the tab `Sampling_Events`, added a column `dataset_doi` so that data users understand which DOI to reference when using the dataset. 
 
 ### Changed
-- 'P PRIME' in the station and station_event_id columns for the 2020 CTD data changed to 'p_prime'. 
-- Changes the 2019 Kaganovksy CTD station numbers to match Trawl station numbers
+- Updated standardized data so the station names of the CTD casts match are now the same as the trawl set number that the CTD cast is associated with. Original CTD station names included numbers and letters eg. station 1, 2, P, AB. Trawls were not assigned the same stations in the bridgelog only a set number. The CTD and Rosette staion numbers don't match with the trawl set numbers, so we retained the original CTD/Rosette station name in a column called 'alternate_station_id' but changed station to match the trawl set number so that future bottle samples can be matched to either the trawl or the CTD/Rosette station. The cross walk for trawl set number and CTD/Rosette station number was found in a table called 'UBC Trawl sample data_dec2020' in this google sheet: https://docs.google.com/spreadsheets/d/1etM9o4ZKfNHDdDRPeAvsMK5j6NNPqrgHGDsdbC3m3Is/edit#gid=1300978020
+- Changes the 2019 Kaganovksy CTD station numbers to match Trawl station numbers. In previous versions the 2019 CTD data were used stations that were incrementing from previous work (not related to IYS) done by the Kaganovsky crew in the western Pacific. 
 
-### Removed
 
 ## [V2] - 2022-08-17
 
