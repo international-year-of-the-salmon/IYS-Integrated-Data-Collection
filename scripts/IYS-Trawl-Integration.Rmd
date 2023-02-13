@@ -35,33 +35,31 @@ download.file(" ", here::here("input_datasets", "GoA2019_Fish_Trawl_catch.xlsx")
 download.file(" ", here::here("input_datasets", "GoA2019_Fish_Specimen.xlsx"), quiet = TRUE, mode = "wb")
 download.file(" ", here::here("input_datasets", "GoA2020_Fish_Trawl_catch.xlsx"), quiet = TRUE, mode = "wb")
 download.file(" ", here::here("input_datasets", "GoA2020_Fish_Specimen.xlsx"), quiet = TRUE, mode = "wb")
+download.file(" ", here::here("input_datasets", "IYS2022_Zooplankton_Template.xlsx"), quiet = TRUE, mode = "wb")
 
 ```
 
-# Trawl Data
-
 ## Event Data 
 
-Now that we have the latest versions of the trawl data downloaded, we can read them in:
+Now that we have the latest versions of the data downloaded, we can read them in:
 
 ```{r event data}
-
-NW_event <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), 
-                       sheet = "Sampling_Event_Info") %>%
-  filter(Event_Type == "CanTrawl") |> 
-  mutate(Event_Type = "Trawl")
+# For the Trawl data:
+NW_event <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Sampling_Event_Info") %>%
+  filter(Event_Type %in% c("CanTrawl", "Bongo")) |> 
+  mutate(Event_Type = gsub("Can", "", Event_Type))
 
 TINRO_event <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), 
                           sheet = "4. SAMPLING EVENT INFO") %>%
-  filter(Event_Type %in% c("Trawl", "CTD"))
+  filter(Event_Type %in% c("Trawl", "CTD", "Bongo"))
 
 Shimada_event <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"),
                             sheet = "4. SAMPLING EVENT INFO") %>%
-  filter(Event_Type %in% c("Trawl", "CTD"))
+  filter(Event_Type %in% c("Trawl", "CTD", "Bongo"))
 
 Franklin_event <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"),
                              sheet = "3. SAMPLING EVENT INFO") |> 
-  filter(Event_Type %in% c("Trawl", "CTD_Rosette"))
+  filter(Event_Type %in% c("Trawl", "CTD_Rosette", "Bongo"))
 
 #TODO Update 2019 event and catch data to read directly from public git repo
 # Need to download this file manually from 2019 Trawl git repo
@@ -74,6 +72,13 @@ GoA2019_event <- read_excel(here("input_datasets",
 GoA2020_event <- read_excel(here("input_datasets",
                                  "JuvSalmon_2020-01_Catch_v2021.1C_FINAL SUBMIT_jan18_2021 (2).xlsx"), 
                             sheet = "BRIDGE_LOG_FINAL")
+
+# Add Bongo data from 2019 and 2020. Make sure you first - manually - add the latest version of the data to the folder. The GitHub repos are currently private, so the files are manually added to the 'input_datasets' folder:
+Bongo2019_event <- read.csv(here("input_datasets", "bongo2019_event.csv"), stringsAsFactors = F)
+Bongo2019_event <- Bongo2019_event[63:178,] 
+
+Bongo2020_event <- read.csv(here("input_datasets", "bongo2020_event.csv"), stringsAsFactors = F)
+Bongo2020_event <- Bongo2020_event[43:122,]
 
 # Raw Spirit event data 
 #TODO: Replace the planned stations file below with actual stations conducted once data are received.
@@ -96,11 +101,13 @@ janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, r
 Looks like we have to do a little bit of cleaning before we join the data frames!
 
 ```{r Shimada event cleaning}
+
+#TODO: Instead of including sampling depth in Station_Event_ID, include the profile number. 
+
 Shimada_event <- Shimada_event %>%
   mutate(Time_Start = as.POSIXct(Time_Start, format = "%H:%M:%S") %>% format("%H:%M:%S"),
          Time_End = as.POSIXct(Time_End, format = "%H:%M:%S") %>% format("%H:%M:%S"),
-         Time_Zone_Code = "UTC",
-         Station_Event_ID = ifelse(Event_Type == "CTD", paste0(Station_Event_ID, Maximum_Sampling_Depth_Meters), Station_Event_ID)) %>%
+         Time_Zone_Code = "UTC") %>%
   dplyr::rename(Bottom_Depth_Meters = `Bottom_Depth*_Meters`) |> 
   rename_with(tolower)
 
@@ -131,9 +138,6 @@ NW_event$station_event_id <- gsub("Can", "", NW_event$station_event_id)
 
 # Change station class to character:
 NW_event$station <- as.character(NW_event$station)
-
-# TODO: Additionally, you'll notice that there are three duplicate Station_Event_IDs. Likely - though needs confirmation - all the catch and specimen data comes from the trawl events that were ~60 minutes in length. Therefore, events that lasted 15 minutes will likely have to be filtered out. 
-# NW_event <- NW_event %>% filter(Sampling_Duration_Minutes != "15") # Confirm with Jim & Murphy!
 ```
 
 And for TINRO data:
@@ -220,18 +224,64 @@ Franklin_event <- Franklin_event %>%
          wind_direction_kilometers_per_hour = NA,
          swell_height_meters = NA,
          weather_description = NA) %>%
-  select(cruise_name, vessel_name_abbr, zone, station, event_type, station_event_id, alternative_event_id, year, month, day, time_start, time_end,
-         sampling_duration_minutes, day_night, time_zone_code, minimum_sampling_depth_meters, maximum_sampling_depth_meters,
-         tow_speed_kilometers_per_hour, latitude_start_decdeg, longitude_start_decdeg, latitude_end_decdeg, longitude_end_decdeg,
-         bottom_depth_meters, tow_distance_nautical_miles, wave_height_meters, swell_height_meters, weather_description, comments)
+  select(-c(trip_id, event_number, tow_speed_units, tow_distance, tow_distance_units,
+            bottom_depth_units, wave_height_units, sampling_duration_units))
 
-# TODO: Rather than select columns to include, remove columns not used.
-
-# TODO: Clean up the following code lines: 
 Franklin_event$sampling_duration_minutes <- as.numeric(Franklin_event$sampling_duration_minutes)
 Franklin_event$minimum_sampling_depth_meters <- as.numeric(Franklin_event$minimum_sampling_depth_meters)
 Franklin_event$maximum_sampling_depth_meters <- as.numeric(Franklin_event$maximum_sampling_depth_meters)
 Franklin_event$wave_height_meters <- as.numeric(Franklin_event$wave_height_meters)
+```
+
+Clean up the Bongo2019, Bongo2020, and Bongo2022 Zooplankton data:
+
+```{r}
+Bongo2019_event <- Bongo2019_event %>%
+  mutate(day = as.numeric(Bongo2019_event$day),
+         month = as.numeric(Bongo2019_event$month),
+         year = as.numeric(Bongo2019_event$year),
+         zone = NA,
+         cruise_name = "GoA2019",
+         event_type = "Bongo",
+         vessel_name_abbr = "Kaganovsky",
+         station = gsub("IYS:GoA2019:Stn", "", Bongo2019_event$parentEventID),
+         event_date = as.POSIXct(paste(year,month,day, sep = "-")),
+         time_start = gsub(".*T", "", eventDate),
+         time_start = gsub("Z", "", time_start),
+         time_zone_code = "UTC",
+         minimum_sampling_depth_meters = 0,
+         station_event_id = paste(cruise_name, vessel_name_abbr, station, event_type, sep = "-")) %>%
+  rename(maximum_sampling_depth_meters = maximumDepthInMeters,
+         latitude_start_decdeg = decimalLatitude,
+         longitude_start_decdeg = decimalLongitude) %>%
+  select(-eventID) %>%
+  distinct()
+
+Bongo2020_event <- Bongo2020_event %>%
+  mutate(day = as.numeric(Bongo2020_event$day),
+         month = as.numeric(Bongo2020_event$month),
+         year = as.numeric(Bongo2020_event$year),
+         zone = NA,
+         cruise_name = "GoA2020",
+         event_type = "Bongo",
+         vessel_name_abbr = "Legacy",
+         station = gsub("IYS:GoA2020:Stn", "", Bongo2020_event$parentEventID),
+         event_date = as.POSIXct(paste(year,month,day, sep = "-")),
+         time_start = gsub(".*T", "", eventDate),
+         time_start = gsub("Z", "", time_start),
+         time_zone_code = "UTC",
+         minimum_sampling_depth_meters = 0,
+         station_event_id = paste(cruise_name, vessel_name_abbr, station, event_type, sep = "-")) %>%
+  rename(maximum_sampling_depth_meters = maximumDepthInMetres,
+         latitude_start_decdeg = decimalLatitude,
+         longitude_start_decdeg = decimalLongitude) %>%
+  select(-eventID) %>%
+  distinct()
+
+bongo_event <- dplyr::bind_rows(Bongo2019_event, Bongo2020_event) %>%
+  select(cruise_name, vessel_name_abbr, zone, station, event_type, station_event_id, event_date, year,
+         month, day, time_start, time_zone_code, minimum_sampling_depth_meters,
+         maximum_sampling_depth_meters, latitude_start_decdeg, longitude_start_decdeg)
 ```
 
 Clean up the GoA2019 Trawl event data:
@@ -339,7 +389,6 @@ GoA2020_event <- GoA2020_event %>%
          eventDate_finish = as.POSIXct(paste(EVENT_DATE, TIME_NET_RETREIVAL_START)))
 
 GoA2020_event$eventDate_start <- lubridate::ymd_hms(GoA2020_event$eventDate_start, tz = "America/Los_Angeles") 
-#TODO: Confirm: March 12, 2020 is PST (according to metadata), which is GMT-7. Confirm that time changes are accurate with tz = "America/Los_Angeles".
 GoA2020_event$eventDate_start <- lubridate::with_tz(GoA2020_event$eventDate_start, "UTC")
 GoA2020_event$eventDate_finish <- lubridate::ymd_hms(GoA2020_event$eventDate_finish, tz = "America/Los_Angeles")
 GoA2020_event$eventDate_finish <- lubridate::with_tz(GoA2020_event$eventDate_finish, "UTC")
@@ -369,16 +418,10 @@ GoA2020_event$Station <- as.character(GoA2020_event$Station)
 
 # For Maximum_Sampling_Depth_Meters, Bottom_Depth_Meters and Tow_speed_kilometers_per_hour, these were measured at 15 minutes intervals. We'll take the average:
 GoA2020_event <- GoA2020_event %>%
-  mutate(Maximum_Sampling_Depth_Meters = rowMeans(GoA2020_event[ , c("NET OPENING DEPTH (metres) - 15 min", "NET OPENING DEPTH (metres) - 30 min",
-                                                                     "NET OPENING DEPTH (metres) - 45 min", "NET OPENING DEPTH (metres) - END")],
-                                                  na.rm = TRUE),
-         Bottom_Depth_Meters = rowMeans(GoA2020_event[ , c("BOTTOM DEPTH (M) - 15 min", "BOTTOM DEPTH (M) - 30 min", 
-                                                           "BOTTOM DEPTH (M) - 45 min", "BOTTOM DEPTH (M) - END")], na.rm = TRUE),
-         Tow_speed_kilometers_per_hour = rowMeans(GoA2020_event[ , c("SPEED (Kn) - 15 min", "SPEED (Kn) - 30 min", "SPEED (Kn) - 45 min",
-                                                                     "SPEED (Kn) - END")], na.rm = TRUE))
-
-# To verify, manually check:
-# check <-  GoA2020_event %>% select(c("NET OPENING DEPTH (metres) - 15 min", "NET OPENING DEPTH (metres) - 30 min", "NET OPENING DEPTH (metres) - 45 min", NET OPENING DEPTH (metres) - END", Maximum_Sampling_Depth_Meters"))
+  mutate(Maximum_Sampling_Depth_Meters = 
+  rowMeans(GoA2020_event[ , c("NET OPENING DEPTH (metres) - 15 min", "NET OPENING DEPTH (metres) - 30 min", "NET OPENING DEPTH (metres) - 45 min", "NET OPENING DEPTH (metres) - END")], na.rm = TRUE),
+  Bottom_Depth_Meters = rowMeans(GoA2020_event[ , c("BOTTOM DEPTH (M) - 15 min", "BOTTOM DEPTH (M) - 30 min", "BOTTOM DEPTH (M) - 45 min", "BOTTOM DEPTH (M) - END")], na.rm = TRUE),
+  Tow_speed_kilometers_per_hour = rowMeans(GoA2020_event[ , c("SPEED (Kn) - 15 min", "SPEED (Kn) - 30 min", "SPEED (Kn) - 45 min", "SPEED (Kn) - END")], na.rm = TRUE))
 
 GoA2020_event <- GoA2020_event %>%
   mutate(station_event_id = paste(Cruise_name, Vessel_Name_Abbr, Station, Event_Type, sep = "-")) %>%
@@ -420,11 +463,11 @@ Finally, join the data frames into a single sampling event data table:
 
 ```{r All sampling events}
 # Check for differences in column header names and class between those two data frames. 
-janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, GoA2019_event, GoA2020_event,
-                         raw_spirit_event)
+janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, 
+                         raw_spirit_event, bongo_event, GoA2019_event, GoA2020_event)
 
 # Join the individual event data frames from all IYS High Seas Expeditions and make all column names :
-IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, GoA2019_event, GoA2020_event, raw_spirit_event) |> 
+IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, bongo_event, raw_spirit_event, GoA2019_event, GoA2020_event) |> 
   mutate(event_date = paste0(year,"-", 
                              ifelse(nchar(month) < 2, 
                                     paste0("0", month), month), "-",
@@ -442,13 +485,20 @@ IYS_events <- IYS_events %>%
   mutate(dataset_doi = case_when(
     vessel_name_abbr == "TINRO" & event_type == "Trawl" ~ "https://doi.org/10.21966/wevm-ww19",
     vessel_name_abbr == "TINRO" & event_type == "CTD" ~ "https://doi.org/10.21966/rfv4-e505",
+    vessel_name_abbr == "TINRO" & event_type == "Bongo" ~ "https://doi.org/10.21966/ymv6-8024",
     vessel_name_abbr == "Shimada" & event_type == "Trawl" ~ "https://doi.org/10.21966/nt8w-je90",
+    vessel_name_abbr == "Shimada" & event_type == "Bongo" ~ "https://doi.org/10.21966/ymv6-8024",
     vessel_name_abbr == "Franklin" & event_type == "Trawl" ~ "https://doi.org/10.21966/gmrz-ad56", 
     vessel_name_abbr == "NW" & event_type == "Trawl" ~ "https://doi.org/10.21966/shnm-s480",
+    vessel_name_abbr == "NW" & event_type == "Bongo" ~ "https://doi.org/10.21966/ymv6-8024",
     vessel_name_abbr == "Kaganovsky" & event_type == "Trawl" ~ "https://doi.org/10.21966/DPHZ-AS73",
     vessel_name_abbr == "Kaganovsky" & event_type == "CTD" ~ "https://doi.org/10.21966/66gj-7q46",
     vessel_name_abbr == "Legacy" & event_type == "Trawl" ~ "https://doi.org/10.21966/4J6T-GB64",
-    vessel_name_abbr == "Legacy" & event_type == "CTD" ~ "https://doi.org/10.21966/nkc2-9m58"))
+    vessel_name_abbr == "Legacy" & event_type == "CTD" ~ "https://doi.org/10.21966/nkc2-9m58",
+    vessel_name_abbr == "Legacy" & event_type == "Bongo" ~ "https://doi.org/10.21966/7cmt-ca72",
+    vessel_name_abbr == "Kaganovsky" & event_type == "Bongo" ~ "https://doi.org/10.21966/7cmt-ca72",
+    vessel_name_abbr == "Kaganovsky" & event_type == "Trawl" ~ "https://doi.org/10.21966/DPHZ-AS73",
+    vessel_name_abbr == "Kaganovsky" & event_type == "CTD" ~ "https://doi.org/10.21966/66gj-7q46"))
 
 #QC event data
 IYS_events |> group_by(vessel_name_abbr, event_type) |> 
@@ -1006,6 +1056,20 @@ IYS_trawl_specimen <- left_join(IYS_trawl_specimen, IYS_scientificnames, by = "s
 write_csv(IYS_trawl_specimen, here("output_datasets", "IYS_trawl_specimen.csv"))
 ```
 
+Next, add the Bongo Specimen data (please note, we do not currently have the Franklin Bongo data):
+
+# Zooplankton
+
+```{r 2022 Zooplankton}
+zoop <- read_excel(here("input_datasets", "IYS2022_Zooplankton_Template.xlsx"), sheet = "Bongo_Specimen_Data")
+
+# Add any code in case this data
+# needs any cleaning up
+
+# Save Bongo Specimen data:
+zoop <- write_csv(zoop, here("output_datasets", "IYS_Bongo_specimen.csv"))
+```
+
 Next, integrate the CTD data (please note, we do not have CTD/Rosette data from the NW Explorer):
 
 # CTD
@@ -1128,7 +1192,7 @@ Combine all data frames into a single .xlsx workbook:
 ```{r final_join}
 # All IYS Expeditions:
 out <- list("Sampling_Events" = IYS_events, "Trawl_Catch_Data" = IYS_trawl_catch, "Trawl_Specimen_Data" = IYS_trawl_specimen,
-            "CTD_Data" = IYS_CTD)
+            "Bongo_Specimen_Data" = zoop, "CTD_Data" = IYS_CTD)
 
 writexl::write_xlsx(out, here("IYS_Integrated_Data_Collection_V3.xlsx"))
 ```
