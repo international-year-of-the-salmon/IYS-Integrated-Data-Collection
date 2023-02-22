@@ -230,7 +230,7 @@ Franklin_event$wave_height_meters <- as.numeric(Franklin_event$wave_height_meter
 
 Clean up the GoA2019 Trawl event data:
 
-```{r GOA2019 event cleaning}
+```{r GOA2019 event cleaning, eval = FALSE}
 # Make sure the Event_type is consistently "trawl":
 GoA2019_event$EVENT_TYPE <- "Trawl"
 
@@ -1021,7 +1021,7 @@ Include Biogeochemistry data
 
 ```{r}
 #TODO combine rosette and CTD event IDs where possible
-#TODO creat 'bottle file' from rosette and CTD data (probably just add ctd data to rosette table at appropriate depths)
+#TODO create 'bottle file' from rosette and CTD data (probably just add ctd data to rosette table at appropriate depths)
 #TODO add 2022 Nutrient and oxygen data
 
 TINRO_bottles <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), 
