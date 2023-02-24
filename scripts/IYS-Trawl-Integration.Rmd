@@ -28,14 +28,18 @@ download.file("https://github.com/international-year-of-the-salmon/2022-TINRO-Da
 
 download.file("https://github.com/international-year-of-the-salmon/2022-shimada-data-template/blob/main/IYS2022_Shimada_Data_template.xlsx?raw=true", here::here("input_datasets", "IYS2022_Shimada_Data.xlsx"), quiet = TRUE, mode = "wb")
 
+download.file("https://github.com/international-year-of-the-salmon/2022-shimada-data-template/blob/main/IYS2022_Shimada_Data_template.xlsx?raw=true", here::here("input_datasets", "IYS2022_Shimada_Data.xlsx"), quiet = TRUE, mode = "wb")
+
+
 download.file("https://github.com/international-year-of-the-salmon/2022-Franklin-Data-Template/blob/main/IYS_2022_FRANKLIN.xlsx?raw=true", here::here("input_datasets", "IYS2022_Franklin_Data.xlsx"), quiet = TRUE, mode = "wb")
 
 # Remove comment from following lines of code once 2019 and 2020 trawl data is in a public repository:
-download.file(" ", here::here("input_datasets", "GoA2019_Fish_Trawl_catch.xlsx"), quiet = TRUE, mode = "wb")
-download.file(" ", here::here("input_datasets", "GoA2019_Fish_Specimen.xlsx"), quiet = TRUE, mode = "wb")
-download.file(" ", here::here("input_datasets", "GoA2020_Fish_Trawl_catch.xlsx"), quiet = TRUE, mode = "wb")
-download.file(" ", here::here("input_datasets", "GoA2020_Fish_Specimen.xlsx"), quiet = TRUE, mode = "wb")
-download.file(" ", here::here("input_datasets", "IYS2022_Zooplankton_Template.xlsx"), quiet = TRUE, mode = "wb")
+
+# download.file(" ", here::here("input_datasets", "GoA2019_Fish_Trawl_catchdata.xlsx"), quiet = TRUE, mode = "wb")
+# download.file(" ", here::here("input_datasets", "GoA2019_Fish_Specimen.xlsx"), quiet = TRUE, mode = "wb")
+# download.file(" ", here::here("input_datasets", "GoA2020_Fish_Trawl_catch.xlsx"), quiet = TRUE, mode = "wb")
+# download.file(" ", here::here("input_datasets", "GoA2020_Fish_Specimen.xlsx"), quiet = TRUE, mode = "wb")
+# download.file(" ", here::here("input_datasets", "IYS2022_Zooplankton_Template.xlsx"), quiet = TRUE, mode = "wb")
 
 ```
 
@@ -235,7 +239,7 @@ Franklin_event$wave_height_meters <- as.numeric(Franklin_event$wave_height_meter
 
 Clean up the Bongo2019, Bongo2020, and Bongo2022 Zooplankton data:
 
-```{r}
+```{r Bongo event cleaning}
 Bongo2019_event <- Bongo2019_event %>%
   mutate(day = as.numeric(Bongo2019_event$day),
          month = as.numeric(Bongo2019_event$month),
@@ -286,7 +290,7 @@ bongo_event <- dplyr::bind_rows(Bongo2019_event, Bongo2020_event) %>%
 
 Clean up the GoA2019 Trawl event data:
 
-```{r GOA2019 event cleaning, eval = FALSE}
+```{r GOA2019 event cleaning}
 # Make sure the Event_type is consistently "trawl":
 GoA2019_event$EVENT_TYPE <- "Trawl"
 
@@ -1096,44 +1100,90 @@ TINRO_CTD <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet
 ```{r 2019 Kaganovsky CTD}
  
 ctd_2019_data <- IYS_2019_CTD |> 
-   select(station_event_ID, instrument_type:`sea_water_BOD5_mL/L`) %>%
-  rename(station_event_id = station_event_ID)
+   select(station_event_ID, instrument_type:`sea_water_BOD5_mL/L`, latitude_start_decdeg) %>%
+  rename(station_event_id = station_event_ID) |>
+  mutate(sampling_depth_dbar = swPressure(sampling_depth_meters, latitude_start_decdeg)) |> 
+  select(-latitude_start_decdeg)
 
 ```
 
 ```{r 2020 CTD}
 ctd_2020 <- read_csv("https://raw.githubusercontent.com/international-year-of-the-salmon/2020-CTD/master/standardized_data/2020_ctd.csv") |> 
   select(-cast) %>%
-  rename(station_event_id = station_event_ID)
+  rename(station_event_id = station_event_ID,
+         `sea_water_concentration_of_oxygen_mL/L` = `sea_water_oxygen_mL/L`)
+```
+
+
+```{r 2022 Shimada CTD}
+
+# There are replicate "channels" for some measurements. I understand these are replicate sensors. In theses cases I've defaulted to using channel 1 in all cases
+shimada_CTD <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "7. CTD INFO") |> 
+  select(station_event_id = Station_Event_ID, instrument_type = Instrument_Type, instrument_model = Instrument_Model, sampling_depth_dbar = Sampling_Depth_Dbar, sea_water_temperature_degC = sea_water_temperature_ch1, sea_water_salinity_PSU = sea_water_salinity_ch1, photosynthetic_active_radiation, sea_water_turbidity_NTU = sea_water_turbidity, sea_water_sigmaT = Sea_water_sigma_t_ch1, `sea_water_oxygen_concentration_umol/kg` = seawater_oxygen_concentration_ch1, sea_water_oxygen_saturation = seawater_oxygen_saturation_ch1) |> 
+  dplyr::left_join(select(Shimada_event, station_event_id, latitude_start_decdeg)) |> 
+  mutate(sampling_depth_meters = swDepth(sampling_depth_dbar, latitude = latitude_start_decdeg)) |> 
+  select(-latitude_start_decdeg)
+
+
+```
+
+```{r 2022 Franklin CTD}
+franklin_CTD <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"), sheet = "6. CTD INFO") |> 
+  select(station_event_id = station_event_ID, instrument_type, instrument_model, DFO_Station_Event_ID = UNIQUE_EVENT, bottom_depth_meters, sampling_depth_meters, sampling_depth_dbar = Pressure_decibar, sea_water_temperature_degC = sea_water_temperature, sea_water_salinity_PSU = sea_water_salinity, `sea_water_conductivity_mS/cm` = sea_water_conductivity, `sea_water_concentration_of_oxygen_mL/L` = `Oxygen:Dissolved:SBE_mL/L`, sea_water_pH) |> 
+  mutate(`sea_water_conductivity_mS/cm` = `sea_water_conductivity_mS/cm` * 10) # convert units
+
 ```
 
 
 ```{r Overall CTD}
 
-janitor::compare_df_cols(TINRO_CTD, ctd_2019_data, ctd_2020)
+janitor::compare_df_cols(TINRO_CTD, ctd_2019_data, ctd_2020, shimada_CTD, franklin_CTD)
 
-IYS_CTD <- bind_rows(TINRO_CTD, ctd_2019_data, ctd_2020) |> 
-  select(station_event_id:sampling_depth_dbar, sampling_depth_meters,
-         sea_water_temperature_degC:`sea_water_dissolvedO2_sat_%`,
-         `sea_water_concentration_of_oxygen_mL/L`, sea_water_pH:`sea_water_oxygen_mL/L`)
+IYS_CTD <- bind_rows(TINRO_CTD, ctd_2019_data, ctd_2020, shimada_CTD, franklin_CTD) |> 
+  ungroup()
 
 # QC value ranges for unit issues
 ranges <- IYS_CTD |> 
   left_join(select(IYS_events, station_event_id, vessel_name_abbr)) |> 
   group_by(vessel_name_abbr) |> 
   summarise_all(range, na.rm = TRUE)
-ranges
-#TODO Include more columns/variables once confident in comparability
+
 IYS_CTD <- IYS_CTD |> 
-  select(station_event_id, instrument_type, sampling_depth_meters,
-         sea_water_temperature_degC, sea_water_salinity_PSU)
+  select(station_event_id, instrument_type, instrument_model, 
+         sampling_depth_meters, sampling_depth_dbar, sea_water_temperature_degC,
+         sea_water_salinity_PSU)
 
-IYS_CTD <- right_join(select(IYS_events, station_event_id, event_date, latitude_start_decdeg, longitude_start_decdeg), IYS_CTD, by = "station_event_id")
+ranges2 <- IYS_CTD |> 
+  left_join(select(IYS_events, station_event_id, vessel_name_abbr)) |> 
+  group_by(vessel_name_abbr) |> 
+  summarise_all(range, na.rm = TRUE)
 
+IYS_CTD <- right_join(IYS_events, IYS_CTD, by = "station_event_id") |> 
+  remove_empty(which = "cols")
+
+# Priority TODO:
+#TODO: Figure out sigmaT for Franklin
 #TODO: Ensure Sigma T is comparable across vessels
-#TODO: Figure out why there isn't conductivity from TINRO vessel
+#TODO Figure out conductivity for TINRO and Shimada to complete the set
+
+#secondary todos:
+#TODO convert micromols/kg to mL/L for shimada oxygen concentration data?
+#TODO Figure out density in kg/m3 for Shimada and Franklin
 #TODO: Figure out whether oxygen measurements can be unit converted and combined
 #
+
+# QC CTD relations and keys
+ctd_no_keys <- dm(filter(IYS_events, event_type %in% c("CTD", "CTD_Rosette")), IYS_CTD)
+
+ctd_pk <- ctd_no_keys |> 
+  dm_add_pk('filter(IYS_events, event_type %in% c("CTD", "CTD_Rosette"))', station_event_id)
+
+ctd_pk |> dm_examine_constraints() 
+
+ctd_dm <- ctd_pk |> 
+  dm_add_fk(IYS_CTD, station_event_id, `filter(IYS_events, event_type %in% c("CTD", "CTD_Rosette"))`)
+
+ctd_issues <- ctd_dm |>  dm_examine_constraints()s
 
 write_csv(IYS_CTD, here("output_datasets", "IYS_CTD.csv"))
 
@@ -1153,7 +1203,6 @@ TINRO_bottles <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"),
 
 
 ```
-
 
 # QC
 
@@ -1289,4 +1338,15 @@ leg_ctd_trawls <- dplyr::right_join(leg_trawls, leg_ctd, by = "station")
 
 
 anti_join(leg_trawls, leg_ctd, by = "station")
+
+ctd_qc <- function(vessel){
+  dplyr::right_join(IYS_events, IYS_CTD, by = "station_event_id") |> 
+  filter(vessel_name_abbr == vessel) |> 
+  select(vessel_name_abbr, station, sampling_depth_meters:sea_water_salinity_PSU)
+
+leg_trawls <- IYS_events |> 
+  filter (vessel_name_abbr == "Legacy")
+
+leg_ctd_trawls <- dplyr::right_join(leg_trawls, leg_ctd, by = "station")
+}
 ```

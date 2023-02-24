@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [V4] yyyy-mm-dd
+
+### Notes
+
+### Added
+- CTD data from CCGS Franklin and R/V Shimada from 2022
+
 ## [V3] 2022-09-21
 
 ### Notes
