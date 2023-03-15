@@ -523,12 +523,13 @@ IYS_events <- IYS_events %>%
     vessel_name_abbr == "Kaganovsky" & event_type == "Trawl" ~ "https://doi.org/10.21966/DPHZ-AS73",
     vessel_name_abbr == "Kaganovsky" & event_type == "CTD" ~ "https://doi.org/10.21966/66gj-7q46"))
 
-# Replace NAs with blank cells
+# Replace NAs with blank cells and remove empty columns.
+IYS_events <- IYS_events %>% mutate(across(is.character,~na_if(trimws(.),""))) %>%
+   remove_empty("cols")
+
 IYS_events <- sapply(IYS_events, as.character)
 IYS_events[is.na(IYS_events)] <- ""
 IYS_events <- as_tibble(IYS_events)
-IYS_events <- IYS_events %>%
-  remove_empty(which = "cols")
 
 #QC event data
 IYS_events |> group_by(vessel_name_abbr, event_type) |> 
@@ -820,8 +821,13 @@ IYS_trawl_catch$lifestage <- tolower(IYS_trawl_catch$lifestage)
 # Currently the IYS_trawl_catch contains column 'species_code_russian'; we need this at a later stage to QAQC 2019 trawl data and properly merge. However, we don't need it in the output table for the Integrated Data Collection:
 IYS_trawl_all <- IYS_trawl_catch %>% select(-species_code_russian)
 
-IYS_trawl_all <- IYS_trawl_all %>%
-  remove_empty(which = "cols")
+# Remove empty columns and replace NA by blank cells:
+IYS_trawl_all <- IYS_trawl_all %>% mutate(across(is.character,~na_if(trimws(.),""))) %>%
+   remove_empty("cols")
+
+IYS_trawl_all <- sapply(IYS_trawl_all, as.character)
+IYS_trawl_all[is.na(IYS_trawl_all)] <- ""
+IYS_trawl_all <- as_tibble(IYS_trawl_all)
 
 # Save catch data:
 write_csv(IYS_trawl_all, here("output_datasets", "IYS_trawl_catch.csv"))
@@ -851,7 +857,8 @@ NW_specimen <- NW_specimen %>%
   mutate(verbatim_identification = scientific_name) %>%
   mutate(visceral_adhesion = case_when(
          marks_scars == "Visceral Adhesion" ~ "yes")) %>%
-  mutate(marks_scars = gsub("Visceral Adhesion", "", marks_scars))
+  mutate(marks_scars = gsub("Visceral Adhesion", "", marks_scars)) %>%
+  select(-`alternate id`)
 
 # Remove Can from the station_event_id, catch_id and specimen_id:
 NW_specimen$station_event_id <- gsub("Can", "", NW_specimen$station_event_id)
@@ -1223,7 +1230,7 @@ IYS_spp_scientificnames <- IYS_spp_scientificnames %>%
 IYS_trawl_specimen <- left_join(IYS_trawl_specimen, IYS_spp_scientificnames, by = "scientific_name") %>%
   select(-c(AphiaID, alternative_id, stomach_fullness, gonad_weight_grams, `weight_units...11`,
             `fat reading 1`, `fat reading 2`, `fat reading 3`, `fat reading units`, `gonad weight`,
-            `weight_units...20`, species_updated, scalecard_position, scale_pref_code, institutioncode,
+            `weight_units...19`, species_updated, scalecard_position, scale_pref_code, institutioncode,
             institutionid, collectioncode))
 
 # Make taxonomic_rank all lower case:
@@ -1237,8 +1244,13 @@ length_types <- IYS_trawl_specimen |> count(length_type)
 
 #TODO figure length type for NW explorer
 
-IYS_trawl_specimen <- IYS_trawl_specimen %>%
-  remove_empty(which = "cols")
+# Remove empty columns and replace NA by blank cells:
+IYS_trawl_specimen <- IYS_trawl_specimen %>% mutate(across(is.character,~na_if(trimws(.),""))) %>%
+   remove_empty("cols")
+
+IYS_trawl_specimen <- sapply(IYS_trawl_specimen, as.character)
+IYS_trawl_specimen[is.na(IYS_trawl_specimen)] <- ""
+IYS_trawl_specimen <- as_tibble(IYS_trawl_specimen)
 
 # Save specimen data:
 write_csv(IYS_trawl_specimen, here("output_datasets", "IYS_trawl_specimen.csv"))
@@ -1308,9 +1320,6 @@ dups <- zoop_2019_2020 %>% group_by(catch_id) %>% filter(n() >1)
 zoop_2022 <- read_excel(here("input_datasets", "IYS2022_Zooplankton_Template.xlsx"), 
                    sheet = "Bongo_Specimen_Data")
 
-zoop_2022 <- sapply(zoop_2022, as.character)
-zoop_2022[is.na(zoop_2022)] <- ""
-zoop_2022 <- as_tibble(zoop_2022)
 zoop_2022$verbatim_identification <- zoop_2022$scientific_name
 
 zoop_2022 <- zoop_2022 %>% select(-taxonomic_rank)
@@ -1441,7 +1450,6 @@ sci_names <- zoop |> count(scientific_name)
 
 # As per earlier discussions, we won't be including gonad, fat, etc measurements in the specimen tab. 
 zoop <- left_join(zoop, worms_id, by = "scientific_name")
-zoop[is.na(zoop)] <- ""
 
 dups_zoop <- zoop %>% group_by(catch_id) %>% filter(n() > 1)
 
@@ -1449,8 +1457,13 @@ dups_zoop <- zoop %>% group_by(catch_id) %>% filter(n() > 1)
 zoop$sf_proc <- as.character(zoop$sf_proc)
 zoop$sf_proc <- paste0(" ", zoop$sf_proc)
 
-zoop <- zoop %>%
-  remove_empty(which = "cols")
+# Remove empty columns and replace NA by blank cells:
+zoop <- zoop %>% mutate(across(is.character,~na_if(trimws(.),""))) %>%
+   remove_empty("cols")
+
+zoop <- sapply(zoop, as.character)
+zoop[is.na(zoop)] <- ""
+zoop <- as_tibble(zoop)
 
 # Save Bongo Specimen data:
 write_csv(zoop, here("output_datasets", "IYS_Bongo_specimen.csv"))
