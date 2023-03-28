@@ -181,6 +181,7 @@ TINRO_trawl$eventDate_start$hour = TINRO_event$eventDate_start$hour-12
 # Subset of all sampling events except trawl:
 TINRO <- TINRO_event[TINRO_event$Event_Type != "Trawl",]
 
+
 # Connect these subsets back:
 TINRO_event <- rbind(TINRO_trawl, TINRO)
 
