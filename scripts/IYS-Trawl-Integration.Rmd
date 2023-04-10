@@ -77,7 +77,8 @@ GoA2020_event <- read_excel(here("input_datasets",
                                  "JuvSalmon_2020-01_Catch_v2021.1C_FINAL SUBMIT_jan18_2021 (2).xlsx"), 
                             sheet = "BRIDGE_LOG_FINAL")
 
-# Add Bongo data from 2019 and 2020. Make sure you first - manually - add the latest version of the data to the folder. The GitHub repos are currently private, so the files are manually added to the 'input_datasets' folder. Select only data for net 1, which was used for taxonomic analysis.
+#TODO: Update 2019 and 2020 Bongo data to read directly from public git repo
+# Need to download this file manually. Select only data for net 1, which was used for taxonomic analysis.
 Bongo2019_event <- read.csv(here("input_datasets", "bongo2019_event.csv"), stringsAsFactors = F)
 Bongo2019_event <- Bongo2019_event[63:178,] 
 Bongo2019_event <- Bongo2019_event %>% 
@@ -165,7 +166,7 @@ TINRO_event <- TINRO_event %>%
 TINRO_event <- TINRO_event %>%
   mutate(eventDate_start = as.POSIXlt(TINRO_event$eventDate_start))
 
-# Trawl data was recorded in Z+1200 - change to UTC:
+# Only the trawl data was recorded in Z+1200 - change to UTC:
 TINRO_trawl <- TINRO_event %>% filter(Event_Type == "Trawl")
 
 TINRO_trawl$Time_End <- as.POSIXct(TINRO_trawl$Time_End, format = "%H:%M:%S")
@@ -180,7 +181,6 @@ TINRO_trawl$eventDate_start$hour = TINRO_event$eventDate_start$hour-12
 
 # Subset of all sampling events except trawl:
 TINRO <- TINRO_event[TINRO_event$Event_Type != "Trawl",]
-
 
 # Connect these subsets back:
 TINRO_event <- rbind(TINRO_trawl, TINRO)
@@ -841,7 +841,6 @@ Now let's join the overall specimen data from these vessels into a specific data
 ```{r specimen clean}
 #TODO: Integrate age data
 #TODO: Integrate genetic stock ID data
-#TODO: Integrate external marks data
 
 # For NW Explorer Specimen data:
 NW_specimen <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Specimen_Info")
@@ -1131,7 +1130,6 @@ janitor::compare_df_cols(NW_specimen, TINRO_specimen, Shimada_specimen, Franklin
                          GoA2019_specimen_tab, GoA2020_specimen_tab)
 
 # Bind rows and save: 
-#TODO Include GoA2019_specimen_tab and GoA2020_specimen_tab when confident
 IYS_trawl_specimen <- bind_rows(TINRO_specimen, NW_specimen, Shimada_specimen, Franklin_specimen,
                                 GoA2019_specimen_tab, GoA2020_specimen_tab)
 
@@ -1157,15 +1155,14 @@ IYS_trawl_specimen <- IYS_trawl_specimen %>%
 
 # Change specimen_weight to reflect grams, and ensure that weight_units = Grams:
 IYS_trawl_specimen <- IYS_trawl_specimen %>%
-  mutate(specimen_weight = ifelse(weight_units %in% c("Kilograms", "kilograms"), specimen_weight * 1000, specimen_weight),
+  mutate(specimen_weight = ifelse(weight_units %in% c("Kilograms", "kilograms"), 
+                                  specimen_weight * 1000, specimen_weight),
          weight_units = "Grams")
 ```
 
 In the next section, we do basic quality control on the specimen data to ensure interoperability across vessels:
 
 ```{r QAQC specimen data, eval = FALSE}
-#QC specimen data
-
 # Confirm no duplicates in Specimen_ID:
 IYS_trawl_specimen$specimen_id[duplicated(IYS_trawl_specimen$specimen_id)] # should print character(0)
 
@@ -1243,8 +1240,6 @@ IYS_trawl_specimen$length_type <- stringr::str_to_title(IYS_trawl_specimen$lengt
 
 length_types <- IYS_trawl_specimen |> count(length_type)
 
-#TODO figure length type for NW explorer
-
 # Remove empty columns and replace NA by blank cells:
 IYS_trawl_specimen <- IYS_trawl_specimen %>% mutate(across(is.character,~na_if(trimws(.),""))) %>%
    remove_empty("cols")
@@ -1257,16 +1252,18 @@ IYS_trawl_specimen <- as_tibble(IYS_trawl_specimen)
 write_csv(IYS_trawl_specimen, here("output_datasets", "IYS_trawl_specimen.csv"))
 ```
 
-Next, add the Bongo Specimen data (please note, we do not currently have the Franklin Bongo data):
+Next, add the Bongo Specimen data. The source files for this integrated data collection tab are:
+`IYSZoopAbund2019_2020Long.csv` -- file sent by Joanne Breckenridge (UBC) with the latest version of the taxonomic abundance data from the 2019 and 2020 High Seas Expeditions. This file has been corrected following revisions sent by Joanne (file: `IYSKaganoSpecRemovedfromNet.csv`). 
+`IYS2022_Zooplankton_Template.xlsx` -- file generated through the script 2022-TINRO-Bongo-script.Rmd, found [here](https://github.com/international-year-of-the-salmon/2022-IYS-Bongo/tree/main/scripts). This script uses the source files: 
+`7-14 2022 Bongo Logbook-TINRO_clean.xlsx` - Bongo taxonomic abundance data from the TINRO
+`IYS2022_Shimada_NW_Zooplankton.xlsx` - Bongo taxonomic abundance data from the Shimada and NW Explorer, standardized to a template.
+`2022002 IYS Franklin abund biomass by species n life stage.xlsx` - Bongo taxonomic abundance data from the Franklin.
 
 # Zooplankton
 
 ```{r Zooplankton}
-zoop_2019_2020 <- read_excel(here("input_datasets", "IYS Zooplankton Taxonomy Abundance Data.xlsx"),
-                        sheet = "All data", 
-                        col_types = c("text", "date", "date", "numeric", "numeric", "numeric", "text",
-                                      "numeric", "text", "text", "text", "text", "text", "numeric",
-                                      "numeric", "numeric", "numeric", "text"))
+zoop_2019_2020 <- read_csv(here("input_datasets", "IYSZoopAbund2019_2020Long.csv"))
+zoop_2019_2020 <- zoop_2019_2020[, -1]
 
 zoop_2019_2020[1] <- lapply(zoop_2019_2020[1], function (x) {
   x1 <- type.convert(as.character(x), as.is = TRUE) 
@@ -1321,9 +1318,9 @@ dups <- zoop_2019_2020 %>% group_by(catch_id) %>% filter(n() >1)
 zoop_2022 <- read_excel(here("input_datasets", "IYS2022_Zooplankton_Template.xlsx"), 
                    sheet = "Bongo_Specimen_Data")
 
-zoop_2022$verbatim_identification <- zoop_2022$scientific_name
-
-zoop_2022 <- zoop_2022 %>% select(-taxonomic_rank)
+zoop_2022 <- zoop_2022 %>% select(-taxonomic_rank) %>%
+  rename(verbatim_identification = verbatimIdentification) %>%
+  mutate(species_recorded = NA)
 
 janitor::compare_df_cols(zoop_2019_2020, zoop_2022)
 
@@ -1359,10 +1356,10 @@ zoop <- zoop %>%
 zoop$sex <- gsub("juvenile", "", zoop$sex)
 
 # Remove " sp." and special characters (i.e. brackets) from scientific_name and adjust spelling: 
-zoop$scientific_name <- gsub("\\b sp.\\b", "", zoop$scientific_name)
+zoop$scientific_name <- gsub("\\b sp.\\b|\\b spp.\\b", "", zoop$scientific_name)
 
 # In the species_recorded column there are sometimes lifestages recorded; we want to make sure all of these are captured in the lifestage column. After a manual check, this is only not the case for cyphonautes:
-species_recorded <- zoop %>% select(species_recorded, lifestage) %>% unique()
+species_recorded <- zoop %>% select(species_recorded, verbatim_identification, lifestage) %>% unique()
 
 #TODO: And 'bracts'?
 zoop$lifestage <- ifelse(grepl("cyphonautes", zoop$species_recorded), "cyphonautes", zoop$lifestage)
@@ -1375,29 +1372,31 @@ zoop$scientific_name <- gsub("juvenile|nauplius|calyptopsis|egg|furcillia|napliu
 zoop$scientific_name <- trimws(zoop$scientific_name, "r")
 sci_names <- unique(zoop$scientific_name) %>% as.data.frame()
 colnames(sci_names)[1] <- "scientificname"
-sci_names_1 <- sci_names[1:128,]
-sci_names_2 <- sci_names[129:247,]
+sci_names_1 <- sci_names[1:100,]
+sci_names_2 <- sci_names[101:200,]
+sci_names_3 <- sci_names[201:337,]
 
 worms_id_1 <- worrms::wm_records_names(sci_names_1, marine_only = T) %>% dplyr::bind_rows()
 worms_id_2 <- worrms::wm_records_names(sci_names_2, marine_only = T) %>% dplyr::bind_rows()
-worms_id <- bind_rows(worms_id_1, worms_id_2)
+worms_id_3 <- worrms::wm_records_names(sci_names_3, marine_only = T) %>% dplyr::bind_rows()
+worms_id <- bind_rows(worms_id_1, worms_id_2, worms_id_3)
 
 unid_species <- left_join(sci_names, worms_id, by = "scientificname") %>% 
   filter(is.na(AphiaID)) %>%
   distinct(scientificname)
 
 # So looks like there are 37 species whose names don't show up in the WoRMS Registry. To ensure interoperability across vessels, we standardize all names to match the names in WoRMS, so we change the names in the original dataframe:
-zoop$scientific_name <- gsub("Chaetognath", "Chaetognatha", zoop$scientific_name)
-zoop$scientific_name <- gsub("Chaetognatha sp. (no heads)", "Chaetognatha", zoop$scientific_name, fixed = TRUE)
+zoop$scientific_name <- gsub("^Chaetognath$", "Chaetognatha", zoop$scientific_name)
+zoop$scientific_name <- gsub("Chaetognath sp. (no heads)", "Chaetognatha", zoop$scientific_name, fixed = TRUE)
 zoop$scientific_name <- gsub("Disconchoecia elegans", "Discoconchoecia elegans", zoop$scientific_name)
 zoop$scientific_name <- gsub("^Euphausiid$", "Euphausiidae", zoop$scientific_name)
 zoop$scientific_name <- gsub("^Doliolid$", "Doliolidae", zoop$scientific_name)
 zoop$scientific_name <- gsub("Oikopleura labradoriensis", "Oikopleura (Vexillaria) labradoriensis", zoop$scientific_name)
-zoop$scientific_name <- gsub("Copepod", "Copepoda", zoop$scientific_name)
+zoop$scientific_name <- gsub("^Copepod$", "Copepoda", zoop$scientific_name)
 zoop$scientific_name <- gsub("Mesocalanus tenucornis", "Mesocalanus tenuicornis", zoop$scientific_name)
 zoop$scientific_name <- gsub("Oikopleura dioica", "Oikopleura (Vexillaria) dioica", zoop$scientific_name)
 zoop$scientific_name <- gsub("Ophuroidea", "Ophiuroidea", zoop$scientific_name)
-zoop$scientific_name <- gsub("Scaphocalanus brevicaudatus", "Scaphocalanus brevicornis", zoop$scientific_name) #TODO: confirm
+zoop$scientific_name <- gsub("Scaphocalanus brevicaudatus", "Scaphocalanus brevicornis", zoop$scientific_name) 
 zoop$scientific_name <- gsub("Siphonophore", "Siphonophorae", zoop$scientific_name)
 zoop$scientific_name <- gsub("Polychaete", "Polychaeta", zoop$scientific_name)
 # zoop$scientific_name <- gsub("Trochophore", " ", zoop$scientific_name)
@@ -1427,13 +1426,15 @@ zoop$scientific_name <- gsub("Calanoid A", "Calanoida", zoop$scientific_name) #T
 
 sci_names <- unique(zoop$scientific_name) %>% as.data.frame()
 colnames(sci_names)[1] <- "scientificname"
-sci_names_1 <- sci_names[1:116,]
-sci_names_2 <- sci_names[117:232,]
+sci_names_1 <- sci_names[1:100,]
+sci_names_2 <- sci_names[101:200,]
+sci_names_3 <- sci_names[201:337,]
 
 # Manual check for multiple AphiaIDs associated to same taxa:
 worms_id_1 <- worrms::wm_records_names(sci_names_1, marine_only = T) %>% dplyr::bind_rows()
 worms_id_2 <- worrms::wm_records_names(sci_names_2, marine_only = T) %>% dplyr::bind_rows()
-worms_id <- bind_rows(worms_id_1, worms_id_2) %>%
+worms_id_3 <- worrms::wm_records_names(sci_names_3, marine_only = T) %>% dplyr::bind_rows()
+worms_id <- bind_rows(worms_id_1, worms_id_2, worms_id_3) %>%
   rename(scientific_name = scientificname) %>%
   select(scientific_name, AphiaID, 
          scientific_name_id = lsid,
@@ -1443,13 +1444,13 @@ worms_id <- bind_rows(worms_id_1, worms_id_2) %>%
 duplicates <- worms_id %>% group_by(scientific_name) %>% filter(n() > 1)
 
 worms_id <- worms_id %>% 
-  filter(!AphiaID %in% c("426434", "719191", "605966", "138835", "503291", "163921", "835292")) %>%
+  filter(!AphiaID %in% c("426434", "719191", "605966", "138835", "503291", "163921", "835292", "410743", "106331", 
+                         "1434994")) %>%
   select(-AphiaID)
 
 # confirmation that there's no duplicate spelled names:
 sci_names <- zoop |> count(scientific_name)
 
-# As per earlier discussions, we won't be including gonad, fat, etc measurements in the specimen tab. 
 zoop <- left_join(zoop, worms_id, by = "scientific_name")
 
 dups_zoop <- zoop %>% group_by(catch_id) %>% filter(n() > 1)
@@ -1459,7 +1460,7 @@ zoop$sf_proc <- as.character(zoop$sf_proc)
 zoop$sf_proc <- paste0(" ", zoop$sf_proc)
 
 # Remove empty columns and replace NA by blank cells:
-zoop <- zoop %>% mutate(across(is.character,~na_if(trimws(.),""))) %>%
+zoop <- zoop %>% mutate(across(where(is.character),~na_if(trimws(.),""))) %>%
    remove_empty("cols")
 
 zoop <- sapply(zoop, as.character)
