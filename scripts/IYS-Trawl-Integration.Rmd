@@ -22,16 +22,16 @@ knitr::opts_chunk$set(echo = TRUE)
 For date integration, first download the processed data. For the 2022 data, this will be included in the IYS-data-template. From public repositories, we can download straight from the repository:  
 
 ```{r download IYS data template files}
-download.file("https://github.com/international-year-of-the-salmon/2022-NW-Data-Template/blob/main/IYS2022_NW_Data.xlsx?raw=true", here::here("input_datasets",  "IYS2022_NW_Data.xlsx"), quiet = TRUE, mode = "wb")
+download.file("https://github.com/international-year-of-the-salmon/2022-NW-Data-Template/blob/main/IYS2022_NW_Data.xlsx?raw=true", here::here("input_datasets", "2022", "IYS2022_NW_Data.xlsx"), quiet = TRUE, mode = "wb")
 
-download.file("https://github.com/international-year-of-the-salmon/2022-TINRO-Data-Template/blob/main/IYS2022_TINRO.xlsx?raw=true", here::here("input_datasets", "IYS2022_TINRO_Data.xlsx"), quiet = TRUE, mode = "wb")
+download.file("https://github.com/international-year-of-the-salmon/2022-TINRO-Data-Template/blob/main/IYS2022_TINRO.xlsx?raw=true", here::here("input_datasets", "2022", "IYS2022_TINRO_Data.xlsx"), quiet = TRUE, mode = "wb")
 
-download.file("https://github.com/international-year-of-the-salmon/2022-shimada-data-template/blob/main/IYS2022_Shimada_Data_template.xlsx?raw=true", here::here("input_datasets", "IYS2022_Shimada_Data.xlsx"), quiet = TRUE, mode = "wb")
+download.file("https://github.com/international-year-of-the-salmon/2022-shimada-data-template/blob/main/IYS2022_Shimada_Data_template.xlsx?raw=true", here::here("input_datasets", "2022", "IYS2022_Shimada_Data.xlsx"), quiet = TRUE, mode = "wb")
 
-download.file("https://github.com/international-year-of-the-salmon/2022-Franklin-Data-Template/blob/main/IYS_2022_FRANKLIN.xlsx?raw=true", here::here("input_datasets", "IYS2022_Franklin_Data.xlsx"), quiet = TRUE, mode = "wb")
+download.file("https://github.com/international-year-of-the-salmon/2022-Franklin-Data-Template/blob/main/IYS_2022_FRANKLIN.xlsx?raw=true", here::here("input_datasets", "2022", "IYS2022_Franklin_Data.xlsx"), quiet = TRUE, mode = "wb")
 
 # Separate file for the Shimada marks/scars data:
-download.file("https://github.com/international-year-of-the-salmon/2022-shimada-data-template/blob/main/original_data/Shimada%20adhesion%20scar%20data.xlsx?raw=true", here::here("input_datasets", "IYS2022_Shimada_MarksScars_Data.xlsx"), quiet = TRUE, mode = "wb")
+download.file("https://github.com/international-year-of-the-salmon/2022-shimada-data-template/blob/main/original_data/Shimada%20adhesion%20scar%20data.xlsx?raw=true", here::here("input_datasets", "2022", "IYS2022_Shimada_MarksScars_Data.xlsx"), quiet = TRUE, mode = "wb")
 
 # Remove comment from following lines of code once 2019 and 2020 trawl data is in a public repository:
 
@@ -49,69 +49,69 @@ Now that we have the latest versions of the data downloaded, we can read them in
 
 ```{r event data}
 # For the Trawl data:
-NW_event <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Sampling_Event_Info") %>%
+NW_event <- read_excel(here("input_datasets", "2022", "IYS2022_NW_Data.xlsx"), sheet = "Sampling_Event_Info") %>%
   filter(Event_Type %in% c("CanTrawl", "CTD", "Bongo")) |> 
   mutate(Event_Type = gsub("Can", "", Event_Type))
 
-TINRO_event <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), 
+TINRO_event <- read_excel(here("input_datasets", "2022", "IYS2022_TINRO_Data.xlsx"), 
                           sheet = "4. SAMPLING EVENT INFO") %>%
   filter(Event_Type %in% c("Trawl", "CTD", "Bongo"))
 
-Shimada_event <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"),
+Shimada_event <- read_excel(here("input_datasets", "2022", "IYS2022_Shimada_Data.xlsx"),
                             sheet = "4. SAMPLING EVENT INFO") %>%
   filter(Event_Type %in% c("Trawl", "CTD", "Bongo"))
 
-Franklin_event <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"),
+Franklin_event <- read_excel(here("input_datasets", "2022", "IYS2022_Franklin_Data.xlsx"),
                              sheet = "3. SAMPLING EVENT INFO") |> 
   filter(Event_Type %in% c("Trawl", "CTD_Rosette", "Bongo"))
 
 #TODO Update 2019 event and catch data to read directly from public git repo
 # Need to download this file manually from 2019 Trawl git repo
-GoA2019_event <- read_excel(here("input_datasets",
+GoA2019_event <- read_excel(here("input_datasets", "2019",
                                  "2019_GoA_Fish_Trawl_catchdata.xlsx"),
                             sheet = "BRIDGE_LOG_FINAL") %>% filter(EVENT_TYPE %in% c("Trawl", "Can EEZ")) 
 
 #TODO Update 2020 event and catch data to read directly from public git repo
 # Need to download this file manually from 2020 Trawl git repo
-GoA2020_event <- read_excel(here("input_datasets",
+GoA2020_event <- read_excel(here("input_datasets", "2020",
                                  "JuvSalmon_2020-01_Catch_v2021.1C_FINAL SUBMIT_jan18_2021 (2).xlsx"), 
                             sheet = "BRIDGE_LOG_FINAL")
 
 #TODO: Update 2019 and 2020 Bongo data to read directly from public git repo
 # Need to download this file manually. Select only data for net 1, which was used for taxonomic analysis.
-Bongo2019_event <- read.csv(here("input_datasets", "bongo2019_event.csv"), stringsAsFactors = F)
+Bongo2019_event <- read.csv(here("input_datasets", "2019", "bongo2019_event.csv"), stringsAsFactors = F)
 Bongo2019_event <- Bongo2019_event[63:178,] 
 Bongo2019_event <- Bongo2019_event %>% 
   filter(grepl("Net1", eventID))
 
 # Add bottom depth:
-Bongo2019_bottomdepth <- read_excel(here("input_datasets", "IYS cruise logbook_2019.xlsx"), 
+Bongo2019_bottomdepth <- read_excel(here("input_datasets", "2019", "IYS cruise logbook_2019.xlsx"), 
                                     sheet = "Bongo metadata") %>%
   select(station = Station, 
          bottom_depth_meters = Depth) %>% 
   mutate(station = as.character(station)) %>%
   distinct()
 
-Bongo2020_event <- read.csv(here("input_datasets", "bongo2020_event.csv"), stringsAsFactors = F)
+Bongo2020_event <- read.csv(here("input_datasets", "2020", "bongo2020_event.csv"), stringsAsFactors = F)
 Bongo2020_event <- Bongo2020_event[43:122,]
 Bongo2020_event <- Bongo2020_event %>% filter(grepl("Net1", eventID))
 
 # Raw Spirit event data 
 #TODO: Replace the planned stations file below with actual stations conducted once data are received.
-raw_spirit_event <- read_csv(here("input_datasets", "planned_raw_spirit_stations.csv")) |> 
-  rename(latitude_start_decdeg = lat, longitude_start_decdeg = lon) |> 
-  mutate(vessel_name_abbr = "Raw_Spirit",
-         event_type = "Gillnet",
-         year = 2022,
-         comments = "This Raw Spirit event data only includes planned station coordinates") |> 
-  select(vessel_name_abbr, event_type, year, latitude_start_decdeg, longitude_start_decdeg)
+#raw_spirit_event <- read_csv(here("input_datasets", "planned_raw_spirit_stations.csv")) |> 
+#  rename(latitude_start_decdeg = lat, longitude_start_decdeg = lon) |> 
+#  mutate(vessel_name_abbr = "Raw_Spirit",
+#         event_type = "Gillnet",
+#         year = 2022,
+#         comments = "This Raw Spirit event data only includes planned station coordinates") |> 
+#  select(vessel_name_abbr, event_type, year, latitude_start_decdeg, longitude_start_decdeg)
 ```
 
 Compare event tables from the various vessel sampling events:
 
 ```{r event comparison}
 # Check for differences in column header names and class between those data frames:
-janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, raw_spirit_event)
+janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event)
 ```
 
 Looks like we have to do a little bit of cleaning before we join the data frames!
@@ -486,10 +486,11 @@ Finally, join the data frames into a single sampling event data table:
 ```{r All sampling events}
 # Check for differences in column header names and class between those two data frames. 
 janitor::compare_df_cols(NW_event, TINRO_event, Shimada_event, Franklin_event, 
-                         raw_spirit_event, bongo_event, GoA2019_event, GoA2020_event)
+                         bongo_event, GoA2019_event, GoA2020_event)
 
 # Join the individual event data frames from all IYS High Seas Expeditions and make all column names :
-IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, bongo_event, raw_spirit_event, GoA2019_event, GoA2020_event) |> 
+IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, bongo_event, 
+                        GoA2019_event, GoA2020_event) |> 
   mutate(event_date = paste0(year,"-", 
                              ifelse(nchar(month) < 2, 
                                     paste0("0", month), month), "-",
@@ -501,6 +502,15 @@ IYS_events <- bind_rows(TINRO_event, NW_event, Shimada_event, Franklin_event, bo
          date = as.Date(event_date, format = "%Y-%m-%d"),
          day_of_year = lubridate::yday(date)) %>%
   select(-date)
+
+# There were three trawl events IYS trawl catch 
+IYS_events <- IYS_events %>%
+  mutate(comments = ifelse(station_event_id == "IYS2022-TINRO-3-6-Trawl", 
+                           "Trawl was successful, but no species were caught.", comments),
+         comments = ifelse(station_event_id == "IYS2022-Shimada-4-2-Trawl", 
+                           "Codend wasn't fully closed so nothing was retained in codend.", comments),
+         comments = ifelse(station_event_id == "IYS2019-Kaganovsky-61-Trawl",
+                           "Trawling is not for enumeration. Testing live box", comments))
 
 # Add dataset DOI by vessel:
 IYS_events <- IYS_events %>%
@@ -528,6 +538,19 @@ IYS_events <- IYS_events %>%
 IYS_events <- IYS_events %>% mutate(across(is.character,~na_if(trimws(.),""))) %>%
    remove_empty("cols")
 
+# Replace NaNs with blank cells:
+IYS_events$maximum_sampling_depth_meters <- gsub("NaN", "", IYS_events$maximum_sampling_depth_meters)
+IYS_events$maximum_sampling_depth_meters <- as.numeric(IYS_events$maximum_sampling_depth_meters)
+
+# Rounding of values for several columns:
+IYS_events <- IYS_events %>% mutate_at(vars(maximum_sampling_depth_meters, tow_speed_kilometers_per_hour,
+                                            tow_distance_nautical_miles, wind_direction_degrees,
+                                            wind_speed_kilometers_per_hour), funs(round(., 0)))
+
+# Rename alternative_event_id to original_event_id:
+IYS_events <- IYS_events %>%
+  rename(original_event_id = alternative_event_id)
+
 IYS_events <- sapply(IYS_events, as.character)
 IYS_events[is.na(IYS_events)] <- ""
 IYS_events <- as_tibble(IYS_events)
@@ -551,14 +574,14 @@ Now let's join the overall catch data from these vessels into a specific data fr
 
 ```{r IYS Catch clean}
 # For TINRO catch:
-TINRO_catch <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), 
+TINRO_catch <- read_excel(here("input_datasets", "2022", "IYS2022_TINRO_Data.xlsx"), 
                           sheet = "5. CATCH_FINAL INFO")
 
 TINRO_catch <- TINRO_catch %>% rename_with(tolower) %>%
   mutate(verbatim_identification = scientific_name)
 
 # For NW Explorer catch:
-NW_catch <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), 
+NW_catch <- read_excel(here("input_datasets", "2022", "IYS2022_NW_Data.xlsx"), 
                        sheet = "Catch_Info")
 
 NW_catch <- NW_catch %>%
@@ -575,7 +598,7 @@ NW_catch$station_event_id <- gsub("Can", "", NW_catch$station_event_id)
 NW_catch$catch_id <- gsub("Can", "", NW_catch$catch_id)
 
 # For NOAA Bell M. Shimada catch:
-Shimada_catch <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), 
+Shimada_catch <- read_excel(here("input_datasets", "2022", "IYS2022_Shimada_Data.xlsx"), 
                             sheet = "5. CATCH_FINAL INFO")
 
 Shimada_catch <- Shimada_catch %>%
@@ -584,7 +607,7 @@ Shimada_catch <- Shimada_catch %>%
   mutate(verbatim_identification = scientific_name)
 
 # For Franklin catch:
-Franklin_catch <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"), 
+Franklin_catch <- read_excel(here("input_datasets", "2022", "IYS2022_Franklin_Data.xlsx"), 
                              sheet = "4. CATCH_FINAL INFO")
 
 Franklin_catch <- Franklin_catch %>% rename_with(tolower) %>% select(-speciesid) %>%
@@ -597,7 +620,7 @@ Franklin_catch$catch_count <- as.numeric(Franklin_catch$catch_count)
 Franklin_catch$catch_weight <- as.numeric(Franklin_catch$catch_weight)
 
 # For the Gulf of Alaska (GoA) 2019 catch data:
-GoA2019_catch <- read_excel(here("input_datasets", "2019_GoA_Fish_Trawl_catchdata.xlsx"), 
+GoA2019_catch <- read_excel(here("input_datasets", "2019", "2019_GoA_Fish_Trawl_catchdata.xlsx"), 
                             sheet = "CATCH_FINAL")
 
 GoA2019_catch <- GoA2019_catch %>%
@@ -661,7 +684,7 @@ GoA2019_catch <- GoA2019_catch %>% mutate(species_code_russian = ifelse(station 
 GoA2019_catch <- GoA2019_catch %>% select(-station)
 
 # For the Gulf of Alaska (GoA2020) catch data:
-GoA2020_catch <- read_excel(here("input_datasets", "2020_GoA_Fish_Trawl_data.xlsx"), 
+GoA2020_catch <- read_excel(here("input_datasets", "2020", "2020_GoA_Fish_Trawl_data.xlsx"), 
                             sheet = "CATCH_FINAL")
 
 GoA2020_catch <- GoA2020_catch %>%
@@ -693,6 +716,9 @@ IYS_trawl_catch <- bind_rows(TINRO_catch, NW_catch, Shimada_catch, Franklin_catc
 
 IYS_trawl_catch$dateidentified <- as.character(IYS_trawl_catch$dateidentified)
 
+# Round the catch_count:
+IYS_trawl_catch <- IYS_trawl_catch %>% mutate_at(vars(catch_count), funs(round(., 0)))
+
 ```
 
 Compare column names between catch data frames. As we want to integrate catch data across the vessels we want to make sure that the taxa are spelled the same way. As such, we'll have _four_ columns for species identification:
@@ -710,18 +736,6 @@ IYS_trawl_catch$catch_id[duplicated(IYS_trawl_catch$catch_id)] # should print ch
 # TODO: Ensure that any identified names are addressed in code chunk below.
 sci_names <- IYS_trawl_catch |> count(scientific_name)
 
-# Join station_event_ids from event table to catch_ids, to see if there are any recorded sampling events that didn't end up catching anything (i.e. have NA in the catch_id):
-trawl_event <- IYS_events %>% filter(event_type == "Trawl") %>% select(station_event_id)
-IYS_trawl_catch <- left_join(trawl_event, IYS_trawl_catch, by = "station_event_id") 
-catch_id_null <- IYS_trawl_catch[is.na(IYS_trawl_catch$catch_id),]
-
-IYS_trawl_catch <- IYS_trawl_catch %>%
-  mutate(comments = ifelse(station_event_id == "IYS2022-TINRO-3-6-Trawl", 
-                           "Trawl was successful, but no species were caught.", comments),
-         comments = ifelse(station_event_id == "IYS2022-Shimada-4-2-Trawl", 
-                           "Codend wasn't fully closed so nothing was retained in codend.", comments),
-         comments = ifelse(station_event_id == "IYS2019-Kaganovsky-61-Trawl",
-                           "Trawling is not for enumeration. Testing live box", comments))
 ```
 
 Next we want to standardize the taxa observed in the catches across the vessels. We keep the originally recorded Latin name in the column _verbatim_identification_, and the original documentation of the species under _species_recorded_. However, the _scientific_name_ will get standardized to [WoRMS Taxonomic Authority](marinespecies.org).
@@ -816,8 +830,19 @@ IYS_trawl_catch <- IYS_trawl_catch %>%
   mutate(lifestage = ifelse(grepl("larvae", common_name), "larvae", lifestage),
          lifestage = ifelse(grepl("juv", common_name), "juvenile", lifestage))
 
+# Replace larval in the lifestage column by larvae for consistency:
+IYS_trawl_catch$lifestage <- gsub("larval", "larvae", IYS_trawl_catch$lifestage)
+
 IYS_trawl_catch |> count(lifestage)
+IYS_trawl_catch |> count(taxonomic_rank)
+
+# Remove any unnecessary capitalization to ensure consistency:
 IYS_trawl_catch$lifestage <- tolower(IYS_trawl_catch$lifestage)
+IYS_trawl_catch$taxonomic_rank <- tolower(IYS_trawl_catch$taxonomic_rank)
+IYS_trawl_catch$catch_weight_units <- tolower(IYS_trawl_catch$catch_weight_units)
+
+# Change larval to larvae in the lifestage column:
+IYS_trawl_catch$lifestage <- gsub("larval", "larvae", IYS_trawl_catch$lifestage)
 
 # Currently the IYS_trawl_catch contains column 'species_code_russian'; we need this at a later stage to QAQC 2019 trawl data and properly merge. However, we don't need it in the output table for the Integrated Data Collection:
 IYS_trawl_all <- IYS_trawl_catch %>% select(-species_code_russian)
@@ -825,6 +850,27 @@ IYS_trawl_all <- IYS_trawl_catch %>% select(-species_code_russian)
 # Remove empty columns and replace NA by blank cells:
 IYS_trawl_all <- IYS_trawl_all %>% mutate(across(is.character,~na_if(trimws(.),""))) %>%
    remove_empty("cols")
+
+# Rename alternative_event_id and alternative_catch_id to original_event_id and original_catch_id, respectively, and change the order of columns:
+IYS_trawl_all <- IYS_trawl_all %>%
+  rename(original_event_id = alternative_event_id,
+         original_catch_id = alternative_catch_id) %>%
+  dplyr::select(station_event_id, original_event_id, catch_id, original_catch_id,
+                everything())
+
+# Noticed some inconsistencies in count_method. Resolving this after contacting respective data providers:
+IYS_trawl_all$count_method <- gsub("Count", "Total", IYS_trawl_all$count_method)
+IYS_trawl_all$count_method <- gsub("Subsample", "Weight estimate", IYS_trawl_all$count_method)
+IYS_trawl_all$count_method <- gsub("Estimate", "Visual estimate", IYS_trawl_all$count_method)
+
+# Reorder column names:
+trawl_col_order <- c("station_event_id", "original_event_id", "catch_id", "original_catch_id",
+                     "verbatim_identification", "species_recorded", "common_name", "scientific_name",
+                     "scientific_name_id", "taxonomic_rank", "identified_by", "date_identified", "lifestage",
+                     "catch_count", "count_method", "catch_weight", "catch_weight_units", "weight_method",
+                     "comments")
+
+IYS_trawl_all <- IYS_trawl_all[, trawl_col_order]
 
 IYS_trawl_all <- sapply(IYS_trawl_all, as.character)
 IYS_trawl_all[is.na(IYS_trawl_all)] <- ""
@@ -843,7 +889,7 @@ Now let's join the overall specimen data from these vessels into a specific data
 #TODO: Integrate genetic stock ID data
 
 # For NW Explorer Specimen data:
-NW_specimen <- read_excel(here("input_datasets", "IYS2022_NW_Data.xlsx"), sheet = "Specimen_Info")
+NW_specimen <- read_excel(here("input_datasets", "2022", "IYS2022_NW_Data.xlsx"), sheet = "Specimen_Info")
 
 # Marks_scars column contains information on visceral adhesion as well. Make sure to parse this out into a separate column and remove from the original column. 
 NW_specimen <- NW_specimen %>%
@@ -869,7 +915,7 @@ NW_specimen$specimen_id <- gsub("Can", "", NW_specimen$specimen_id)
 NW_specimen$original_specimen_id <- as.character(NW_specimen$original_specimen_id)
 
 # For TINRO Specimen data:
-TINRO_specimen <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "6. SPECIMEN INFO")
+TINRO_specimen <- read_excel(here("input_datasets", "2022", "IYS2022_TINRO_Data.xlsx"), sheet = "6. SPECIMEN INFO")
 
 TINRO_specimen <- TINRO_specimen %>% rename_with(tolower) %>%
   select(-c(fin_clip, gill:`scale num`, head:note)) %>%
@@ -883,9 +929,9 @@ TINRO_specimen$visceral_adhesion <- ifelse(TINRO_specimen$visceral_adhesion == "
                                            "yes", "no")
 
 # For Shimada specimen data:
-Shimada_specimen <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "6. SPECIMEN INFO")
+Shimada_specimen <- read_excel(here("input_datasets", "2022", "IYS2022_Shimada_Data.xlsx"), sheet = "6. SPECIMEN INFO")
 
-Shimada_scars <- read_excel(here("input_datasets", "IYS2022_Shimada_MarksScars_Data.xlsx"), sheet = "Sheet1")
+Shimada_scars <- read_excel(here("input_datasets", "2022", "IYS2022_Shimada_MarksScars_Data.xlsx"), sheet = "Sheet1")
 Shimada_scars <- Shimada_scars %>%
   rename(original_specimen_id = `Bar code`) %>%
   select(original_specimen_id, `Sticky guts`, `Scar/wound`)
@@ -906,7 +952,8 @@ Shimada_specimen$visceral_adhesion <- ifelse(Shimada_specimen$visceral_adhesion 
 Shimada_specimen$original_specimen_id <- as.character(Shimada_specimen$original_specimen_id)
 
 # For Franklin specimen data:
-Franklin_specimen <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"), sheet = "5. SPECIMEN INFO")
+Franklin_specimen <- read_excel(here("input_datasets", "2022", "IYS2022_Franklin_Data.xlsx"), 
+                                sheet = "5. SPECIMEN INFO")
 
 # Add dummy columns for visceral_adhesion and marks_scars until these can be populated:
 Franklin_specimen <- Franklin_specimen %>% rename_with(tolower) %>%
@@ -926,7 +973,9 @@ Franklin_specimen$specimen_weight <- as.numeric(Franklin_specimen$specimen_weigh
 Clean the GoA2019 and GoA2020 Specimen data to integrate with 2022 data:
 
 ```{r GOA2019 specimen clean}
-GoA2019_specimen <- read_excel(here("input_datasets", "JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY.xlsx"), sheet = "SPECIMEN_FINAL")
+GoA2019_specimen <- read_excel(here("input_datasets", "2019",
+                                    "JuvSalmon_2019-01_Specimens_v21.01b_SUBMITTED_COPY.xlsx"), 
+                               sheet = "SPECIMEN_FINAL")
 
 GoA2019_specimen <- GoA2019_specimen %>%
   mutate(cruise_name = "IYS2019",
@@ -1016,7 +1065,7 @@ GoA2019_specimen_tab$sex <- tolower(GoA2019_specimen_tab$sex)
 GoA2019_specimen_tab <- GoA2019_specimen_tab %>%
   mutate(lifestage = ifelse(sex == "j", "juvenile", lifestage),
          lifestage = ifelse(sex == "3.0", "mature", lifestage),
-         lifestage = ifelse(sex == "1.0", "immature", lifestage))
+         lifestage = ifelse(sex == "1.0", "immature", lifestage)) #TODO: confirm 1.0 is indeed immature.
 
 # Remove these from the sex column, as they are now included in the lifestage column:
 GoA2019_specimen_tab$sex <- gsub("j|3.0|1.0", "", GoA2019_specimen_tab$sex)
@@ -1030,14 +1079,12 @@ GoA2019_specimen_tab <- GoA2019_specimen_tab %>%
 GoA2019_specimen_tab$marks_scars <- NULL
 GoA2019_specimen_tab$visceral_adhesion <- NULL
 
-#TODO: confirm 1.0 is indeed immature.
-
 ```
 
 Clean the GoA2020 Trawl specimen data to integrate with other trawl/specimen data:
 
 ```{r GOA2020 specimen clean}
-GoA2020_specimen <- read_excel(here("input_datasets", 
+GoA2020_specimen <- read_excel(here("input_datasets", "2020",
                                     "2020-01 Specimen file.v21.1c_FINAL SUBMIT_jan18_2021.xlsx"), 
                             sheet = "SPECIMEN_FINAL")
 
@@ -1151,7 +1198,15 @@ IYS_trawl_specimen <- IYS_trawl_specimen %>%
          sex = ifelse(sex == "1", "male", sex),
          sex = ifelse(sex == "2", "female", sex),
          sex = ifelse(sex == "3", "unsexed", sex),
-         sex = ifelse(sex == "?", "Unknown", sex))
+         sex = ifelse(sex == "?", "unknown", sex),
+         sex = ifelse(sex == "m", "male", sex),
+         sex = ifelse(sex == "f", "female", sex),
+         sex = ifelse(sex == "f?", "female?", sex))
+
+# Indicate that specimen_length_units and specimen_length2_units
+IYS_trawl_specimen <- IYS_trawl_specimen %>%
+  rename(specimen_length_units = length_units) %>%
+  mutate(specimen_length2_units = ifelse(!is.na(length_type2), specimen_length_units, NA))
 
 # Change specimen_weight to reflect grams, and ensure that weight_units = Grams:
 IYS_trawl_specimen <- IYS_trawl_specimen %>%
@@ -1244,9 +1299,21 @@ length_types <- IYS_trawl_specimen |> count(length_type)
 IYS_trawl_specimen <- IYS_trawl_specimen %>% mutate(across(is.character,~na_if(trimws(.),""))) %>%
    remove_empty("cols")
 
+# Reorder column names:
+spp_col_order <- c("station_event_id", "original_event_id", "catch_id", "original_catch_id", "specimen_id",
+                   "original_specimen_id", "verbatim_identification", "species_recorded", "common_name", 
+                   "scientific_name", "scientific_name_id", "lifestage", "sex", "taxonomic_rank", "size_class_mm",
+                   "number_measured", "specimen_length", "specimen_length_units", "length_type", 
+                   "specimen_length2", "specimen_length2_units", "length_type2", "specimen_weight", "specimen_weight2",
+                   "weight_units", "weight_type", "marks_scars", "visceral_adhesion", "comments")
+IYS_trawl_specimen <- IYS_trawl_specimen[, spp_col_order]
+
 IYS_trawl_specimen <- sapply(IYS_trawl_specimen, as.character)
 IYS_trawl_specimen[is.na(IYS_trawl_specimen)] <- ""
 IYS_trawl_specimen <- as_tibble(IYS_trawl_specimen)
+
+# Check for any relational issues:
+rel_issues <- dplyr::anti_join(IYS_trawl_specimen, IYS_trawl_catch, by = "catch_id")
 
 # Save specimen data:
 write_csv(IYS_trawl_specimen, here("output_datasets", "IYS_trawl_specimen.csv"))
@@ -1262,13 +1329,15 @@ Next, add the Bongo Specimen data. The source files for this integrated data col
 # Zooplankton
 
 ```{r Zooplankton}
-zoop_2019_2020 <- read_csv(here("input_datasets", "IYSZoopAbund2019_2020Long.csv"))
+zoop_2019_2020 <- read_csv(here("input_datasets", "2019", "IYSZoopAbund2019_2020Long.csv"))
 zoop_2019_2020 <- zoop_2019_2020[, -1]
 
 zoop_2019_2020[1] <- lapply(zoop_2019_2020[1], function (x) {
   x1 <- type.convert(as.character(x), as.is = TRUE) 
   ifelse(grepl("^[0-9.]+$", x1), round(as.numeric(x1)), x1)
 })
+
+zoop_2019_2020$sf_proc <- gsub("10-May", "5-10", zoop_2019_2020$sf_proc)
 
 zoop_2019_2020 <- zoop_2019_2020 %>%
   dplyr::select(station,
@@ -1282,8 +1351,16 @@ zoop_2019_2020 <- zoop_2019_2020 %>%
          lifestage = stage, 
          sex, genus, species,
          verbatim_identification = id,
-         abundance_m3 = abund_m3_flow_est,
+         abund_m3_flow_est,
+         abund_m3_depth_est,
          catch_count = ind_total)
+
+# Some abundance_m3 values are negative. As per Joanne Breckenridge (UBC): "flowmeter-estimated volume is less than 50% of depth-estimated volume, we use the depth-estimated volume to calculate abundance."
+zoop_2019_2020 <- zoop_2019_2020 %>%
+  mutate(abundance_m3 = ifelse(abund_m3_flow_est >= 0, abund_m3_flow_est, abund_m3_depth_est)) %>%
+  mutate(comments = ifelse(abund_m3_flow_est >= 0, comments, 
+                           "Depth-estimated volume was used to calculate abundance")) %>%
+  select(-c(abund_m3_flow_est, abund_m3_depth_est))
 
 # Some entries in the species column depict a lifestage:
 zoop_2019_2020 <- zoop_2019_2020 %>%
@@ -1299,10 +1376,11 @@ zoop_2019_2020 <- zoop_2019_2020 %>%
 zoop_2019_2020 <- zoop_2019_2020 %>%
   mutate(net_number = "1",
          station_event_id = ifelse(grepl("2019", date), 
-                                   paste("IYS2019", "Kaganovsky", station, "Bongo", net_number, sep = "-"),
-                                   paste("IYS2020", "Legacy", station, "Bongo", net_number, sep = "-"))) %>%
+                                   paste("IYS2019", "Kaganovsky", station, "Bongo", sep = "-"),
+                                   paste("IYS2020", "Legacy", station, "Bongo", sep = "-")),
+         catch_id = paste(station_event_id, net_number, sep = "-")) %>%
   group_by(station_event_id) %>%
-  mutate(catch_id = paste(station_event_id, row_number(), sep = "-"),
+  mutate(specimen_id = paste(catch_id, row_number(), sep = "-"),
          species_recorded = NA,
          preservation_method = "Formalin",
          identified_by = NA,
@@ -1315,8 +1393,14 @@ zoop_2019_2020 <- zoop_2019_2020 %>%
 
 dups <- zoop_2019_2020 %>% group_by(catch_id) %>% filter(n() >1)
 
-zoop_2022 <- read_excel(here("input_datasets", "IYS2022_Zooplankton_Template.xlsx"), 
+zoop_2022 <- read_excel(here("input_datasets", "2022", "IYS2022_Zooplankton_Template.xlsx"), 
                    sheet = "Bongo_Specimen_Data")
+
+# Need to recreate the station_event_id, catch_id and specimen_id columns:
+zoop_2022 <- zoop_2022 %>%
+  rename(specimen_id = catch_id, 
+         catch_id = station_event_id) %>%
+  mutate(station_event_id = sub('-[^-]*$', '', catch_id))
 
 zoop_2022 <- zoop_2022 %>% select(-taxonomic_rank) %>%
   rename(verbatim_identification = verbatimIdentification) %>%
@@ -1328,32 +1412,33 @@ zoop <- rbind(zoop_2019_2020, zoop_2022)
 
 # Reshuffle columns:
 zoop <- zoop %>% 
-  dplyr::select(station_event_id, catch_id, scientific_name, verbatim_identification, 
+  dplyr::select(station_event_id, catch_id, specimen_id, scientific_name, verbatim_identification, 
                 lifestage, sex, catch_count, everything())
 
+# For IYS2019-Kaganovsky-8-Bongo-1-36, change lifestage to "juvenile"
+zoop$lifestage[zoop$specimen_id == "IYS2019-Kaganovsky-8-Bongo-1-36"] <- "juvenile"
+zoop$sex <- gsub("juvenile", "", zoop$sex)
+
 # Standardize the lifestage column:
-zoop <- zoop %>%
-  mutate(lifestage = gsub("calyptopsis|^cal$|caliptopis", "calyptopis", lifestage),
-         lifestage = gsub("furcillia", "furcilia", lifestage),
-         lifestage = gsub("^I$", "C1", lifestage),
-         lifestage = gsub("^II$", "C2", lifestage),
-         lifestage = gsub("^III$", "C3", lifestage),
-         lifestage = gsub("^IV$", "C4", lifestage),
-         lifestage = gsub("^V$", "C5", lifestage),
-         lifestage = gsub("^IVV$", "C4/C5", lifestage),
-         lifestage = gsub("C4C5", "C4/C5", lifestage),
-         lifestage = gsub("napulius", "nauplius", lifestage))
+zoop$lifestage <-  gsub("calyptopsis|^cal$|caliptopis", "calyptopis", zoop$lifestage)
+zoop$lifestage <-  gsub("furcillia", "furcilia", zoop$lifestage)
+zoop$lifestage <-  gsub("^I$", "C1", zoop$lifestage)
+zoop$lifestage <-  gsub("^II$", "C2", zoop$lifestage)
+zoop$lifestage <-  gsub("^III$", "C3", zoop$lifestage)
+zoop$lifestage <-  gsub("^IV$", "C4", zoop$lifestage)
+zoop$lifestage <-  gsub("^V$", "C5", zoop$lifestage)
+zoop$lifestage <-  gsub("^IVV$", "C4/C5", zoop$lifestage)
+zoop$lifestage <-  gsub("C4C5", "C4/C5", zoop$lifestage)
+zoop$lifestage <-  gsub("napulius", "nauplius", zoop$lifestage)
+zoop$lifestage <-  gsub("C15", "C1-C5", zoop$lifestage) #TODO: Confirm
+zoop$lifestage <-  gsub("C56", "C5/C6", zoop$lifestage) #TODO: Confirm
+zoop$lifestage <-  gsub("Adult", "adult", zoop$lifestage)
 
 # Standardize the sex column:
 zoop <- zoop %>%
   mutate(sex = gsub("^M$", "male", sex),
          sex = gsub("^F$", "female", sex), 
          sex = gsub("^f$", "female", sex))
-
-# Where sex is juvenile, make sure this information is captured in the lifestage column:
-zoop <- zoop %>%
-  mutate(lifestage = ifelse(zoop$sex == "juvenile", "juvenile", lifestage))
-zoop$sex <- gsub("juvenile", "", zoop$sex)
 
 # Remove " sp." and special characters (i.e. brackets) from scientific_name and adjust spelling: 
 zoop$scientific_name <- gsub("\\b sp.\\b|\\b spp.\\b", "", zoop$scientific_name)
@@ -1368,13 +1453,13 @@ zoop$lifestage <- ifelse(grepl("cyphonautes", zoop$species_recorded), "cyphonaut
 zoop$scientific_name <- gsub("juvenile|nauplius|calyptopsis|egg|furcillia|naplius|larva",
                              "", zoop$scientific_name)
 
-# WoRMS - quick workaround: wm_records_name throws an error when dealing with our unique species list (n=233) as it says it's too long. Breaking it up in 2 separate lists seems to make it work. Issue generated here: https://github.com/ropensci/worrms/issues/39
+# WoRMS - quick workaround: wm_records_name throws an error when dealing with our unique species list (n=333) as it says it's too long. Breaking it up in 2 separate lists seems to make it work. Issue generated here: https://github.com/ropensci/worrms/issues/39
 zoop$scientific_name <- trimws(zoop$scientific_name, "r")
 sci_names <- unique(zoop$scientific_name) %>% as.data.frame()
 colnames(sci_names)[1] <- "scientificname"
 sci_names_1 <- sci_names[1:100,]
 sci_names_2 <- sci_names[101:200,]
-sci_names_3 <- sci_names[201:337,]
+sci_names_3 <- sci_names[201:333,]
 
 worms_id_1 <- worrms::wm_records_names(sci_names_1, marine_only = T) %>% dplyr::bind_rows()
 worms_id_2 <- worrms::wm_records_names(sci_names_2, marine_only = T) %>% dplyr::bind_rows()
@@ -1428,7 +1513,7 @@ sci_names <- unique(zoop$scientific_name) %>% as.data.frame()
 colnames(sci_names)[1] <- "scientificname"
 sci_names_1 <- sci_names[1:100,]
 sci_names_2 <- sci_names[101:200,]
-sci_names_3 <- sci_names[201:337,]
+sci_names_3 <- sci_names[201:315,]
 
 # Manual check for multiple AphiaIDs associated to same taxa:
 worms_id_1 <- worrms::wm_records_names(sci_names_1, marine_only = T) %>% dplyr::bind_rows()
@@ -1455,10 +1540,6 @@ zoop <- left_join(zoop, worms_id, by = "scientific_name")
 
 dups_zoop <- zoop %>% group_by(catch_id) %>% filter(n() > 1)
 
-# Annoyingly, in the sf_proc column there are some values such as 5-10, that in Excel get read in as dates. To work around this:
-zoop$sf_proc <- as.character(zoop$sf_proc)
-zoop$sf_proc <- paste0(" ", zoop$sf_proc)
-
 # Remove empty columns and replace NA by blank cells:
 zoop <- zoop %>% mutate(across(where(is.character),~na_if(trimws(.),""))) %>%
    remove_empty("cols")
@@ -1467,8 +1548,27 @@ zoop <- sapply(zoop, as.character)
 zoop[is.na(zoop)] <- ""
 zoop <- as_tibble(zoop)
 
+# Round abundance_m3 to 3 decimal places:
+zoop$abundance_m3 <- as.numeric(zoop$abundance_m3)
+zoop$abundance_m3 <- round(zoop$abundance_m3, 3)
+
+# Consistency:
+zoop$preservation_method <- tolower(zoop$preservation_method)
+zoop$lifestage <- gsub("Adult", "adult", zoop$lifestage)
+
+# Add "mm" to sf_proc because otherwise it's automatically read in as a date in Excel.
+zoop$sf_proc <- ifelse(zoop$sf_proc != "", paste0(zoop$sf_proc, "mm"), zoop$sf_proc)
+
+zoop_col_order <- c("station_event_id", "net_number", "catch_id", "specimen_id", "verbatim_identification", 
+                   "scientific_name", "scientific_name_id", "lifestage", "sex", "size_range", "taxonomic_rank",
+                   "prop_total_sample", "sf_proc", "prop_sf_proc", "catch_count", "count_method",
+                   "flowmeter_volume_filtered_m3", "depth_volume_filtered_m3", "abundance_m3", "preservation_method",
+                   "comments")
+zoop <- zoop[, zoop_col_order]
+
 # Save Bongo Specimen data:
 write_csv(zoop, here("output_datasets", "IYS_Bongo_specimen.csv"))
+
 ```
 
 Next, integrate the CTD data (please note, we do not have CTD/Rosette data from the NW Explorer):
@@ -1476,7 +1576,7 @@ Next, integrate the CTD data (please note, we do not have CTD/Rosette data from 
 # CTD
 
 ```{r 2022 TINRO CTD}
-TINRO_CTD <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), sheet = "7. CTD INFO") |> 
+TINRO_CTD <- read_excel(here("input_datasets", "2022", "IYS2022_TINRO_Data.xlsx"), sheet = "7. CTD INFO") |> 
     select(-c(sea_water_conductivity, sea_water_EC25, sea_water_turbidity,
          sea_water_chl_fluorescence, sea_water_chl_concentration,
          sea_water_dissolvedO2, sea_water_dissolvedO2_sat,
@@ -1515,7 +1615,7 @@ ctd_2020 <- read_csv("https://raw.githubusercontent.com/international-year-of-th
 ```{r 2022 Shimada CTD}
 
 # There are replicate "channels" for some measurements. I understand these are replicate sensors. In theses cases I've defaulted to using channel 1 in all cases
-shimada_CTD <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), sheet = "7. CTD INFO") |> 
+shimada_CTD <- read_excel(here("input_datasets", "2022", "IYS2022_Shimada_Data.xlsx"), sheet = "7. CTD INFO") |> 
   select(station_event_id = Station_Event_ID, instrument_type = Instrument_Type, instrument_model = Instrument_Model, sampling_depth_dbar = Sampling_Depth_Dbar, sea_water_temperature_degC = sea_water_temperature_ch1, sea_water_salinity_PSU = sea_water_salinity_ch1, photosynthetic_active_radiation, sea_water_turbidity_NTU = sea_water_turbidity, sea_water_sigmaT = Sea_water_sigma_t_ch1, `sea_water_oxygen_concentration_umol/kg` = seawater_oxygen_concentration_ch1, sea_water_oxygen_saturation = seawater_oxygen_saturation_ch1) |> 
   dplyr::left_join(select(Shimada_event, station_event_id, latitude_start_decdeg)) |> 
   mutate(sampling_depth_meters = swDepth(sampling_depth_dbar, latitude = latitude_start_decdeg)) |> 
@@ -1525,7 +1625,7 @@ shimada_CTD <- read_excel(here("input_datasets", "IYS2022_Shimada_Data.xlsx"), s
 ```
 
 ```{r 2022 Franklin CTD}
-franklin_CTD <- read_excel(here("input_datasets", "IYS2022_Franklin_Data.xlsx"), sheet = "6. CTD INFO") |> 
+franklin_CTD <- read_excel(here("input_datasets", "2022", "IYS2022_Franklin_Data.xlsx"), sheet = "6. CTD INFO") |> 
   select(station_event_id = station_event_ID, instrument_type, instrument_model, DFO_Station_Event_ID = UNIQUE_EVENT, bottom_depth_meters, sampling_depth_meters, sampling_depth_dbar = Pressure_decibar, sea_water_temperature_degC = sea_water_temperature, sea_water_salinity_PSU = sea_water_salinity, `sea_water_conductivity_mS/cm` = sea_water_conductivity, `sea_water_concentration_of_oxygen_mL/L` = `Oxygen:Dissolved:SBE_mL/L`, sea_water_pH) |> 
   mutate(`sea_water_conductivity_mS/cm` = `sea_water_conductivity_mS/cm` * 10) # convert units
 
@@ -1595,7 +1695,7 @@ Include Biogeochemistry data
 #TODO create 'bottle file' from rosette and CTD data (probably just add ctd data to rosette table at appropriate depths)
 #TODO add 2022 Nutrient and oxygen data
 
-TINRO_bottles <- read_excel(here("input_datasets", "IYS2022_TINRO_Data.xlsx"), 
+TINRO_bottles <- read_excel(here("input_datasets", "2022", "IYS2022_TINRO_Data.xlsx"), 
                           sheet = "8. ROSETTE INFO")
 
 
