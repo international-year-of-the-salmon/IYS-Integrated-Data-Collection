@@ -1661,6 +1661,8 @@ ranges2 <- IYS_CTD |>
 IYS_CTD <- right_join(IYS_events, IYS_CTD, by = "station_event_id") |> 
   remove_empty(which = "cols")
 
+rename(IYS_CTD, original_event_id = alternative_event_id)
+
 # Priority TODO:
 #TODO: Figure out sigmaT for Franklin
 #TODO: Ensure Sigma T is comparable across vessels
@@ -1707,14 +1709,28 @@ TINRO_bottles <- read_excel(here("input_datasets", "2022", "IYS2022_TINRO_Data.x
 # QC
 
 ```{r QC relations}
+library(tidyverse)
+library(dm)
+library(here)
+# read in output files
+IYS_trawl_catch <- read_csv(here("output_datasets", "IYS_trawl_catch.csv"))
 
-dm_no_keys <- dm(IYS_trawl_catch, IYS_events, IYS_trawl_specimen, IYS_CTD)
+IYS_events <- read_csv(here("output_datasets", "IYS_events.csv"))
+
+IYS_trawl_specimen <- read_csv(here("output_datasets", "IYS_trawl_specimen.csv"))
+
+IYS_CTD <- read_csv(here("output_datasets", "IYS_CTD.csv"))
+
+IYS_Bongo_specimen <- read_csv(here("output_datasets", "IYS_Bongo_specimen.csv"))
+
+dm_no_keys <- dm(IYS_trawl_catch, IYS_events, IYS_trawl_specimen, IYS_CTD, IYS_Bongo_specimen)
 
 # add primary keys
 only_pk <- dm_no_keys %>% 
   dm_add_pk(IYS_trawl_catch, catch_id) %>% 
   dm_add_pk(IYS_events, station_event_id) %>% 
-  dm_add_pk(IYS_trawl_specimen, specimen_id)
+  dm_add_pk(IYS_trawl_specimen, specimen_id) |> 
+  dm_add_pk(IYS_Bongo_specimen, specimen_id)
   
 only_pk %>% dm_examine_constraints() # checks for duplicates in PK
 
@@ -1722,14 +1738,19 @@ only_pk %>% dm_examine_constraints() # checks for duplicates in PK
 dm <- only_pk %>% 
   dm_add_fk(IYS_CTD, station_event_id, IYS_events) %>% 
   dm_add_fk(IYS_trawl_specimen, catch_id, IYS_trawl_catch) %>% 
-  dm_add_fk(IYS_trawl_catch, station_event_id, IYS_events)
+  dm_add_fk(IYS_trawl_catch, station_event_id, IYS_events) |> 
+  dm_add_fk(IYS_Bongo_specimen, station_event_id, IYS_events)
 
 
-issues <- dm %>% dm_examine_constraints() # checks that foreign keys all have a matching primary key in  the parent table
-issues
+dm %>% dm_examine_constraints() # checks that foreign keys all have a matching primary key in  the parent table
+nw_issues <- dplyr::anti_join(IYS_trawl_specimen, IYS_trawl_catch, by = "catch_id")
 
 # manually  export the drawing from the viewer pane to figs to update the data model image
 dm_draw(dm)
+
+events_str <- summary(IYS_events)
+
+
 ```
 
 Combine all data frames into a single .xlsx workbook:

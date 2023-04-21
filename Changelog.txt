@@ -15,7 +15,6 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - "alternative_event_id", "alternative_catch_id", and "alternative_specimen_id" columns have been renamed to "original_event_id", "original_catch_id", and "original_specimen_id" respectively.
-- 
 
 ### Removed
 - Removed columns 'gonad_weight_grams' and 'stomach_fullness' as we only had these for a single vessel. 
