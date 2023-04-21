@@ -1,12 +1,26 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [V4] yyyy-mm-dd
+## [V4] 2023-04-21
 
 ### Notes
 
 ### Added
+- Data Dictionary tab
 - CTD data from CCGS Franklin and R/V Shimada from 2022
+- Trawl and specimen data from 2019 and 2020
+- Taxonomic abundance Bongo zooplankton data from 2019, 2020 and 2022. 
+- Columns for visceral adhesion and marks/scars
+- Original unique IDs for events (original_event_id), taxa observed (original_catch_id) and specimen measured (original_specimen_id), as recorded by the data provider. Please note, that data providers could have used similar naming systems on their vessels, and as a result the original_specimen_ids might NOT be unique within this workbook. Ensure that the specimen_ids are associated with the correct vessel.
+
+### Changed
+- "alternative_event_id", "alternative_catch_id", and "alternative_specimen_id" columns have been renamed to "original_event_id", "original_catch_id", and "original_specimen_id" respectively.
+- 
+
+### Removed
+- Removed columns 'gonad_weight_grams' and 'stomach_fullness' as we only had these for a single vessel. 
+- Removed empty columns (i.e. 'catch_volume', 'catch_volume_units', 'weather_description' and 'swell_height_meters').
+  
 
 ## [V3] 2022-09-21
 

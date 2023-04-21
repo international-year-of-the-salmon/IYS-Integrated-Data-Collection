@@ -1376,11 +1376,11 @@ zoop_2019_2020 <- zoop_2019_2020 %>%
 zoop_2019_2020 <- zoop_2019_2020 %>%
   mutate(net_number = "1",
          station_event_id = ifelse(grepl("2019", date), 
-                                   paste("IYS2019", "Kaganovsky", station, "Bongo", sep = "-"),
-                                   paste("IYS2020", "Legacy", station, "Bongo", sep = "-")),
-         catch_id = paste(station_event_id, net_number, sep = "-")) %>%
+                                   paste("GoA2019", "Kaganovsky", station, "Bongo", sep = "-"),
+                                   paste("GoA2020", "Legacy", station, "Bongo", sep = "-")),
+         net_id = paste(station_event_id, net_number, sep = "-")) %>%
   group_by(station_event_id) %>%
-  mutate(specimen_id = paste(catch_id, row_number(), sep = "-"),
+  mutate(specimen_id = paste(net_id, row_number(), sep = "-"),
          species_recorded = NA,
          preservation_method = "Formalin",
          identified_by = NA,
@@ -1391,7 +1391,7 @@ zoop_2019_2020 <- zoop_2019_2020 %>%
   select(-c(station, date, genus, species)) %>%
   ungroup()
 
-dups <- zoop_2019_2020 %>% group_by(catch_id) %>% filter(n() >1)
+dups <- zoop_2019_2020 %>% group_by(net_id) %>% filter(n() >1)
 
 zoop_2022 <- read_excel(here("input_datasets", "2022", "IYS2022_Zooplankton_Template.xlsx"), 
                    sheet = "Bongo_Specimen_Data")
@@ -1399,8 +1399,8 @@ zoop_2022 <- read_excel(here("input_datasets", "2022", "IYS2022_Zooplankton_Temp
 # Need to recreate the station_event_id, catch_id and specimen_id columns:
 zoop_2022 <- zoop_2022 %>%
   rename(specimen_id = catch_id, 
-         catch_id = station_event_id) %>%
-  mutate(station_event_id = sub('-[^-]*$', '', catch_id))
+         net_id = station_event_id) %>%
+  mutate(station_event_id = sub('-[^-]*$', '', net_id))
 
 zoop_2022 <- zoop_2022 %>% select(-taxonomic_rank) %>%
   rename(verbatim_identification = verbatimIdentification) %>%
@@ -1410,14 +1410,15 @@ janitor::compare_df_cols(zoop_2019_2020, zoop_2022)
 
 zoop <- rbind(zoop_2019_2020, zoop_2022)
 
-# Reshuffle columns:
-zoop <- zoop %>% 
-  dplyr::select(station_event_id, catch_id, specimen_id, scientific_name, verbatim_identification, 
-                lifestage, sex, catch_count, everything())
-
 # For IYS2019-Kaganovsky-8-Bongo-1-36, change lifestage to "juvenile"
 zoop$lifestage[zoop$specimen_id == "IYS2019-Kaganovsky-8-Bongo-1-36"] <- "juvenile"
 zoop$sex <- gsub("juvenile", "", zoop$sex)
+
+# Some size_ranges include lifestages, parse these into the correct column and remove from size_range column:
+zoop$lifestage <- ifelse(grepl("Megalopa", zoop$size_range), "megalopae", zoop$lifestage)
+
+# Remove these lifestages from the size_range column
+zoop$size_range <- gsub("fur |Megalopa", "", zoop$size_range)
 
 # Standardize the lifestage column:
 zoop$lifestage <-  gsub("calyptopsis|^cal$|caliptopis", "calyptopis", zoop$lifestage)
@@ -1427,12 +1428,14 @@ zoop$lifestage <-  gsub("^II$", "C2", zoop$lifestage)
 zoop$lifestage <-  gsub("^III$", "C3", zoop$lifestage)
 zoop$lifestage <-  gsub("^IV$", "C4", zoop$lifestage)
 zoop$lifestage <-  gsub("^V$", "C5", zoop$lifestage)
-zoop$lifestage <-  gsub("^IVV$", "C4/C5", zoop$lifestage)
-zoop$lifestage <-  gsub("C4C5", "C4/C5", zoop$lifestage)
+zoop$lifestage <-  gsub("^IVV$", "C4-C5", zoop$lifestage)
+zoop$lifestage <-  gsub("C4C5", "C4-C5", zoop$lifestage)
 zoop$lifestage <-  gsub("napulius", "nauplius", zoop$lifestage)
-zoop$lifestage <-  gsub("C15", "C1-C5", zoop$lifestage) #TODO: Confirm
-zoop$lifestage <-  gsub("C56", "C5/C6", zoop$lifestage) #TODO: Confirm
+zoop$lifestage <-  gsub("C15", "C1-C5", zoop$lifestage) 
+zoop$lifestage <-  gsub("C56", "C5-C6", zoop$lifestage) 
 zoop$lifestage <-  gsub("Adult", "adult", zoop$lifestage)
+zoop$lifestage <-  gsub("larvae", "larva", zoop$lifestage)
+zoop$lifestage <-  gsub("floats", "float", zoop$lifestage)
 
 # Standardize the sex column:
 zoop <- zoop %>%
@@ -1538,7 +1541,7 @@ sci_names <- zoop |> count(scientific_name)
 
 zoop <- left_join(zoop, worms_id, by = "scientific_name")
 
-dups_zoop <- zoop %>% group_by(catch_id) %>% filter(n() > 1)
+dups_zoop <- zoop %>% group_by(net_id) %>% filter(n() > 1)
 
 # Remove empty columns and replace NA by blank cells:
 zoop <- zoop %>% mutate(across(where(is.character),~na_if(trimws(.),""))) %>%
@@ -1559,7 +1562,7 @@ zoop$lifestage <- gsub("Adult", "adult", zoop$lifestage)
 # Add "mm" to sf_proc because otherwise it's automatically read in as a date in Excel.
 zoop$sf_proc <- ifelse(zoop$sf_proc != "", paste0(zoop$sf_proc, "mm"), zoop$sf_proc)
 
-zoop_col_order <- c("station_event_id", "net_number", "catch_id", "specimen_id", "verbatim_identification", 
+zoop_col_order <- c("station_event_id", "net_number", "net_id", "specimen_id", "verbatim_identification", 
                    "scientific_name", "scientific_name_id", "lifestage", "sex", "size_range", "taxonomic_rank",
                    "prop_total_sample", "sf_proc", "prop_sf_proc", "catch_count", "count_method",
                    "flowmeter_volume_filtered_m3", "depth_volume_filtered_m3", "abundance_m3", "preservation_method",
@@ -1715,8 +1718,6 @@ only_pk <- dm_no_keys %>%
   
 only_pk %>% dm_examine_constraints() # checks for duplicates in PK
 
-#TODO: resolve duplicated specimen_ids for NW Trawl
-
 # add foreign keys
 dm <- only_pk %>% 
   dm_add_fk(IYS_CTD, station_event_id, IYS_events) %>% 
@@ -1726,8 +1727,6 @@ dm <- only_pk %>%
 
 issues <- dm %>% dm_examine_constraints() # checks that foreign keys all have a matching primary key in  the parent table
 issues
-
-#TODO: resolve values of `IYS_trawl_specimen$catch_id` not in `IYS_trawl_catch$catch_id`
 
 # manually  export the drawing from the viewer pane to figs to update the data model image
 dm_draw(dm)
