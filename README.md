@@ -6,6 +6,10 @@ See the Changelog.txt file to get updates on what's changed between dataset vers
 
 🤖 See the metadata record for this dataset here: https://doi.org/10.21966/81jn-6p63
 
+Recommended citation: 
+
+Pakhomov, E., Weitkamp, L., Neville, C., Somov, A., King, J., Farley, E., Hunt, B., Freshwater, C., Murphy, J., van der Stap, T., Johnson, B., Kivva, K., Esenkulova, S., Urawa, S., Waters, C., Vazhova, A., Radchenko, V., Riddel, B., Beamish, R., … Saunders, M. (2023). Integrated Data Collection from the International Year of the Salmon High Seas Expeditions (4th ed.) [Data set]. North Pacific Anadromous Fish Commission. https://doi.org/10.21966/81jn-6p63
+
 🐟 The repository is structured as follows: 
   * `input_datasets` contains processed data files (not standardized) that have been sent to the IYS Data Scientists.
   * `output_datasets` contains the individual integrated datasets specific to a data type (i.e. bridgelog, trawl, specimen, CTD). 
