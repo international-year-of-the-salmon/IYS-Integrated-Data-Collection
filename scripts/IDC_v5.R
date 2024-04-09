@@ -36,6 +36,21 @@ idc_v5_events <- idc_v4_events |>
 #TODO Include taxonomic rank for missing values in catch table
 #TODO include LSID for Robust clubhook squid Moroteuthis robustus
 
+library(worrms)
+# Get the LSID for Robust clubhook squid Moroteuthis robustus
+lsid <- worrms::wm_records_common("clubhook squid", fuzzy = TRUE)
+lsid <- worrms::wm_records_taxamatch("Moroteuthis robustus")
+
+idc_v5_specimen <- idc_v5_specimen |> 
+  mutate(verbatim_identification = ifelse(scientific_name == "Moroteuthis robustus", "Moroteuthis robustus", verbatim_identification)) |> 
+  mutate(scientific_name = ifelse(verbatim_identification == "Moroteuthis robustus", "Onykia robusta", scientific_name)) |> 
+  mutate(scientific_name_id = ifelse(scientific_name == "Onykia robusta", lsid[[1]][["lsid"]], scientific_name_id)) |> 
+  mutate(taxonomic_rank = ifelse(scientific_name == "Onykia robusta", "species", lsid[[1]][["rank"]]))
+
+no_ranks <- idc_v5_specimen |> 
+  filter(is.na(taxonomic_rank) & !is.na(scientific_name_id)) # 1 record
+
+
 #add comment to event table for NW CTD events to indicate CTD was improperly deployed and data is not available
 idc_v5_events <- idc_v5_events |> 
   mutate(comments = ifelse(vessel_name_abbr == "NW" & event_type == "CTD", "CTD was improperly deployed and data is not available", comments))
